@@ -1,26 +1,221 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Unbleached-paper / linen palette: warmer and a step deeper than off-white. */
+  --ivory: #ebe6db;
+  --ivory-deep: #e1dbcf;
+  --charcoal: #2a2825;
+  --ink: #141311;
+  --muted: #736d63;
+  --rule: #cfc7b9;
+  /* Nature accent: muted moss/sage, used sparingly for highlights. */
+  --sage: #86967a;
+  --sage-soft: rgba(134, 150, 122, 0.16);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-ivory: var(--ivory);
+  --color-ivory-deep: var(--ivory-deep);
+  --color-charcoal: var(--charcoal);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-rule: var(--rule);
+  --color-sage: var(--sage);
+  --color-sage-soft: var(--sage-soft);
+  --font-serif: var(--font-newsreader);
   --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--ivory);
+  color: var(--charcoal);
+  font-family: var(--font-serif), Georgia, "Times New Roman", serif;
+  font-feature-settings: "kern", "liga", "onum";
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--sage);
+  color: var(--ivory);
+}
+
+/* Editorial reveal: opacity + a few px of lift. Nothing more. */
+.reveal {
+  opacity: 0;
+  transform: translateY(12px);
+  transition:
+    opacity 900ms cubic-bezier(0.2, 0.6, 0.2, 1),
+    transform 900ms cubic-bezier(0.2, 0.6, 0.2, 1);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Backdrop: graph paper. Fixed, behind everything, low contrast.
+   Lines every 120px; a radial mask fades the grid toward the edges. */
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.backdrop-photo {
+  position: absolute;
+  inset: -4%; /* overscan hides the blur's soft edges */
+  background-image: url('/media/backdrop-trees.jpg');
+  background-size: cover;
+  background-position: 50% 50%;
+  opacity: 0.16;
+  /* Pull it toward the linen so it tints rather than photographs.
+     multiply darkens; keep opacity low and lift the image itself. */
+  mix-blend-mode: multiply;
+  filter: saturate(0.85) brightness(1.28);
+}
+
+.backdrop-grid {
+  position: absolute;
+  inset: 0;
+  /* One line weight, one spacing. Minimal. */
+  background-image:
+    linear-gradient(to right, rgba(42, 40, 37, 0.09) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(42, 40, 37, 0.09) 1px, transparent 1px);
+  background-size: 120px 120px;
+  -webkit-mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, #000 45%, transparent 100%);
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, #000 45%, transparent 100%);
+}
+
+/* Hover spotlight: same grid at higher contrast, revealed only inside a
+   soft circle around the cursor (--mx/--my set from Backdrop.tsx).
+   Off-screen by default, so nothing shows until the pointer moves. */
+.backdrop {
+  --mx: -9999px;
+  --my: -9999px;
+}
+.backdrop-grid-hot {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(to right, rgba(134, 150, 122, 0.55) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(134, 150, 122, 0.55) 1px, transparent 1px);
+  background-size: 120px 120px;
+  -webkit-mask-image: radial-gradient(circle 260px at var(--mx) var(--my), #000 0%, rgba(0, 0, 0, 0.5) 45%, transparent 100%);
+  mask-image: radial-gradient(circle 260px at var(--mx) var(--my), #000 0%, rgba(0, 0, 0, 0.5) 45%, transparent 100%);
+}
+@media (pointer: coarse) {
+  .backdrop-grid-hot {
+    display: none;
+  }
+}
+
+/* π: 500 digits drifting right-to-left along the bottom edge in a seamless
+   loop. Two copies in the track; translating by -50% lands exactly on the
+   second copy, so the reset is invisible. Hover pauses it. */
+.backdrop-pi {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 1.25rem;
+  z-index: 10;
+  padding-top: 1.8em;
+  overflow: hidden;
+  pointer-events: auto;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  font-variant-numeric: tabular-nums;
+  color: rgba(42, 40, 37, 0.5);
+  white-space: nowrap;
+  user-select: none;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+}
+.backdrop-pi-track {
+  display: flex;
+  width: max-content;
+  animation: pi-scroll 520s linear infinite;
+  will-change: transform;
+}
+.backdrop-pi-copy {
+  display: flex;
+  align-items: flex-end;
+  gap: 1.6em; /* between blocks */
+  padding-right: 1.6em; /* one block gap across the seam */
+}
+.pi-block {
+  display: flex;
+  gap: 0.6em; /* between cells */
+}
+.pi-group {
+  position: relative;
+  display: inline-block;
+  padding: 0.3em 0.4em;
+  border-radius: 3px;
+  cursor: pointer;
+  transition:
+    color 150ms ease,
+    background-color 150ms ease;
+}
+/* Cell address (block.cell), tiny and above the digits. */
+.pi-addr {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -1.5em;
+  text-align: center;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  font-weight: 500;
+  color: var(--sage);
+  opacity: 0;
+  transition: opacity 150ms ease;
+}
+.pi-group:hover {
+  color: var(--ink);
+  background-color: var(--sage-soft);
+}
+.pi-group:hover .pi-addr {
+  opacity: 1;
+}
+.backdrop-pi:hover .backdrop-pi-track {
+  animation-play-state: paused;
+}
+@keyframes pi-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@media (max-width: 767px) {
+  .backdrop-pi {
+    display: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .backdrop-pi-track {
+    animation: none;
+  }
+}
+
+/* Video frame: layered shadow — tight contact + wide ambient — so the frame
+   sits on the paper rather than floating. */
+.video-frame {
+  box-shadow:
+    0 1px 2px rgba(20, 19, 17, 0.35),
+    0 12px 28px -8px rgba(20, 19, 17, 0.45),
+    0 40px 80px -24px rgba(20, 19, 17, 0.4);
 }

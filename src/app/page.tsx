@@ -1,68 +1,111 @@
-import Image from "next/image";
+import { Reveal, VideoPlayer } from '@/components';
+import { site } from '@/content/site';
+
+function Eyebrow({ children }: { children: string }) {
+  return <p className="font-sans text-[11px] uppercase tracking-[0.22em] text-muted">{children}</p>;
+}
 
 export default function Home() {
+  // Width-to-height ratio from site.video.aspect ("w / h"). The whole page
+  // fits one viewport on desktop, so the video's height is the hard constraint
+  // and its width derives from it.
+  const [vw, vh] = site.video.aspect.split('/').map((n) => Number(n.trim()));
+  const videoRatio = vw / vh;
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
+    <div className="mx-auto flex min-h-svh max-w-[1480px] flex-col px-5 py-10 sm:px-8 md:px-12 md:py-16">
+      {/* Single composition: name, bio and work on the left; video on the right.
+          The video sets the row height; the left column centers against it. */}
+      <main className="flex flex-1 flex-col gap-y-12 md:flex-row md:items-center md:justify-center md:gap-x-16 md:gap-y-0 lg:gap-x-28">
+        <Reveal as="header" className="text-center md:max-w-[44rem] md:flex-1">
+          <h1
+            id="name"
+            className="text-center font-serif font-light leading-[1.02] tracking-[-0.03em] text-ink"
+            style={{ fontSize: 'clamp(2.75rem, 5.5vw, 5.5rem)' }}
+          >
+            BEN BASUNI
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+          <blockquote className="mt-8 md:mt-10">
+            <p className="font-serif text-[1.1rem] font-light italic leading-[1.5] text-ink md:whitespace-nowrap md:text-[1.25rem]">
+              &ldquo;Man is not a farmer, or a professor, or an engineer, but he is all.&rdquo;
+            </p>
+            <footer className="mt-2 font-sans text-[11px] uppercase tracking-[0.18em] text-sage">
+              Ralph Waldo Emerson
+            </footer>
+          </blockquote>
+
+          {/* One idea per line. Each <p> is a row; the gap between rows does the pacing. */}
+          <div className="mt-8 space-y-3 font-serif text-[1.05rem] font-light leading-[1.5] text-charcoal md:text-[1.2rem]">
+            <p>I was born in Indonesia and grew up in three countries.</p>
+            <p>That taught me early: there is never just one way to see things.</p>
+            <p>I studied philosophy at UC Santa Barbara.</p>
+            <p>
+              People ask what you do with that. My answer is <em className="text-sage">everything</em>.
+            </p>
+            <p>Ten years building software for startups and enterprises across the US.</p>
+            <p>Today I run Binary 1702, where I help leaders make better decisions.</p>
+          </div>
+
+          {/* Link groups */}
+          <div className="mt-8 grid grid-cols-2 gap-x-8 border-t border-sage/30 pt-6 text-center md:mt-10">
+            {site.groups.map((group) => (
+              <div key={group.label}>
+                <Eyebrow>{group.label}</Eyebrow>
+                <ul className="mt-4 space-y-2">
+                  {group.links.length === 0 && (
+                    <li className="font-serif text-[1.05rem] font-light italic text-muted md:text-[1.125rem]">
+                      soon
+                    </li>
+                  )}
+                  {group.links.map((link) => (
+                    <li key={link.display}>
+                      {link.url ? (
+                        <a
+                          href={link.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="group inline-flex items-baseline gap-2 font-serif text-[1.05rem] font-light text-ink md:text-[1.125rem]"
+                        >
+                          <span className="border-b border-ink/40 pb-0.5 transition-colors duration-500 group-hover:border-sage">
+                            {link.display}
+                          </span>
+                          <span
+                            aria-hidden="true"
+                            className="font-sans text-xs text-sage transition-transform duration-500 group-hover:translate-x-0.5"
+                          >
+                            ↗
+                          </span>
+                        </a>
+                      ) : (
+                        <span className="font-serif text-[1.05rem] font-light italic text-muted md:text-[1.125rem]">
+                          {link.display}
+                        </span>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </Reveal>
+
+        {/* Height budget: 100svh minus page padding (8rem). Width derives from the aspect ratio. On narrow
+            screens 100% wins and the page scrolls. */}
+        <Reveal
+          delay={150}
+          className="w-full md:shrink-0"
+          style={{ maxWidth: `min(100%, calc((100svh - 8rem) * ${videoRatio}))` }}
+        >
+          <VideoPlayer
+            youtubeId={site.video.youtubeId}
+            src={site.video.src}
+            poster={site.video.poster}
+            preview={site.video.preview}
+            aspect={site.video.aspect}
+            title={site.video.title}
+            overlay={site.video.overlay}
+          />
+        </Reveal>
       </main>
     </div>
   );
