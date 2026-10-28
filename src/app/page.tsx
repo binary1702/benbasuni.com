@@ -109,7 +109,7 @@ export default function Home() {
             <p>
               Today I run Binary 1702.
               <br />
-              Smart leaders call us first. <em className="text-sage">The rest call us later.</em>
+              The company I always <em className="text-sage">wanted to work for.</em>
             </p>
           </div>
 
