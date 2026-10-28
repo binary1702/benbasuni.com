@@ -14,10 +14,13 @@ export default function Home() {
 
   return (
     <div className="mx-auto flex min-h-svh max-w-[1480px] flex-col px-5 py-10 sm:px-8 md:px-12 md:py-16">
-      {/* Single composition: name, bio and work on the left; video on the right.
-          The video sets the row height; the left column centers against it. */}
-      <main className="flex flex-1 flex-col gap-y-12 md:flex-row md:items-center md:justify-center md:gap-x-16 md:gap-y-0 lg:gap-x-28">
-        <Reveal as="header" className="text-center md:max-w-[44rem] md:flex-1">
+      {/* DOM order is name → video → info, which is the mobile order.
+          On desktop a grid re-places them: name and info stacked in the left
+          column (centered against the video by the 1fr rows above and below),
+          video spanning all rows on the right. */}
+      <main className="grid flex-1 grid-cols-1 gap-y-10 md:grid-cols-[minmax(0,44rem)_auto] md:grid-rows-[1fr_auto_auto_1fr] md:items-center md:justify-center md:gap-x-16 md:gap-y-0 lg:gap-x-28">
+
+        <Reveal as="header" className="text-center md:col-start-1 md:row-start-2">
           <h1
             id="name"
             className="text-center font-serif font-light leading-[1.02] tracking-[-0.03em] text-ink"
@@ -25,8 +28,34 @@ export default function Home() {
           >
             BEN BASUNI
           </h1>
-          <blockquote className="mt-8 md:mt-10">
-            <p className="font-serif text-[1.1rem] font-light italic leading-[1.5] text-ink md:whitespace-nowrap md:text-[1.25rem]">
+        </Reveal>
+
+        {/* Width derives from the viewport height and the aspect ratio so the
+            frame fits one screen: see .video-fit in globals.css for the budgets
+            (mobile leaves room for the name above it). */}
+        <Reveal
+          delay={150}
+          className="video-fit justify-self-center md:col-start-2 md:row-span-4 md:row-start-1"
+          style={{ '--ratio': videoRatio } as React.CSSProperties}
+        >
+          <VideoPlayer
+            youtubeId={site.video.youtubeId}
+            src={site.video.src}
+            poster={site.video.poster}
+            preview={site.video.preview}
+            aspect={site.video.aspect}
+            title={site.video.title}
+            overlay={site.video.overlay}
+          />
+        </Reveal>
+
+
+        <Reveal className="text-center md:col-start-1 md:row-start-3" delay={100}>
+          <blockquote className="md:mt-10">
+            <p
+              className="whitespace-nowrap font-serif font-light italic leading-[1.5] text-ink"
+              style={{ fontSize: 'clamp(0.65rem, 2.6vw, 1.25rem)' }}
+            >
               &ldquo;Man is not a farmer, or a professor, or an engineer, but he is all.&rdquo;
             </p>
             <footer className="mt-2 font-sans text-[11px] uppercase tracking-[0.18em] text-sage">
@@ -89,23 +118,6 @@ export default function Home() {
           </div>
         </Reveal>
 
-        {/* Height budget: 100svh minus page padding (8rem). Width derives from the aspect ratio. On narrow
-            screens 100% wins and the page scrolls. */}
-        <Reveal
-          delay={150}
-          className="w-full md:shrink-0"
-          style={{ maxWidth: `min(100%, calc((100svh - 8rem) * ${videoRatio}))` }}
-        >
-          <VideoPlayer
-            youtubeId={site.video.youtubeId}
-            src={site.video.src}
-            poster={site.video.poster}
-            preview={site.video.preview}
-            aspect={site.video.aspect}
-            title={site.video.title}
-            overlay={site.video.overlay}
-          />
-        </Reveal>
       </main>
     </div>
   );

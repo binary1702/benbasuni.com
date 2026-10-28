@@ -219,3 +219,16 @@ body {
     0 12px 28px -8px rgba(20, 19, 17, 0.45),
     0 40px 80px -24px rgba(20, 19, 17, 0.4);
 }
+
+/* Video fits one viewport. Height budget = 100svh minus what shares the
+   screen with it; width follows from the aspect ratio (--ratio = w/h).
+   Mobile: page padding (5rem) + name + gap ≈ 13rem. Desktop: padding only. */
+.video-fit {
+  width: min(100%, calc((100svh - 13rem) * var(--ratio, 0.5625)));
+}
+@media (min-width: 768px) {
+  /* A definite width: inside a grid auto track, a % width has nothing to resolve against. */
+  .video-fit {
+    width: calc((100svh - 8rem) * var(--ratio, 0.5625));
+  }
+}
