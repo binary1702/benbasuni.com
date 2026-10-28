@@ -18,20 +18,10 @@ export const meta: Thought = {
     { type: 'p', text: 'I don’t know that every problem has a simple answer. Most interesting problems don’t. But I’ve learned that the quality of the solution depends heavily on how well we understand the question.' },
     { type: 'p', text: 'That’s why I asked him why.' },
     { type: 'h', text: 'The First Mistake I Made' },
-    {
-      type: 'p',
-      text: 'When I started my company, I thought my value was speed. I was the fastest engineer in every room I walked into, and I knew it. I charged by the hour. I jumped straight into building. Believe it or not, the faster I worked, the less my clients got.',
-    },
-    {
-      type: 'p',
-      text: 'The projects that made the most money and did the most good were never the ones where I wrote the most code. They were the ones where I slowed down and spent the most time asking questions. Understanding the business. Understanding the owner. Understanding what we were actually trying to change.',
-    },
+    { type: 'p', text: 'When I started my company, I thought my value was speed. I charged by the hour. I jumped straight into building, and I was good at it. I was doing more work, more efficiently, than I ever had. And my clients were getting more and more confused.' },
+    { type: 'p', text: 'Something was off. The projects that made the most money and did the most good were never the ones where I wrote the most code. They were the ones where I slowed down and spent the most time asking questions. Understanding the business. Understanding the owner. Understanding what we were actually trying to change.' },
     { type: 'quote', text: 'I had been charging people for my hands when what they needed was my judgment.' },
-    {
-      type: 'p',
-      text: 'The day I understood that, I tripled my rates, did half the building, and the business took off. That is not a coincidence. That is the whole game, and most people in my industry never figure it out.',
-    },
-
+    { type: 'p', text: 'Once I understood that, I changed how I work. Less building, more listening. More diagnosis before design. The business grew, and so did the results for the people who hired me. Speed was never the product. Understanding was.' },
     { type: 'h', text: 'The Word' },
     {
       type: 'p',
