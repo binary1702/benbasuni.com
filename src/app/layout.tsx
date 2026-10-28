@@ -20,6 +20,9 @@ const geistSans = Geist({
 export const metadata: Metadata = {
   title: 'Ben Basuni',
   description: 'An introduction to Ben Basuni — the person behind Binary 1702.',
+  // iOS Safari rewrites ten-digit runs (every π/φ cell) into tel: links,
+  // which breaks hydration. Turn that detection off.
+  formatDetection: { telephone: false, date: false, address: false, email: false },
 };
 
 export default function RootLayout({ children }: LayoutProps<'/'>) {

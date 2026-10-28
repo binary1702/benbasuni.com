@@ -32,7 +32,8 @@ export const site: {
     title: 'A Life of Curiosity',
     overlay: { title: 'A Life of Curiosity', byline: 'Ben Basuni' },
   },
-  /** Link groups under the bio. Empty `links` renders a muted "soon". */
+  /** Link groups under the bio. Speeches and Writings are appended from
+   *  src/content/thoughts at render time (see page.tsx). */
   groups: [
     {
       label: 'Work',
@@ -41,7 +42,5 @@ export const site: {
         { display: 'shavat.app', url: 'https://shavat.app' },
       ],
     },
-    // Placeholder second column — rename the label and add links when decided.
-    { label: 'Making', links: [{ display: 'soon' }] },
   ],
 };

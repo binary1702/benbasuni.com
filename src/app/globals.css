@@ -43,7 +43,10 @@ body {
   color: var(--ivory);
 }
 
-/* Editorial reveal: opacity + a few px of lift. Nothing more. */
+/* Editorial reveal: opacity + a few px of lift. Nothing more.
+   With scripting disabled the content is simply shown (see below); with
+   scripting on, Reveal.tsx also has a timed fallback so a failed script
+   can never leave the page blank. */
 .reveal {
   opacity: 0;
   transform: translateY(12px);
@@ -54,6 +57,13 @@ body {
 .reveal.is-visible {
   opacity: 1;
   transform: none;
+}
+@media (scripting: none) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -131,7 +141,6 @@ body {
   position: fixed;
   left: 0;
   right: 0;
-  bottom: 1.25rem;
   z-index: 10;
   padding-top: 1.8em;
   overflow: hidden;
@@ -196,6 +205,81 @@ body {
 .backdrop-pi:hover .backdrop-pi-track {
   animation-play-state: paused;
 }
+.backdrop-pi--bottom {
+  bottom: 1rem;
+}
+/* Top strip: mirrored direction; its address labels hang below the digits,
+   so the digits themselves sit 1rem from the edge, same as the bottom strip. */
+.backdrop-pi--top {
+  top: 1rem;
+  padding-top: 0;
+  padding-bottom: 1.8em;
+}
+.backdrop-pi--top .pi-addr {
+  top: auto;
+  bottom: -1.5em;
+}
+.backdrop-pi--top .backdrop-pi-track {
+  animation-direction: reverse;
+}
+
+/* Side strips: vertical. The copy's writing-mode turns its flex row into a
+   top-to-bottom column; left uses vertical-rl (addresses to the right of the
+   digits), right uses vertical-lr (addresses to the left). */
+.backdrop-pi--left,
+.backdrop-pi--right {
+  left: auto;
+  right: auto;
+  top: 0;
+  bottom: 0;
+  padding-top: 0;
+  height: 100%;
+  width: auto;
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(to bottom, transparent, #000 8%, #000 92%, transparent);
+}
+.backdrop-pi--left {
+  left: 1.5rem;
+  padding-right: 1.6em;
+}
+.backdrop-pi--right {
+  right: 1.5rem;
+  padding-left: 1.6em;
+}
+.backdrop-pi--left .backdrop-pi-track,
+.backdrop-pi--right .backdrop-pi-track {
+  flex-direction: column;
+  height: max-content;
+  width: auto;
+  animation-name: pi-scroll-y;
+}
+.backdrop-pi--right .backdrop-pi-track {
+  animation-direction: reverse;
+}
+.backdrop-pi--left .backdrop-pi-copy {
+  writing-mode: vertical-rl;
+}
+.backdrop-pi--right .backdrop-pi-copy {
+  writing-mode: vertical-lr;
+}
+.backdrop-pi--left .backdrop-pi-copy,
+.backdrop-pi--right .backdrop-pi-copy {
+  padding-right: 0;
+  padding-bottom: 1.6em; /* one block gap across the seam */
+}
+.backdrop-pi--left .pi-addr,
+.backdrop-pi--right .pi-addr {
+  left: auto;
+  right: auto;
+  top: auto;
+  inset-block-start: -1.5em;
+  inset-inline-start: 0;
+  inset-inline-end: 0;
+}
+@keyframes pi-scroll-y {
+  from { transform: translateY(0); }
+  to { transform: translateY(-50%); }
+}
 @keyframes pi-scroll {
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }
@@ -231,4 +315,33 @@ body {
   .video-fit {
     width: calc((100svh - 8rem) * var(--ratio, 0.5625));
   }
+}
+
+/* Essay sheet: a flat, slightly lighter leaf behind the writing. No border,
+   no shadow — the tone shift alone separates it from the desk. */
+.sheet {
+  position: relative;
+  z-index: 20; /* above the number strips (z 10): the page wins, not the ticker */
+  padding: 1.5rem 1.25rem 2rem;
+  border-radius: 12px;
+  background: #f3efe6;
+}
+@media (min-width: 768px) {
+  .sheet {
+    padding: 1.5rem 2.5rem 2rem;
+  }
+}
+
+/* Scrolling text pane inside the fixed sheet: thin, quiet scrollbar. */
+.scroll-pane {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(42, 40, 37, 0.18) transparent;
+  overscroll-behavior: contain;
+}
+.scroll-pane::-webkit-scrollbar {
+  width: 6px;
+}
+.scroll-pane::-webkit-scrollbar-thumb {
+  background: rgba(42, 40, 37, 0.18);
+  border-radius: 3px;
 }

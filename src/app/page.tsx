@@ -1,11 +1,39 @@
 import { Reveal, VideoPlayer } from '@/components';
 import { site } from '@/content/site';
+import { thoughts, thoughtPath, HOME_KINDS, KIND_LABEL } from '@/content/thoughts';
+
+type LinkT = { display: string; url?: string };
+function LinkItem({ link }: { link: LinkT }) {
+  const cls = 'font-serif text-[1.05rem] font-light md:text-[1.125rem]';
+  if (!link.url) return <span className={`${cls} italic text-muted`}>{link.display}</span>;
+  const external = !link.url.startsWith('/');
+  return (
+    <a
+      href={link.url}
+      {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+      className={`group inline-flex items-baseline ${cls} text-ink`}
+    >
+      <span className="border-b border-ink/40 pb-0.5 transition-colors duration-500 group-hover:border-sage">
+        {link.display}
+      </span>
+    </a>
+  );
+}
 
 function Eyebrow({ children }: { children: string }) {
   return <p className="font-sans text-[11px] uppercase tracking-[0.22em] text-muted">{children}</p>;
 }
 
 export default function Home() {
+  // Work (from site.ts) + one column per kind shown on the home page.
+  const groups = [
+    ...site.groups,
+    ...HOME_KINDS.map((kind) => ({
+      label: KIND_LABEL[kind],
+      links: thoughts.filter((t) => t.kind === kind).map((t) => ({ display: t.title, url: thoughtPath(t) })),
+    })),
+  ];
+
   // Width-to-height ratio from site.video.aspect ("w / h"). The whole page
   // fits one viewport on desktop, so the video's height is the hard constraint
   // and its width derives from it.
@@ -18,7 +46,7 @@ export default function Home() {
           On desktop a grid re-places them: name and info stacked in the left
           column (centered against the video by the 1fr rows above and below),
           video spanning all rows on the right. */}
-      <main className="grid flex-1 grid-cols-1 gap-y-10 md:grid-cols-[minmax(0,44rem)_auto] md:grid-rows-[1fr_auto_auto_1fr] md:items-center md:justify-center md:gap-x-16 md:gap-y-0 lg:gap-x-28">
+      <main className="grid flex-1 grid-cols-1 gap-y-10 md:grid-cols-[minmax(0,40rem)_auto] md:grid-rows-[1fr_auto_auto_1fr] md:items-center md:justify-center md:gap-x-10 md:gap-y-0 lg:gap-x-16">
 
         <Reveal as="header" className="text-center md:col-start-1 md:row-start-2">
           <h1
@@ -66,50 +94,34 @@ export default function Home() {
           {/* One idea per line. Each <p> is a row; the gap between rows does the pacing. */}
           <div className="mt-8 space-y-3 font-serif text-[1.05rem] font-light leading-[1.5] text-charcoal md:text-[1.2rem]">
             <p>I was born in Indonesia and grew up in three countries.</p>
-            <p>That taught me early: there is never just one way to see things.</p>
+            <p className="md:whitespace-nowrap">
+              That taught me early:
+              <br className="md:hidden" />
+              there is never just one way to see things.
+            </p>
             <p>I studied philosophy at UC Santa Barbara.</p>
             <p>
-              People ask what you do with that. My answer is <em className="text-sage">everything</em>.
+              People ask what you do with that.
+              <br />
+              My answer is <em className="text-sage">everything</em>.
             </p>
             <p>Ten years building software for startups and enterprises across the US.</p>
-            <p>Today I run Binary 1702, where I help leaders make better decisions.</p>
+            <p>
+              Today I run Binary 1702.
+              <br />
+              Smart leaders call us first. <em className="text-sage">The rest call us later.</em>
+            </p>
           </div>
 
           {/* Link groups */}
-          <div className="mt-8 grid grid-cols-2 gap-x-8 border-t border-sage/30 pt-6 text-center md:mt-10">
-            {site.groups.map((group) => (
+          <div className="mt-8 grid grid-cols-1 gap-y-7 border-t border-sage/30 pt-6 text-center md:mt-10 md:grid-cols-3 md:gap-x-6 md:gap-y-0">
+            {groups.map((group) => (
               <div key={group.label}>
                 <Eyebrow>{group.label}</Eyebrow>
                 <ul className="mt-4 space-y-2">
-                  {group.links.length === 0 && (
-                    <li className="font-serif text-[1.05rem] font-light italic text-muted md:text-[1.125rem]">
-                      soon
-                    </li>
-                  )}
                   {group.links.map((link) => (
                     <li key={link.display}>
-                      {link.url ? (
-                        <a
-                          href={link.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="group inline-flex items-baseline gap-2 font-serif text-[1.05rem] font-light text-ink md:text-[1.125rem]"
-                        >
-                          <span className="border-b border-ink/40 pb-0.5 transition-colors duration-500 group-hover:border-sage">
-                            {link.display}
-                          </span>
-                          <span
-                            aria-hidden="true"
-                            className="font-sans text-xs text-sage transition-transform duration-500 group-hover:translate-x-0.5"
-                          >
-                            ↗
-                          </span>
-                        </a>
-                      ) : (
-                        <span className="font-serif text-[1.05rem] font-light italic text-muted md:text-[1.125rem]">
-                          {link.display}
-                        </span>
-                      )}
+                      <LinkItem link={link} />
                     </li>
                   ))}
                 </ul>
