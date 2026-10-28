@@ -86,6 +86,9 @@ export function VideoPlayer({ youtubeId, src, poster, preview, aspect, title, ov
               <img
                 src={poster}
                 alt=""
+                width={1006}
+                height={1770}
+                decoding="async"
                 aria-hidden="true"
                 className="absolute inset-0 h-full w-full object-cover brightness-[1.08]"
               />

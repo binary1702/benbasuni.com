@@ -88,3 +88,17 @@ export function chapterText(t: Thought, chapter: Chapter): string {
   }
   return lines.join('\n').trim();
 }
+
+/** Plain-text rendering of a whole piece (for structured data). */
+export function fullText(t: Thought): string {
+  return getChapters(t)
+    .map((c) => chapterText(t, c))
+    .join('\n\n');
+}
+
+/** Schema.org type that best fits each kind. Speeches are Articles with genre "Speech". */
+export const KIND_SCHEMA: Record<Kind, 'Article' | 'BlogPosting'> = {
+  speech: 'Article',
+  writing: 'BlogPosting',
+  engineering: 'BlogPosting',
+};

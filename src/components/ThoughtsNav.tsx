@@ -5,7 +5,7 @@ import { usePathname, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 type Item = { href: string; title: string; date: string; chapters: string[] };
-type Section = { label: string; items: Item[] };
+type Section = { label: string; href: string; items: Item[] };
 
 /* Left sidebar on /s/* and /w/* pages. Each section (Speeches, Writings) is
    a foldable group; the current piece is marked and its chapters listed. The
@@ -18,10 +18,13 @@ export function ThoughtsNav({ sections, onNavigate }: { sections: Section[]; onN
 
   const [opened, setOpened] = useState<Record<string, boolean>>({});
   useEffect(() => {
-    try {
-      const saved = JSON.parse(localStorage.getItem('nav-open') ?? '{}');
-      if (saved && typeof saved === 'object') setOpened(saved);
-    } catch {}
+    const id = requestAnimationFrame(() => {
+      try {
+        const saved = JSON.parse(localStorage.getItem('nav-open') ?? '{}');
+        if (saved && typeof saved === 'object') setOpened(saved);
+      } catch {}
+    });
+    return () => cancelAnimationFrame(id);
   }, []);
   const toggle = (label: string) =>
     setOpened((c) => {
@@ -35,7 +38,7 @@ export function ThoughtsNav({ sections, onNavigate }: { sections: Section[]; onN
   return (
     <nav aria-label="Speeches and writings" className="space-y-5 font-serif">
       {sections.map((section) => {
-        const holdsCurrent = section.items.some((i) => i.href === pathname);
+        const holdsCurrent = section.items.some((i) => i.href === pathname) || pathname === section.href;
         const open = holdsCurrent || Boolean(opened[section.label]);
         const id = `nav-${section.label.toLowerCase()}`;
         return (
@@ -59,6 +62,18 @@ export function ThoughtsNav({ sections, onNavigate }: { sections: Section[]; onN
             </button>
 
             <ul id={id} className={`mt-1 space-y-1 ${open ? '' : 'hidden'}`}>
+              <li>
+                <Link
+                  href={section.href}
+                  onClick={onNavigate}
+                  aria-current={pathname === section.href ? 'page' : undefined}
+                  className={`-ml-3 block rounded-md px-3 py-1.5 font-sans text-[10px] uppercase tracking-[0.18em] transition-colors duration-300 ${
+                    pathname === section.href ? 'bg-sage-soft text-ink' : 'text-muted hover:bg-ink/[0.04] hover:text-ink'
+                  }`}
+                >
+                  All {section.label.toLowerCase()}
+                </Link>
+              </li>
               {section.items.map((item) => {
                 const href = item.href;
                 const active = pathname === href;

@@ -1,6 +1,7 @@
 import { Reveal, VideoPlayer } from '@/components';
 import { site } from '@/content/site';
 import { thoughts, thoughtPath, HOME_KINDS, KIND_LABEL } from '@/content/thoughts';
+import { SITE_URL, SITE_NAME, DESCRIPTION, AUTHOR } from '@/lib/site';
 
 type LinkT = { display: string; url?: string };
 function LinkItem({ link }: { link: LinkT }) {
@@ -40,8 +41,30 @@ export default function Home() {
   const [vw, vh] = site.video.aspect.split('/').map((n) => Number(n.trim()));
   const videoRatio = vw / vh;
 
+  const jsonLd = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Person',
+      name: AUTHOR.name,
+      url: AUTHOR.url,
+      sameAs: AUTHOR.sameAs,
+      description: DESCRIPTION,
+      worksFor: { '@type': 'Organization', name: 'Binary 1702', url: 'https://binary1702.com' },
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'WebSite',
+      name: SITE_NAME,
+      url: SITE_URL,
+      description: DESCRIPTION,
+      author: { '@type': 'Person', name: AUTHOR.name, url: AUTHOR.url },
+      inLanguage: 'en',
+    },
+  ];
+
   return (
     <div className="mx-auto flex min-h-svh max-w-[1480px] flex-col px-5 py-10 sm:px-8 md:px-12 md:py-16">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       {/* DOM order is name → video → info, which is the mobile order.
           On desktop a grid re-places them: name and info stacked in the left
           column (centered against the video by the 1fr rows above and below),
@@ -86,7 +109,7 @@ export default function Home() {
             >
               &ldquo;Man is not a farmer, or a professor, or an engineer, but he is all.&rdquo;
             </p>
-            <footer className="mt-2 font-sans text-[11px] uppercase tracking-[0.18em] text-sage">
+            <footer className="mt-2 font-sans text-[11px] uppercase tracking-[0.18em] text-sage-deep">
               Ralph Waldo Emerson
             </footer>
           </blockquote>
@@ -103,13 +126,22 @@ export default function Home() {
             <p>
               People ask what you do with that.
               <br />
-              My answer is <em className="text-sage">everything</em>.
+              My answer is <em className="text-sage-deep">everything</em>.
             </p>
             <p>Ten years building software for startups and enterprises across the US.</p>
             <p>
-              Today I run Binary 1702.
+              Today I run{' '}
+              <a
+                href="https://binary1702.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sage-deep underline decoration-sage-deep/30 underline-offset-4 transition-colors duration-500 hover:decoration-sage-deep"
+              >
+                Binary 1702
+              </a>
+              .
               <br />
-              The company I always <em className="text-sage">wanted to work for.</em>
+              The company I always wanted to work for.
             </p>
           </div>
 

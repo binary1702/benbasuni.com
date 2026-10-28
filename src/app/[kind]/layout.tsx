@@ -1,10 +1,11 @@
 import { ThoughtsShell } from '@/components';
-import { thoughts, getChapters, thoughtPath, KINDS, KIND_LABEL } from '@/content/thoughts';
+import { thoughts, getChapters, thoughtPath, KINDS, KIND_LABEL, KIND_PREFIX } from '@/content/thoughts';
 
 /* Essay pages: collapsible sidebar on the left, the essay on the right. */
 export default function ThoughtsLayout({ children }: LayoutProps<'/[kind]'>) {
   const sections = KINDS.map((kind) => ({
     label: KIND_LABEL[kind],
+    href: `/${KIND_PREFIX[kind]}`,
     items: thoughts
       .filter((t) => t.kind === kind)
       .map((t) => ({

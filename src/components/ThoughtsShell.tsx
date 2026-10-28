@@ -5,7 +5,7 @@ import { Suspense, useEffect, useState, type ReactNode } from 'react';
 import { ThoughtsNav } from './ThoughtsNav';
 
 type Item = { href: string; title: string; date: string; chapters: string[] };
-type Section = { label: string; items: Item[] };
+type Section = { label: string; href: string; items: Item[] };
 
 /* Sidebar panel icon (two panes, left pane filled when open). */
 function PanelIcon({ open }: { open: boolean }) {
@@ -25,14 +25,17 @@ export function ThoughtsShell({ sections, children }: { sections: Section[]; chi
 
   useEffect(() => {
     // Phones start collapsed (the nav would otherwise fill the first screen);
-    // desktop remembers the reader's choice.
-    const phone = window.matchMedia('(max-width: 767px)').matches;
-    try {
-      const saved = localStorage.getItem('thoughts-nav');
+    // desktop remembers the reader's choice. Applied on the next frame so the
+    // first paint matches the server HTML.
+    const id = requestAnimationFrame(() => {
+      const phone = window.matchMedia('(max-width: 767px)').matches;
+      let saved: string | null = null;
+      try {
+        saved = localStorage.getItem('thoughts-nav');
+      } catch {}
       if (saved === 'closed' || (phone && saved !== 'open')) setOpen(false);
-    } catch {
-      if (phone) setOpen(false);
-    }
+    });
+    return () => cancelAnimationFrame(id);
   }, []);
 
   // On phones, close the nav after a tap so the reader lands on the text.

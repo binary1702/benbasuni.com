@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 /* Graph-paper backdrop with π ticking along the top and bottom edges and
    φ (the golden ratio) down the left and right.
@@ -63,19 +63,30 @@ function NumStrip({ edge, blocks, lead, start = 1 }: { edge: Edge; blocks: strin
 
 export function Backdrop() {
   const ref = useRef<HTMLDivElement>(null);
+  // The number strips are purely decorative and amount to ~9,000 text nodes.
+  // They mount after hydration so they never appear in the server HTML that
+  // crawlers and text extractors read; the grid and wash still render on the server.
+  const [strips, setStrips] = useState(false);
+  useEffect(() => {
+    const id = requestAnimationFrame(() => setStrips(true));
+    return () => cancelAnimationFrame(id);
+  }, []);
 
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
     if (!window.matchMedia('(pointer: fine)').matches) return;
 
+    // Write the cursor position to the spotlight disc only, so just one
+    // element's style is recomputed per frame (not the whole backdrop tree).
+    const hot = el.querySelector<HTMLElement>('.backdrop-grid-hot') ?? el;
     let raf = 0;
     let x = -9999;
     let y = -9999;
     const paint = () => {
       raf = 0;
-      el.style.setProperty('--mx', `${x}px`);
-      el.style.setProperty('--my', `${y}px`);
+      hot.style.setProperty('--mx', `${x}px`);
+      hot.style.setProperty('--my', `${y}px`);
     };
     const onMove = (e: PointerEvent) => {
       x = e.clientX;
@@ -109,11 +120,15 @@ export function Backdrop() {
           the strips live in the top/bottom padding where nothing else does.
           π along top/bottom, φ (golden ratio) down the sides. Each pair is
           mirrored and offset so no two strips show the same digits at once. */}
-      <NumStrip edge="bottom" blocks={PI_BLOCKS} lead="3." />
-      <NumStrip edge="top" blocks={PI_BLOCKS} lead="3." start={2} />
-      {/* φ down the sides: left reads top-to-bottom, right is mirrored and starts at 2.1. */}
-      <NumStrip edge="left" blocks={PHI_BLOCKS} lead="1." />
-      <NumStrip edge="right" blocks={PHI_BLOCKS} lead="1." start={2} />
+      {strips && (
+        <div data-nosnippet>
+          <NumStrip edge="bottom" blocks={PI_BLOCKS} lead="3." />
+          <NumStrip edge="top" blocks={PI_BLOCKS} lead="3." start={2} />
+          {/* φ down the sides: left reads top-to-bottom, right is mirrored and starts at 2.1. */}
+          <NumStrip edge="left" blocks={PHI_BLOCKS} lead="1." />
+          <NumStrip edge="right" blocks={PHI_BLOCKS} lead="1." start={2} />
+        </div>
+      )}
     </>
   );
 }

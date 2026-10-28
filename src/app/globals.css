@@ -10,6 +10,7 @@
   --rule: #cfc7b9;
   /* Nature accent: muted moss/sage, used sparingly for highlights. */
   --sage: #86967a;
+  --sage-deep: #2f7a4a; /* saturated green for text accents: dark enough to read, green enough to stand out */
   --sage-soft: rgba(134, 150, 122, 0.16);
 }
 
@@ -21,6 +22,7 @@
   --color-muted: var(--muted);
   --color-rule: var(--rule);
   --color-sage: var(--sage);
+  --color-sage-deep: var(--sage-deep);
   --color-sage-soft: var(--sage-soft);
   --font-serif: var(--font-newsreader);
   --font-sans: var(--font-geist-sans);
@@ -111,22 +113,41 @@ body {
   mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, #000 45%, transparent 100%);
 }
 
-/* Hover spotlight: same grid at higher contrast, revealed only inside a
-   soft circle around the cursor (--mx/--my set from Backdrop.tsx).
-   Off-screen by default, so nothing shows until the pointer moves. */
-.backdrop {
+/* Hover spotlight, transform-only. A fixed-size disc follows the cursor
+   (translate3d, composited); inside it a viewport-sized copy of the grid
+   counter-translates so its lines stay on the base grid. The mask is static.
+   Nothing repaints per frame and only the disc's own style is recomputed
+   (the --mx/--my variables are written to the disc, not the backdrop root).
+   The previous full-viewport masked layer ran at ~7 fps while moving. */
+.backdrop-grid-hot {
   --mx: -9999px;
   --my: -9999px;
-}
-.backdrop-grid-hot {
+  --spot: 520px;
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
+  width: var(--spot);
+  height: var(--spot);
+  margin: calc(var(--spot) / -2) 0 0 calc(var(--spot) / -2);
+  overflow: hidden;
+  transform: translate3d(var(--mx), var(--my), 0);
+  will-change: transform;
+  -webkit-mask-image: radial-gradient(circle closest-side, #000 0%, rgba(0, 0, 0, 0.5) 45%, transparent 100%);
+  mask-image: radial-gradient(circle closest-side, #000 0%, rgba(0, 0, 0, 0.5) 45%, transparent 100%);
+}
+.backdrop-grid-hot::before {
+  content: '';
+  position: absolute;
+  top: calc(var(--spot) / 2);
+  left: calc(var(--spot) / 2);
+  width: 100vw;
+  height: 100vh;
   background-image:
     linear-gradient(to right, rgba(134, 150, 122, 0.55) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(134, 150, 122, 0.55) 1px, transparent 1px);
   background-size: 120px 120px;
-  -webkit-mask-image: radial-gradient(circle 260px at var(--mx) var(--my), #000 0%, rgba(0, 0, 0, 0.5) 45%, transparent 100%);
-  mask-image: radial-gradient(circle 260px at var(--mx) var(--my), #000 0%, rgba(0, 0, 0, 0.5) 45%, transparent 100%);
+  transform: translate3d(calc(-1 * var(--mx)), calc(-1 * var(--my)), 0);
+  will-change: transform;
 }
 @media (pointer: coarse) {
   .backdrop-grid-hot {

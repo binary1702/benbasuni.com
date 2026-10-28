@@ -27,7 +27,7 @@ export const site: {
     youtubeId: 'e9bDtO3HGcE',
     src: null,
     poster: '/media/letip-poster.jpg',
-    preview: '/media/letip-preview.mp4',
+    preview: '/media/letip-preview.mp4?v=2', // bump ?v= whenever the file is re-encoded
     aspect: '9 / 16',
     title: 'A Life of Curiosity',
     overlay: { title: 'A Life of Curiosity', byline: 'Ben Basuni' },
@@ -38,8 +38,8 @@ export const site: {
     {
       label: 'Work',
       links: [
-        { display: 'binary1702.com', url: 'https://binary1702.com' },
-        { display: 'shavat.app', url: 'https://shavat.app' },
+        { display: 'Anatomy', url: 'https://anatomy.binary1702.com' },
+        { display: 'Shavat', url: 'https://shavat.app' },
       ],
     },
   ],

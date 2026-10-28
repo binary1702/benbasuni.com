@@ -3,7 +3,8 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { CopyButton, Reveal } from '@/components';
 import { FIGURES, type FigureName } from '@/components/figures';
-import { thoughts, getThought, getChapters, chapterText, thoughtPath, KIND_PREFIX, PREFIX_KIND, type Block } from '@/content/thoughts';
+import { thoughts, getThought, getChapters, chapterText, fullText, thoughtPath, KIND_PREFIX, PREFIX_KIND, KIND_LABEL, KIND_SCHEMA, type Block } from '@/content/thoughts';
+import { SITE_URL, SITE_NAME, AUTHOR } from '@/lib/site';
 
 export function generateStaticParams() {
   return thoughts.map((t) => ({ kind: KIND_PREFIX[t.kind], slug: t.slug }));
@@ -12,7 +13,26 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: PageProps<'/[kind]/[slug]'>): Promise<Metadata> {
   const { kind, slug } = await params;
   const t = getThought(slug);
-  return t && PREFIX_KIND[kind] === t.kind ? { title: `${t.title} — Ben Basuni`, description: t.dek } : {};
+  if (!t || PREFIX_KIND[kind] !== t.kind) return {};
+  const path = thoughtPath(t);
+  const description = t.dek.replace(/\n/g, ' ');
+  return {
+    title: t.title,
+    description,
+    // Chapters live at ?p=N; the piece's canonical is its base URL.
+    alternates: { canonical: path },
+    openGraph: {
+      type: 'article',
+      title: t.title,
+      description,
+      url: path,
+      siteName: SITE_NAME,
+      publishedTime: t.date,
+      authors: [AUTHOR.url],
+      section: KIND_LABEL[t.kind],
+    },
+    twitter: { card: 'summary_large_image', title: t.title, description },
+  };
 }
 
 /* *asterisks* → italics; "\n" → single line break */
@@ -122,7 +142,29 @@ export default async function ThoughtPage({ params, searchParams }: PageProps<'/
   const next = siblings[index + 1] ?? null;
   const here = thoughtPath(t);
 
+  const url = `${SITE_URL}${here}`;
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': KIND_SCHEMA[t.kind],
+    headline: t.title,
+    description: t.dek.replace(/\n/g, ' '),
+    datePublished: t.date,
+    dateModified: t.date,
+    author: { '@type': 'Person', name: AUTHOR.name, url: AUTHOR.url },
+    publisher: { '@type': 'Person', name: AUTHOR.name, url: AUTHOR.url },
+    mainEntityOfPage: url,
+    url,
+    inLanguage: 'en',
+    isPartOf: { '@type': 'WebSite', name: SITE_NAME, url: SITE_URL },
+    ...(t.kind === 'speech' ? { genre: 'Speech' } : {}),
+    articleSection: KIND_LABEL[t.kind],
+    articleBody: fullText(t),
+  };
+
   return (
+    <main className="contents">
+      {/* display:contents keeps the sheet's flex sizing; the landmark is for assistive tech and crawlers */}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
     <article id="reading" className="sheet scroll-mt-4 md:flex md:min-h-0 md:flex-1 md:flex-col">
       {/* Header as one row: title left, dek + date right. */}
       <Reveal as="header" className="md:flex md:shrink-0 md:items-end md:justify-between md:gap-8">
@@ -157,7 +199,7 @@ export default async function ThoughtPage({ params, searchParams }: PageProps<'/
             ))}
           </p>
           <p className="mt-1.5 flex items-center gap-3 font-sans text-[10px] uppercase tracking-[0.18em] text-muted md:justify-end">
-            <span>{formatDate(t.date)}</span>
+            <time dateTime={t.date}>{formatDate(t.date)}</time>
             <CopyButton text={chapterText(t, chapter)} label="Copy this page" />
           </p>
         </div>
@@ -213,5 +255,6 @@ export default async function ThoughtPage({ params, searchParams }: PageProps<'/
         </div>
       </Reveal>
     </article>
+    </main>
   );
 }

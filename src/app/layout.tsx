@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Geist, Newsreader } from 'next/font/google';
 import { Backdrop } from '@/components';
+import { SITE_URL, SITE_NAME, DESCRIPTION, AUTHOR } from '@/lib/site';
 import './globals.css';
 
 const newsreader = Newsreader({
@@ -18,8 +19,22 @@ const geistSans = Geist({
 });
 
 export const metadata: Metadata = {
-  title: 'Ben Basuni',
-  description: 'An introduction to Ben Basuni — the person behind Binary 1702.',
+  metadataBase: new URL(SITE_URL),
+  title: { default: SITE_NAME, template: `%s — ${SITE_NAME}` },
+  description: DESCRIPTION,
+  authors: [{ name: AUTHOR.name, url: AUTHOR.url }],
+  creator: AUTHOR.name,
+  alternates: { canonical: '/' },
+  openGraph: {
+    type: 'website',
+    siteName: SITE_NAME,
+    title: SITE_NAME,
+    description: DESCRIPTION,
+    url: '/',
+    locale: 'en_US',
+  },
+  twitter: { card: 'summary_large_image', title: SITE_NAME, description: DESCRIPTION },
+  robots: { index: true, follow: true },
   // iOS Safari rewrites ten-digit runs (every π/φ cell) into tel: links,
   // which breaks hydration. Turn that detection off.
   formatDetection: { telephone: false, date: false, address: false, email: false },
