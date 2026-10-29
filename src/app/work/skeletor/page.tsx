@@ -55,7 +55,7 @@ export default function SkeletorPage() {
 
 
   return (
-    <main data-theme="blueprint" className="relative z-20 mx-auto max-w-[72rem] px-5 py-10 sm:px-8 md:px-12 md:py-14">
+    <main data-theme="blueprint" className="relative mx-auto max-w-[72rem] px-5 py-10 sm:px-8 md:px-12 md:py-14">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
       {/* ---- sheet header: way back + title block ---- */}
@@ -71,8 +71,8 @@ export default function SkeletorPage() {
                 {S.live.url.replace('https://', '')}
               </a>
             </h1>
-            <p className="enter mt-4 max-w-[44rem] font-serif text-[1.05rem] font-light italic leading-[1.5] text-charcoal md:text-[1.2rem]" style={{ animationDelay: '120ms' }}>
-              {S.oneLine}
+            <p className="enter mt-4 max-w-[54rem] text-justify font-serif text-[1.05rem] font-light italic leading-[1.5] text-charcoal md:text-[1.2rem]" style={{ animationDelay: '120ms' }}>
+              We inhabit our bodies every day, yet understand so little of what lies beneath the surface.<br />Skeletor is an exploration of human anatomy, revealing the intricate structures that make us <span className="font-bold">who we are.</span>
             </p>
           </div>
 
@@ -119,19 +119,19 @@ export default function SkeletorPage() {
             { title: 'Roadmap', items: S.timeline.filter((t) => t.status === 'next') },
           ].map((col) => (
             <div key={col.title}>
-              <p className="bp-label text-ink">{col.title}</p>
-              <ol className="relative mt-4 border-l border-rule pl-6">
+              <p className={`bp-label ${col.title === 'Roadmap' ? 'font-bold text-cyan-400' : 'text-ink'}`}>{col.title}</p>
+              <ol className="relative mt-4 pl-6">
                 {col.items.map((t, i) => (
                   <li key={t.date + t.what} className="relative pb-5 last:pb-0">
                     <span
                       aria-hidden="true"
                       style={{ animationDelay: `${i * 70}ms` }}
                       className={`bp-dot absolute -left-[1.6rem] top-1.5 h-2.5 w-2.5 rounded-full border ${
-                        t.status === 'done' ? 'border-ink bg-ink' : 'border-rule bg-ivory'
+                        t.status === 'done' ? 'border-ink bg-ink' : 'border-emerald-400 bg-emerald-400'
                       }`}
                     />
-                    {t.date && <p className="bp-mono text-ink">{t.date}</p>}
-                    <p className={`font-serif text-[1.1rem] font-light leading-[1.5] ${t.status === 'next' ? 'text-charcoal' : 'text-ink'}`}>{t.what}</p>
+                    {t.date && <p className="bp-mono italic text-ink">{t.date}</p>}
+                    <p className={`font-serif text-[1.1rem] font-light leading-[1.5] ${t.status === 'next' ? 'text-emerald-400' : 'text-ink'}`}>{t.what}</p>
                   </li>
                 ))}
               </ol>
@@ -158,15 +158,15 @@ export default function SkeletorPage() {
               {/* competencies sit directly under the heading */}
               <p className="bp-mono mt-2 uppercase tracking-[0.12em] text-sage-deep">{q.competencies.join('  /  ')}</p>
               {/* D. explanation */}
-              <div className="mt-5 space-y-3">
+              <div className="mt-5 flex-1 space-y-3">
                 {q.body.map((para) => (
-                  <p key={para} className="font-serif text-[1rem] font-light leading-[1.55] text-charcoal">
+                  <p key={para} className="text-justify font-serif text-[1rem] font-light leading-[1.55] text-charcoal">
                     {para}
                   </p>
                 ))}
               </div>
               {/* D. result, stamped like a dimension */}
-              <div className="mt-5">
+              <div className="mt-auto pt-5">
                 <div className="bp-rule" />
                 <p className="bp-mono mt-2 text-ink">{q.result}</p>
               </div>

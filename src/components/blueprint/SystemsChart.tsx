@@ -17,9 +17,9 @@ type Memory = { readonly before: readonly Mem[]; readonly after: readonly Mem[] 
 
 const LABEL: Record<Metric, string> = { memory: 'memory', served: 'download', structures: 'count' };
 const HINT: Record<Metric, string> = {
-  memory: 'How much computer memory it takes to process the body. Before: the standard way of opening the file. After: my pipeline.',
-  served: 'How much a visitor downloads to see each system. Before: the raw export. After: what the browser actually receives.',
-  structures: 'How many structures survive the pipeline. Before: in the source file. After: in Skeletor.',
+  memory: 'How much computer memory it takes to process the body.',
+  served: 'How much a visitor downloads to see each system.',
+  structures: 'How many structures survive the pipeline.',
 };
 const UNIT: Record<Metric, string> = { memory: 'GB', served: 'MB', structures: 'structures' };
 /* the "before" value for metrics that have one */

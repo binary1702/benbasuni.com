@@ -87,7 +87,7 @@ export function ThoughtsNav({ sections, onNavigate }: { sections: Section[]; onN
                     </Link>
 
                     {active && item.chapters.length > 1 && (
-                      <ol className="mb-2 mt-1 space-y-0.5 border-l border-rule pl-3">
+                      <ol className="mb-2 mt-1 space-y-0.5 pl-3">
                         {item.chapters.map((title, i) => {
                           const n = i + 1;
                           const current = n === page;

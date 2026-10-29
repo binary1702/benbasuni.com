@@ -125,7 +125,7 @@ export const skeletor = {
         'Opening the source anatomical model as a scene evaluates 2,560 modifiers and passes 6 GB of memory. Rather than optimize an expensive operation, I redesigned the extraction pipeline to avoid it: the library is loaded with nothing linked to a scene, and export stages touch only what they export.',
         'The complete dataset now processes in batches of 150 objects, with peak memory held at 2.7 GB.',
       ],
-      result: '6 GB+ → 2.7 GB peak memory',
+      result: '6 GB+ → 2.7 GB peak memory · 55% reduction',
       competencies: ['ETL pipelines', 'Batch processing', 'Memory optimization'],
     },
     {
@@ -135,7 +135,7 @@ export const skeletor = {
         'An anatomical structure exists independently of the terminology used to describe it. Names change, classifications evolve; identity must stay fixed.',
         'Skeletor derives each primary id from the upstream object the source actually maintains, and carries the TA2 standard term alongside it as a secondary key. Curating a term never renames a structure or breaks knowledge attached to it.',
       ],
-      result: '3,874 stable ids · 2,951 mapped to TA2',
+      result: '3,874 stable ids · 76% mapped to TA2',
       competencies: ['Data modeling', 'Entity identification', 'Schema design'],
     },
     {
@@ -155,20 +155,20 @@ export const skeletor = {
         'Most anatomical applications keep the structures their use case needs. Everything else becomes expendable.',
         'Skeletor preserves nine systems as first-class entities: bones, joints, muscles, attachments, vessels, nerves, lymph, viscera, regions. The system should not decide in advance which parts of the body deserve to be understood.',
       ],
-      result: '683 muscles + 3,191 further structures',
+      result: '3,874 structures · 9 systems · 100% preserved',
       competencies: ['Domain modeling', 'Data preservation', 'Extensible schemas'],
     },
   ],
 
   /* ---- history & roadmap ---- */
   timeline: [
-    { date: '2026-09-01', what: 'Day one. A 307 MB file that eats 6 GB if you open it. Find another way.', status: 'done' },
-    { date: '2026-09-08', what: 'The whole body. 3,874 structures, 224 MB down to 34, in three and a half minutes.', status: 'done' },
-    { date: '2026-09-29', what: 'The skull study guide. The engine stops being the point. Learning is.', status: 'done' },
+    { date: '2026-09-01', what: 'Day one. 307 MB file, 6 GB to open. Find another way.', status: 'done' },
+    { date: '2026-09-08', what: 'The whole body. 3,874 structures, 224MB → 34 MB.', status: 'done' },
+    { date: '2026-09-29', what: 'The skull study guide. Learning over engine.', status: 'done' },
     { date: '2026-10-27', what: 'It gets a name. Skeletor.', status: 'done' },
-    { date: '', what: 'Trace — follow a nerve or vessel end to end.', status: 'next' },
-    { date: '', what: 'Attachments — click a muscle, see where it pulls.', status: 'next' },
-    { date: '', what: 'Embed — the viewer in any page, pointed anywhere.', status: 'next' },
+    { date: '', what: 'The Living Atlas — The entire human body, interconnected in 3D.', status: 'next' },
+    { date: '', what: 'The Intelligent Body — Understand deeply how the body works.', status: 'next' },
+    { date: '', what: 'The Future of Medical Education', status: 'next' },
   ],
 } as const;
 
