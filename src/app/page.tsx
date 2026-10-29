@@ -127,7 +127,7 @@ export default function Home() {
 
           {/* One idea per line. Each <p> is a row; the gap between rows does the pacing. */}
           <div className="mt-8 space-y-3 font-serif text-[1.05rem] font-light leading-[1.5] text-charcoal md:text-[1.2rem]">
-            <p>I was born in Indonesia and grew up in three countries.</p>
+            <p>I was born in Indonesia but grew up in the US and Taiwan.</p>
             <p>
               I studied philosophy at <Quiet href="https://www.ucsb.edu">UC Santa Barbara</Quiet>, then
             </p>
