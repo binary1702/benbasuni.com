@@ -43,37 +43,30 @@ export function ThoughtsNav({ sections, onNavigate }: { sections: Section[]; onN
         const id = `nav-${section.label.toLowerCase()}`;
         return (
           <div key={section.label}>
-            <button
-              type="button"
-              onClick={() => toggle(section.label)}
-              aria-expanded={open}
-              aria-controls={id}
-              className="-ml-3 flex w-[calc(100%+0.75rem)] cursor-pointer items-center justify-between rounded-md px-3 py-1.5 text-left transition-colors duration-300 hover:bg-ink/[0.04]"
-            >
-              <span className="font-sans text-[12px] font-medium uppercase tracking-[0.22em] text-ink">
+            <div className="-ml-3 flex w-[calc(100%+0.75rem)] items-center justify-between rounded-md transition-colors duration-300 hover:bg-ink/[0.04]">
+              <Link
+                href={section.href}
+                onClick={onNavigate}
+                aria-current={pathname === section.href ? 'page' : undefined}
+                className={`flex-1 px-3 py-1.5 font-sans text-[12px] font-medium uppercase tracking-[0.22em] ${
+                  pathname === section.href ? 'text-ink' : 'text-ink/80 hover:text-ink'
+                }`}
+              >
                 {section.label}
-              </span>
-              <span
-                aria-hidden="true"
-                className={`font-sans text-[11px] text-muted transition-transform duration-300 ${open ? 'rotate-90' : ''}`}
+              </Link>
+              <button
+                type="button"
+                onClick={() => toggle(section.label)}
+                aria-expanded={open}
+                aria-controls={id}
+                aria-label={`${open ? 'Collapse' : 'Expand'} ${section.label}`}
+                className={`cursor-pointer px-3 py-1.5 font-sans text-[11px] text-muted transition-transform duration-300 ${open ? 'rotate-90' : ''}`}
               >
                 ›
-              </span>
-            </button>
+              </button>
+            </div>
 
             <ul id={id} className={`mt-1 space-y-1 ${open ? '' : 'hidden'}`}>
-              <li>
-                <Link
-                  href={section.href}
-                  onClick={onNavigate}
-                  aria-current={pathname === section.href ? 'page' : undefined}
-                  className={`-ml-3 block rounded-md px-3 py-1.5 font-sans text-[10px] uppercase tracking-[0.18em] transition-colors duration-300 ${
-                    pathname === section.href ? 'bg-sage-soft text-ink' : 'text-muted hover:bg-ink/[0.04] hover:text-ink'
-                  }`}
-                >
-                  All {section.label.toLowerCase()}
-                </Link>
-              </li>
               {section.items.map((item) => {
                 const href = item.href;
                 const active = pathname === href;

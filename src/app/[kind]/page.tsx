@@ -13,9 +13,9 @@ export function generateStaticParams() {
 }
 
 const INDEX_DESCRIPTION: Record<string, string> = {
-  speech: 'Talks given by Ben Basuni, published in full.',
-  writing: 'Essays by Ben Basuni on judgment, questions, and how he thinks.',
-  engineering: 'Notes by Ben Basuni on systems, patterns, and software engineering.',
+  speech: 'Talks by Ben Basuni.',
+  writing: 'Essays by Ben Basuni.',
+  engineering: 'Engineering Notes by Ben Basuni.',
 };
 
 export async function generateMetadata({ params }: { params: Promise<{ kind: string }> }): Promise<Metadata> {
