@@ -36,7 +36,7 @@ export const site: {
    *  src/content/thoughts at render time (see page.tsx). */
   groups: [
     {
-      label: 'Work',
+      label: 'Featured Work',
       links: [
         { display: 'Skeletor', url: '/work/skeletor' }, // blueprint page; links out to the live app
         { display: 'Shavat', url: 'https://shavat.app' },
