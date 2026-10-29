@@ -107,27 +107,17 @@ export default function Home() {
               className="whitespace-nowrap font-serif font-light italic leading-[1.5] text-ink"
               style={{ fontSize: 'clamp(0.65rem, 2.6vw, 1.25rem)' }}
             >
-              &ldquo;Man is not a farmer, or a professor, or an engineer, but he is all.&rdquo;
+              &ldquo;Get in, get it done, get it done right, and get out.&rdquo;
             </p>
             <footer className="mt-2 font-sans text-[11px] uppercase tracking-[0.18em] text-sage-deep">
-              Ralph Waldo Emerson
+              Fred Trump
             </footer>
           </blockquote>
 
           {/* One idea per line. Each <p> is a row; the gap between rows does the pacing. */}
           <div className="mt-8 space-y-3 font-serif text-[1.05rem] font-light leading-[1.5] text-charcoal md:text-[1.2rem]">
             <p>I was born in Indonesia and grew up in three countries.</p>
-            <p className="md:whitespace-nowrap">
-              That taught me early:
-              <br className="md:hidden" />
-              there is never just one way to see things.
-            </p>
             <p>I studied philosophy at UC Santa Barbara.</p>
-            <p>
-              People ask what you do with that.
-              <br />
-              My answer is <em className="text-sage-deep">everything</em>.
-            </p>
             <p>Ten years building software for startups and enterprises across the US.</p>
             <p>
               Today I run{' '}
@@ -140,8 +130,6 @@ export default function Home() {
                 Binary 1702
               </a>
               .
-              <br />
-              The company I always wanted to work for.
             </p>
           </div>
 
