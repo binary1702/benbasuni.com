@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Geist, Newsreader } from 'next/font/google';
+import { Geist, Geist_Mono, Newsreader } from 'next/font/google';
 import { Backdrop } from '@/components';
 import { SITE_URL, SITE_NAME, DESCRIPTION, AUTHOR } from '@/lib/site';
 import './globals.css';
@@ -18,9 +18,16 @@ const geistSans = Geist({
   display: 'swap',
 });
 
+const geistMono = Geist_Mono({
+  variable: '--font-geist-mono',
+  subsets: ['latin'],
+  display: 'swap',
+});
+
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: { default: SITE_NAME, template: `%s — ${SITE_NAME}` },
+  // Tab titles are the page's path ("/", "/w/oracle", "/work/skeletor"); og:title stays descriptive.
+  title: { default: '/', template: '%s' },
   description: DESCRIPTION,
   authors: [{ name: AUTHOR.name, url: AUTHOR.url }],
   creator: AUTHOR.name,
@@ -42,7 +49,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<'/'>) {
   return (
-    <html lang="en" className={`${newsreader.variable} ${geistSans.variable} h-full`}>
+    <html lang="en" className={`${newsreader.variable} ${geistSans.variable} ${geistMono.variable} h-full`}>
       <body className="min-h-full bg-ivory text-charcoal">
         <Backdrop />
         {children}

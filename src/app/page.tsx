@@ -116,27 +116,24 @@ export default function Home() {
 
 
         <Reveal className="text-center md:col-start-1 md:row-start-3" delay={100}>
-          <blockquote className="md:mt-10">
+          <blockquote className="md:mt-4">
             <p
-              className="whitespace-nowrap font-serif font-light italic leading-[1.5] text-ink"
+              className="whitespace-nowrap font-serif font-medium italic leading-[1.5] text-sage-deep"
               style={{ fontSize: 'clamp(0.65rem, 2.6vw, 1.25rem)' }}
             >
               &ldquo;Get in, get it done, get it done right, and get out.&rdquo;
             </p>
-            <footer className="mt-2 font-sans text-[11px] uppercase tracking-[0.18em] text-sage-deep">
-              Fred Trump
-            </footer>
           </blockquote>
 
           {/* One idea per line. Each <p> is a row; the gap between rows does the pacing. */}
           <div className="mt-8 space-y-3 font-serif text-[1.05rem] font-light leading-[1.5] text-charcoal md:text-[1.2rem]">
             <p>I was born in Indonesia and grew up in three countries.</p>
             <p>
-              I studied philosophy at <Quiet href="https://www.ucsb.edu">UC Santa Barbara</Quiet>.
+              I studied philosophy at <Quiet href="https://www.ucsb.edu">UC Santa Barbara</Quiet>, then
             </p>
             <p>
-              10+ years in tech including <Quiet href="https://www.datadoghq.com">Datadog</Quiet>,{' '}
-              <Quiet href="https://www.montecarlodata.com">Monte Carlo Data</Quiet>, and others.
+              spent 10+ years in tech, including <Quiet href="https://www.datadoghq.com">Datadog</Quiet> and{' '}
+              <Quiet href="https://www.montecarlodata.com">Monte Carlo Data</Quiet>.
             </p>
             <p>
               Today I run{' '}

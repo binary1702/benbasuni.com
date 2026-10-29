@@ -11,7 +11,12 @@
   /* Nature accent: muted moss/sage, used sparingly for highlights. */
   --sage: #86967a;
   --sage-deep: #2f7a4a; /* saturated green for text accents: dark enough to read, green enough to stand out */
+  --rust: #b5584a; /* "before" in before/after charts */
   --sage-soft: rgba(134, 150, 122, 0.16);
+  /* rgb triplet of the line colour used by the grid and number strips */
+  --line-rgb: 42, 40, 37;
+  --sheet-bg: rgba(252, 250, 244, 0.55);
+  --sheet-bg-strong: rgba(252, 250, 244, 0.95);
 }
 
 @theme inline {
@@ -23,13 +28,48 @@
   --color-rule: var(--rule);
   --color-sage: var(--sage);
   --color-sage-deep: var(--sage-deep);
+  --color-rust: var(--rust);
   --color-sage-soft: var(--sage-soft);
   --font-serif: var(--font-newsreader);
   --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
 }
 
 html {
   scroll-behavior: smooth;
+}
+
+/* ---------- Blueprint theme (work pages) ----------
+   Graphite drafting table: cool, dark, dry. Same tokens, different values, so
+   every component — grid, strips, spotlight, type — follows without edits.
+   Scoped by :has() so no script runs and nothing flashes. */
+body:has([data-theme='blueprint']) {
+  --ivory: #23272d;
+  --ivory-deep: #1b1f24;
+  --charcoal: #c9c6bd;
+  --ink: #efece4;
+  --muted: #8d919a;
+  --rule: rgba(239, 236, 228, 0.16);
+  --sage: #8fb08a;
+  --sage-deep: #9fcf98;
+  --rust: #d2705f;
+  --sage-soft: rgba(143, 176, 138, 0.14);
+  --line-rgb: 239, 236, 228;
+  --sheet-bg: rgba(255, 255, 255, 0.03);
+  --sheet-bg-strong: rgba(255, 255, 255, 0.07);
+  background: var(--ivory);
+  color: var(--charcoal);
+}
+body:has([data-theme='blueprint']) .backdrop-photo {
+  display: none; /* the tree wash is the home page's; the table is bare */
+}
+body:has([data-theme='blueprint']) .backdrop-grid {
+  -webkit-mask-image: none;
+  mask-image: none; /* drafting paper: gridded edge to edge */
+}
+body:has([data-theme='blueprint']) ::selection {
+  background: var(--sage);
+  color: var(--ivory-deep);
 }
 
 body {
@@ -106,8 +146,8 @@ body {
   inset: 0;
   /* One line weight, one spacing. Minimal. */
   background-image:
-    linear-gradient(to right, rgba(42, 40, 37, 0.065) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(42, 40, 37, 0.065) 1px, transparent 1px);
+    linear-gradient(to right, rgba(var(--line-rgb), 0.065) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(var(--line-rgb), 0.065) 1px, transparent 1px);
   background-size: 120px 120px;
   -webkit-mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, #000 45%, transparent 100%);
   mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, #000 45%, transparent 100%);
@@ -170,7 +210,7 @@ body {
   font-size: 10px;
   letter-spacing: 0.22em;
   font-variant-numeric: tabular-nums;
-  color: rgba(42, 40, 37, 0.5);
+  color: rgba(var(--line-rgb), 0.5);
   white-space: nowrap;
   user-select: none;
   -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
@@ -365,4 +405,106 @@ body {
 .scroll-pane::-webkit-scrollbar-thumb {
   background: rgba(42, 40, 37, 0.18);
   border-radius: 3px;
+}
+
+@layer components {
+/* ---------- Blueprint sheet (work pages) ----------
+   Engineering-drawing idiom on the site's linen: hairlines, dimension ticks,
+   numbered callouts, monospace margin notes. */
+.bp-mono {
+  font-family: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+.bp-label {
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+/* a ruled hairline with tick marks at both ends, like a dimension line */
+.bp-rule {
+  position: relative;
+  height: 1px;
+  background: var(--rule);
+}
+.bp-rule::before,
+.bp-rule::after {
+  content: '';
+  position: absolute;
+  top: -4px;
+  width: 1px;
+  height: 9px;
+  background: var(--rule);
+}
+.bp-rule::before { left: 0; }
+.bp-rule::after { right: 0; }
+/* numbered callout bubble ① */
+.bp-callout {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 1px solid var(--ink);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 10px;
+  color: var(--ink);
+  flex: none;
+}
+/* pipeline stage box */
+.bp-stage {
+  border: 1px solid var(--rule);
+  background: var(--sheet-bg);
+  transition: border-color 200ms ease, background-color 200ms ease, transform 200ms ease;
+}
+.bp-stage:hover { border-color: var(--charcoal); }
+.bp-stage[data-active='true'] {
+  border-color: var(--ink);
+  background: var(--sheet-bg-strong);
+  box-shadow: 0 1px 0 var(--ink);
+}
+/* bar chart */
+.bp-bar {
+  height: 10px;
+  background: var(--charcoal);
+  transition: width 600ms cubic-bezier(0.2, 0.6, 0.2, 1), opacity 400ms ease, background-color 400ms ease;
+}
+.bp-bar[data-off='true'] {
+  opacity: 0.18;
+}
+.bp-bar[data-tone='before'] { background: var(--rust); }
+.bp-bar[data-tone='after'] { background: var(--sage-deep); }
+}
+
+/* ---------- Entrance motion (work pages) ----------
+   Small, once, on arrival: pieces of the header rise in sequence, bars draw
+   from zero, timeline dots pop. Honors reduced-motion. */
+@keyframes enter-up {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
+}
+.enter {
+  animation: enter-up 700ms cubic-bezier(0.2, 0.6, 0.2, 1) both;
+}
+@keyframes bar-draw {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+.bp-bar {
+  transform-origin: left center;
+  animation: bar-draw 900ms cubic-bezier(0.2, 0.6, 0.2, 1) both;
+}
+@keyframes dot-pop {
+  from { transform: scale(0.4); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+.bp-dot {
+  animation: dot-pop 500ms cubic-bezier(0.2, 0.6, 0.2, 1) both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .enter, .bp-bar, .bp-dot { animation: none; }
 }

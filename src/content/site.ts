@@ -38,7 +38,7 @@ export const site: {
     {
       label: 'Work',
       links: [
-        { display: 'Anatomy', url: 'https://anatomy.binary1702.com' },
+        { display: 'Skeletor', url: '/work/skeletor' }, // blueprint page; links out to the live app
         { display: 'Shavat', url: 'https://shavat.app' },
       ],
     },

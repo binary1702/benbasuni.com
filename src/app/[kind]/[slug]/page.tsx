@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: PageProps<'/[kind]/[slug]'>):
   const path = thoughtPath(t);
   const description = t.dek.replace(/\n/g, ' ');
   return {
-    title: t.title,
+    title: { absolute: path },
     description,
     // Chapters live at ?p=N; the piece's canonical is its base URL.
     alternates: { canonical: path },

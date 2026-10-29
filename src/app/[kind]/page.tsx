@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: { params: Promise<{ kind: str
   const title = KIND_LABEL[k];
   const description = INDEX_DESCRIPTION[k];
   return {
-    title,
+    title: { absolute: `/${kind}` },
     description,
     alternates: { canonical: `/${kind}` },
     openGraph: {
