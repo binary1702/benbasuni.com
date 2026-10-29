@@ -21,6 +21,20 @@ function LinkItem({ link }: { link: LinkT }) {
   );
 }
 
+/* Quiet inline link for the bio: ink text, faint underline that firms up on hover. */
+function Quiet({ href, children }: { href: string; children: string }) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="underline decoration-ink/25 underline-offset-4 transition-colors duration-500 hover:decoration-sage"
+    >
+      {children}
+    </a>
+  );
+}
+
 function Eyebrow({ children }: { children: string }) {
   return <p className="font-sans text-[11px] uppercase tracking-[0.22em] text-muted">{children}</p>;
 }
@@ -117,8 +131,13 @@ export default function Home() {
           {/* One idea per line. Each <p> is a row; the gap between rows does the pacing. */}
           <div className="mt-8 space-y-3 font-serif text-[1.05rem] font-light leading-[1.5] text-charcoal md:text-[1.2rem]">
             <p>I was born in Indonesia and grew up in three countries.</p>
-            <p>I studied philosophy at UC Santa Barbara.</p>
-            <p>Ten years building software for startups and enterprises across the US.</p>
+            <p>
+              I studied philosophy at <Quiet href="https://www.ucsb.edu">UC Santa Barbara</Quiet>.
+            </p>
+            <p>
+              10+ years in tech including <Quiet href="https://www.datadoghq.com">Datadog</Quiet>,{' '}
+              <Quiet href="https://www.montecarlodata.com">Monte Carlo Data</Quiet>, and others.
+            </p>
             <p>
               Today I run{' '}
               <a
