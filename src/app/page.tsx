@@ -125,23 +125,23 @@ export default function Home() {
           <blockquote className="md:mt-4">
             <p
               className="whitespace-nowrap font-serif font-medium italic leading-[1.5] text-sage-deep"
-              style={{ fontSize: 'clamp(0.65rem, 2.6vw, 1.25rem)' }}
+              style={{ fontSize: 'clamp(0.95rem, 3.5vw, 1.25rem)' }}
             >
               &ldquo;Get in, get it done, get it done right, and get out.&rdquo;
             </p>
           </blockquote>
 
           {/* One idea per line. Each <p> is a row; the gap between rows does the pacing. */}
-          <div className="mt-8 space-y-3 font-serif text-[1.05rem] font-light leading-[1.5] text-charcoal md:text-[1.2rem]">
-            <p>I was born in Indonesia but grew up in the US and Taiwan.</p>
-            <p>
+          <div className="mt-8 space-y-3 font-serif font-light leading-[1.5] text-charcoal" style={{ fontSize: 'clamp(0.8rem, 2.8vw, 1.2rem)' }}>
+            <p className="whitespace-nowrap">I was born in Indonesia but grew up in the US and Taiwan.</p>
+            <p className="whitespace-nowrap">
               I studied philosophy at <Quiet href="https://www.ucsb.edu">UC Santa Barbara</Quiet>, then
             </p>
-            <p>
+            <p className="whitespace-nowrap">
               spent 10+ years in tech, including <Quiet href="https://www.datadoghq.com">Datadog</Quiet> and{' '}
               <Quiet href="https://www.montecarlodata.com">Monte Carlo Data</Quiet>.
             </p>
-            <p>
+            <p className="whitespace-nowrap">
               Today I run{' '}
               <a
                 href="https://binary1702.com"
