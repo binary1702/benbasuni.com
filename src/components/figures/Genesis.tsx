@@ -122,7 +122,7 @@ export function AndItWasGood() {
       <line x1={40} y1={188} x2={W - 40} y2={188} stroke="var(--rule)" />
       <Note x={100} y={222}>good creation</Note>
       <line x1={160} y1={218} x2={212} y2={218} {...ARROW} />
-      <Note x={280} y={222}>subjected to futility · Rom 8:20</Note>
+      <Note x={290} y={222}>subjected to futility · Rom 8:20</Note>
       <line x1={372} y1={218} x2={424} y2={218} {...ARROW} />
       <Note x={480} y={222}>awaits liberation</Note>
     </Frame>
@@ -194,9 +194,9 @@ export function TheSeventhDay() {
       <line x1={40} y1={160} x2={W - 40} y2={160} stroke="var(--rule)" />
       <Note x={100} y={196}>God rests · Gen 2:2</Note>
       <line x1={166} y1={192} x2={208} y2={192} {...ARROW} />
-      <Note x={280} y={196}>Israel rests · Exodus 20:11</Note>
+      <Note x={288} y={196}>Israel rests · Exodus 20:11</Note>
       <line x1={366} y1={192} x2={408} y2={192} {...ARROW} />
-      <Note x={476} y={196}>a rest remains · Heb 4:9</Note>
+      <Note x={476} y={196}>Enter God's rest · Heb 4:9</Note>
       <Cap x={W / 2} y={232}>God creates · completes · rests</Cap>
     </Frame>
   );
@@ -267,7 +267,7 @@ export function BeginningOfOurStory() {
   ];
   return (
     <Frame h={230} title="The beginning of our story" desc="The Bible opens with creation, passes through disruption and promised restoration, and closes with a renewed creation.">
-      <Cap x={W / 2} y={22}>The story ends where it began — made new</Cap>
+      <Cap x={W / 2} y={22}>The story ends where it began - made new</Cap>
       <path d={`M80 ${y} C 160 ${y - 40}, 400 ${y + 40}, 480 ${y}`} fill="none" stroke="var(--rule)" strokeWidth="1" />
       <line x1={80} y1={y} x2={480} y2={y} {...ARROW} />
       {pts.map(([x, ref, label, note], i) => (

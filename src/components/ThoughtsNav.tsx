@@ -28,18 +28,28 @@ export function ThoughtsNav({ sections, onNavigate }: { sections: Section[]; onN
   }, []);
   const toggle = (label: string) =>
     setOpened((c) => {
-      const next = { ...c, [label]: !c[label] };
+      // Only one fold open at a time: if opening, close all others
+      const isOpening = !c[label];
+      const next = isOpening
+        ? { [label]: true } // close all others, open this one
+        : { ...c, [label]: false }; // just close this one
       try {
         localStorage.setItem('nav-open', JSON.stringify(next));
       } catch {}
       return next;
     });
 
+  // Determine which section should be open: either explicitly opened, or the one holding current page (if none explicitly set)
+  const hasExplicitOpen = Object.values(opened).some(Boolean);
+  const currentSection = sections.find((s) => s.items.some((i) => i.href === pathname) || pathname === s.href);
+
   return (
-    <nav aria-label="Speeches and writings" className="space-y-5 font-serif">
+    <nav aria-label="Speeches and writings" className="space-y-3 font-serif">
       {sections.map((section) => {
-        const holdsCurrent = section.items.some((i) => i.href === pathname) || pathname === section.href;
-        const open = holdsCurrent || Boolean(opened[section.label]);
+        // If user has explicitly toggled something, respect that; otherwise default to current section
+        const open = hasExplicitOpen
+          ? Boolean(opened[section.label])
+          : section === currentSection;
         const id = `nav-${section.label.toLowerCase()}`;
         return (
           <div key={section.label}>
@@ -48,7 +58,7 @@ export function ThoughtsNav({ sections, onNavigate }: { sections: Section[]; onN
                 href={section.href}
                 onClick={onNavigate}
                 aria-current={pathname === section.href ? 'page' : undefined}
-                className={`flex-1 px-3 py-1.5 font-sans text-[12px] font-medium uppercase tracking-[0.22em] ${
+                className={`flex-1 px-3 py-1.5 font-sans text-[11px] font-medium uppercase tracking-[0.22em] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-sage ${
                   pathname === section.href ? 'text-ink' : 'text-ink/80 hover:text-ink'
                 }`}
               >
@@ -60,9 +70,9 @@ export function ThoughtsNav({ sections, onNavigate }: { sections: Section[]; onN
                 aria-expanded={open}
                 aria-controls={id}
                 aria-label={`${open ? 'Collapse' : 'Expand'} ${section.label}`}
-                className={`cursor-pointer px-3 py-1.5 font-sans text-[11px] text-muted transition-transform duration-300 ${open ? 'rotate-90' : ''}`}
+                className="flex h-7 w-7 cursor-pointer items-center justify-center rounded-md text-muted transition-all duration-300 hover:bg-ink/[0.06] hover:text-ink focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-sage"
               >
-                ›
+                <span className={`text-[16px] transition-transform duration-300 ${open ? 'rotate-90' : ''}`}>›</span>
               </button>
             </div>
 
@@ -76,7 +86,7 @@ export function ThoughtsNav({ sections, onNavigate }: { sections: Section[]; onN
                       href={href}
                       onClick={onNavigate}
                       aria-current={active ? 'page' : undefined}
-                      className={`-ml-3 block rounded-md px-3 py-2 text-[1.05rem] font-light leading-snug transition-colors duration-300 ${
+                      className={`-ml-3 block rounded-md px-3 py-2 text-[1.05rem] font-light leading-snug transition-colors duration-300 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-sage ${
                         active ? 'bg-sage-soft text-ink' : 'text-muted hover:bg-ink/[0.04] hover:text-ink'
                       }`}
                     >

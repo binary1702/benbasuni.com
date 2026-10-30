@@ -110,9 +110,6 @@ export function Backdrop() {
   return (
     <>
       <div ref={ref} className="backdrop" aria-hidden="true">
-        {/* Ambient wash: a heavily blurred frame from the keynote, so the
-            page shares the video's light and greens. Sits under the grid. */}
-        <div className="backdrop-photo" />
         <div className="backdrop-grid" />
         <div className="backdrop-grid-hot" />
       </div>

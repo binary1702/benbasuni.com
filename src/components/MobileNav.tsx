@@ -33,7 +33,7 @@ export function MobileNav({ sections }: { sections: Section[] }) {
         onClick={() => setOpen((o) => !o)}
         aria-expanded={open}
         aria-label={open ? 'Close menu' : 'Open menu'}
-        className="flex h-9 w-9 cursor-pointer items-center justify-center rounded-md border border-rule text-muted transition-colors duration-300 hover:border-ink hover:text-ink md:hidden"
+        className="flex h-9 w-9 cursor-pointer items-center justify-center rounded-md border border-rule text-muted transition-colors duration-300 hover:border-ink hover:text-ink focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-sage md:hidden"
       >
         <HamburgerIcon open={open} />
       </button>
@@ -56,7 +56,7 @@ export function MobileNav({ sections }: { sections: Section[] }) {
         <Link
           href="/"
           onClick={onNavigate}
-          className="font-serif text-[1.05rem] font-light tracking-[0.02em] text-ink transition-colors duration-500 hover:text-sage"
+          className="font-serif text-[1.05rem] font-light tracking-[0.02em] text-ink transition-colors duration-500 hover:text-sage focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-sage"
         >
           Ben Basuni
         </Link>

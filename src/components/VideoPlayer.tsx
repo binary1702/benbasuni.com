@@ -124,18 +124,18 @@ export function VideoPlayer({ youtubeId, src, poster, preview, aspect, title, ov
               aria-label={hasSource ? `Play: ${title}` : 'Video coming soon'}
               className="group absolute inset-0 flex flex-col items-center justify-center text-[#ebe6db] enabled:cursor-pointer focus:outline-none focus-visible:ring-1 focus-visible:ring-[#ebe6db]/70"
             >
-              <span className="flex h-16 w-16 items-center justify-center rounded-full border border-[#ebe6db]/60 transition-colors duration-500 group-hover:border-sage group-hover:bg-sage/25 md:h-20 md:w-20">
+              <span className="flex h-16 w-16 items-center justify-center rounded-full border border-[#ebe6db]/60 transition-all duration-500 group-hover:border-sage group-hover:bg-sage/25 group-focus-visible:border-sage group-focus-visible:bg-sage/25 group-focus-visible:shadow-[0_0_16px_rgba(134,150,122,0.6)] md:h-20 md:w-20">
                 <svg viewBox="0 0 24 24" className="ml-1 h-5 w-5 fill-current md:h-6 md:w-6" aria-hidden="true">
                   <path d="M8 5.5v13l11-6.5z" />
                 </svg>
               </span>
 
               {overlay && (
-                <span className="mt-8 px-6 text-center [text-shadow:0_1px_12px_rgba(0,0,0,0.45)]">
-                  <span className="block font-serif text-3xl font-light leading-tight tracking-[-0.02em] md:text-4xl">
+                <span className="mt-8 px-6 text-center transition-all duration-500 [text-shadow:0_1px_12px_rgba(0,0,0,0.45)] group-hover:drop-shadow-[0_0_12px_rgba(134,150,122,0.5)] group-focus-visible:drop-shadow-[0_0_12px_rgba(134,150,122,0.5)]">
+                  <span className="block font-serif text-3xl font-light leading-tight tracking-[-0.02em] transition-colors duration-500 group-hover:text-sage group-focus-visible:text-sage md:text-4xl">
                     {overlay.title}
                   </span>
-                  <span className="mt-2 block font-serif text-lg font-light italic md:text-xl">
+                  <span className="mt-2 block font-serif text-lg font-light italic transition-colors duration-500 group-hover:text-sage group-focus-visible:text-sage md:text-xl">
                     {overlay.byline}
                   </span>
                 </span>

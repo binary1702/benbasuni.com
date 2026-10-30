@@ -9,3 +9,5 @@ export { ExpandProvider, useExpand } from './ExpandContext';
 export { ExpandButton } from './ExpandButton';
 export { ThemeToggle } from './ThemeToggle';
 export { MobileNav } from './MobileNav';
+export { FigureModal } from './FigureModal';
+export { ClickableFigure } from './ClickableFigure';

@@ -42,7 +42,7 @@ export function ExpandButton() {
       type="button"
       onClick={toggleExpand}
       title={expanded ? 'Exit fullscreen (Esc)' : 'Expand'}
-      className="hidden md:flex h-7 w-7 cursor-pointer items-center justify-center rounded-sm text-muted transition-colors duration-500 hover:bg-sage-soft hover:text-ink"
+      className="hidden md:flex h-7 w-7 cursor-pointer items-center justify-center rounded-sm text-muted transition-colors duration-500 hover:bg-sage-soft hover:text-ink focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-sage"
     >
       <ExpandIcon expanded={expanded} />
       <span className="sr-only">{expanded ? 'Exit fullscreen' : 'Expand'}</span>

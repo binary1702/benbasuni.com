@@ -51,7 +51,7 @@ export function ShareButton({ url, title }: { url: string; title: string }) {
       onClick={share}
       title="Share"
       aria-label="Share"
-      className="inline-flex cursor-pointer items-center gap-1.5 rounded-sm px-1.5 py-0.5 font-sans text-[10px] uppercase tracking-[0.18em] text-muted transition-colors duration-300 hover:bg-sage-soft hover:text-ink"
+      className="inline-flex cursor-pointer items-center gap-1.5 rounded-sm px-1.5 py-0.5 font-sans text-[10px] uppercase tracking-[0.18em] text-muted transition-colors duration-300 hover:bg-sage-soft hover:text-ink focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-sage"
     >
       {done ? (
         <svg width="12" height="12" viewBox="0 0 16 16" fill="none" aria-hidden="true">

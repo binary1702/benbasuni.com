@@ -37,6 +37,8 @@
 
 html {
   scroll-behavior: smooth;
+  background: var(--ivory);
+  transition: background-color 300ms ease;
 }
 
 /* ---------- Blueprint theme (work pages) ----------
@@ -60,9 +62,6 @@ html[data-theme='blueprint'] {
   background: var(--ivory);
   color: var(--charcoal);
 }
-html[data-theme='blueprint'] .backdrop-photo {
-  display: none; /* the tree wash is the home page's; the table is bare */
-}
 html[data-theme='blueprint'] .backdrop-grid {
   -webkit-mask-image: none;
   mask-image: none; /* drafting paper: gridded edge to edge */
@@ -73,11 +72,12 @@ html[data-theme='blueprint'] ::selection {
 }
 
 body {
-  background: var(--ivory);
+  background: transparent;
   color: var(--charcoal);
   font-family: var(--font-serif), Georgia, "Times New Roman", serif;
   font-feature-settings: "kern", "liga", "onum";
   -webkit-font-smoothing: antialiased;
+  transition: color 300ms ease;
 }
 
 ::selection {
@@ -124,22 +124,11 @@ body {
 .backdrop {
   position: fixed;
   inset: 0;
-  z-index: -1;
+  z-index: 0;
   pointer-events: none;
 }
 
-.backdrop-photo {
-  position: absolute;
-  inset: -4%; /* overscan hides the blur's soft edges */
-  background-image: url('/media/backdrop-trees.webp');
-  background-size: cover;
-  background-position: 50% 50%;
-  opacity: 0.16;
-  /* Pull it toward the linen so it tints rather than photographs.
-     multiply darkens; keep opacity low and lift the image itself. */
-  mix-blend-mode: multiply;
-  filter: saturate(0.85) brightness(1.28);
-}
+/* .backdrop-photo removed — image deleted */
 
 .backdrop-grid {
   position: absolute;

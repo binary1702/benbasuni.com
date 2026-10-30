@@ -12,9 +12,9 @@ function LinkItem({ link }: { link: LinkT }) {
     <a
       href={link.url}
       {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-      className={`group inline-flex items-baseline ${cls} text-ink`}
+      className={`group inline-flex items-baseline ${cls} text-ink focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-sage`}
     >
-      <span className="border-b border-ink/40 pb-0.5 transition-colors duration-500 group-hover:border-sage">
+      <span className="border-b border-ink/40 pb-0.5 transition-all duration-500 group-hover:border-sage group-hover:text-sage group-hover:drop-shadow-[0_0_8px_rgba(134,150,122,0.5)] group-focus-visible:border-sage group-focus-visible:text-sage">
         {link.display}
       </span>
     </a>
@@ -28,7 +28,7 @@ function Quiet({ href, children }: { href: string; children: string }) {
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="underline decoration-ink/25 underline-offset-4 transition-colors duration-500 hover:decoration-sage"
+      className="border-b border-ink/25 pb-0.5 transition-all duration-500 hover:border-sage hover:text-sage hover:drop-shadow-[0_0_8px_rgba(134,150,122,0.5)] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-sage"
     >
       {children}
     </a>
@@ -124,7 +124,7 @@ export default function Home() {
         <Reveal className="text-center md:col-start-1 md:row-start-3" delay={100}>
           <blockquote className="md:mt-4">
             <p
-              className="whitespace-nowrap font-serif font-medium italic leading-[1.5] text-sage-deep"
+              className="font-serif font-medium italic leading-[1.5] text-sage-deep md:whitespace-nowrap"
               style={{ fontSize: 'clamp(0.95rem, 3.5vw, 1.25rem)' }}
             >
               &ldquo;Get in, get it done, get it done right, and get out.&rdquo;
@@ -133,21 +133,21 @@ export default function Home() {
 
           {/* One idea per line. Each <p> is a row; the gap between rows does the pacing. */}
           <div className="mt-8 space-y-3 font-serif font-light leading-[1.5] text-charcoal" style={{ fontSize: 'clamp(0.8rem, 2.8vw, 1.2rem)' }}>
-            <p className="whitespace-nowrap">I was born in Indonesia but grew up in the US and Taiwan.</p>
-            <p className="whitespace-nowrap">
+            <p className="md:whitespace-nowrap">I was born in Indonesia but grew up in the US and Taiwan.</p>
+            <p className="md:whitespace-nowrap">
               I studied philosophy at <Quiet href="https://www.ucsb.edu">UC Santa Barbara</Quiet>, then
             </p>
-            <p className="whitespace-nowrap">
+            <p className="md:whitespace-nowrap">
               spent 10+ years in tech, including <Quiet href="https://www.datadoghq.com">Datadog</Quiet> and{' '}
               <Quiet href="https://www.montecarlodata.com">Monte Carlo Data</Quiet>.
             </p>
-            <p className="whitespace-nowrap">
+            <p className="md:whitespace-nowrap">
               Today I run{' '}
               <a
                 href="https://binary1702.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-sage-deep underline decoration-sage-deep/30 underline-offset-4 transition-colors duration-500 hover:decoration-sage-deep"
+                className="text-violet-400 border-b border-violet-400/30 pb-0.5 transition-all duration-500 hover:border-violet-400 hover:drop-shadow-[0_0_8px_rgba(167,139,250,0.4)] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-violet-400"
               >
                 Binary 1702
               </a>

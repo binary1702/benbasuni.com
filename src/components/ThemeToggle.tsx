@@ -59,15 +59,15 @@ export function ThemeToggle() {
     });
   }, []);
 
-  // Prevent hydration mismatch
+  // Prevent hydration mismatch - show empty placeholder until mounted
   if (!mounted) {
     return (
       <button
         type="button"
-        className="flex h-7 w-7 cursor-pointer items-center justify-center rounded-sm text-muted transition-colors duration-500 hover:bg-sage-soft hover:text-ink"
+        className="flex h-7 w-7 cursor-pointer items-center justify-center rounded-sm text-muted transition-colors duration-500 hover:bg-sage-soft hover:text-ink focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-sage"
         aria-label="Toggle theme"
       >
-        <SunIcon />
+        <span className="h-[14px] w-[14px]" />
       </button>
     );
   }
@@ -77,7 +77,7 @@ export function ThemeToggle() {
       type="button"
       onClick={toggle}
       title={dark ? 'Switch to light mode' : 'Switch to dark mode'}
-      className="flex h-7 w-7 cursor-pointer items-center justify-center rounded-sm text-muted transition-colors duration-500 hover:bg-sage-soft hover:text-ink"
+      className="flex h-7 w-7 cursor-pointer items-center justify-center rounded-sm text-muted transition-colors duration-500 hover:bg-sage-soft hover:text-ink focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-sage"
     >
       {dark ? <SunIcon /> : <MoonIcon />}
       <span className="sr-only">{dark ? 'Switch to light mode' : 'Switch to dark mode'}</span>

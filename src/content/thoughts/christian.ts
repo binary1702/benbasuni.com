@@ -5,13 +5,13 @@ import type { Thought } from './index';
 export const christian: Thought = {
   slug: 'the-creation',
   kind: 'christianity',
-  title: 'The Creation (Gen 1-2)',
+  title: 'The Book of Creation',
   dek: '',
   date: '2026-10-30',
   body: [
     { type: 'h', text: 'Before the Beginning' },
-    { type: 'quote', text: 'In the beginning God created the heavens and the earth.', by: 'Genesis 1:1', link: 'https://www.shavat.app/ot/genesis/creation/1#v1' },
     { type: 'figure', name: 'gen-before' },
+    { type: 'quote', text: 'In the beginning God created the heavens and the earth.', by: 'Genesis 1:1', link: 'https://www.shavat.app/ot/genesis/creation/1#v1' },
     {
       type: 'p',
       text: 'The Bible begins with one of the most profound statements ever written. In the beginning, God. Before the creation of the heavens and the earth, before the existence of humanity, before the establishment of nations and civilizations, Scripture introduces us to God.',
@@ -32,7 +32,7 @@ export const christian: Thought = {
     },
     {
       type: 'p',
-      text: 'The author describes God as eternal. This means that God does not depend upon the universe for His existence. The universe depends upon Him. The distinction becomes even clearer in the New Testament. John 1:3 states that through Him all things were made, and without Him nothing was made that has been made.',
+      text: 'The author describes God as eternal. This means that God does not depend upon the universe for His existence. **The universe depends upon Him.** The distinction becomes even clearer in the New Testament. John 1:3 states that through Him all things were made, and without Him nothing was made that has been made.',
     },
     {
       type: 'p',
@@ -52,11 +52,11 @@ export const christian: Thought = {
     },
 
     { type: 'h', text: 'And God Said' },
-    { type: 'quote', text: 'And God said, "Let there be light," and there was light.', by: 'Genesis 1:3', link: 'https://www.shavat.app/ot/genesis/creation/1#v3' },
     { type: 'figure', name: 'gen-said' },
+    { type: 'quote', text: 'And God said, "Let there be light," and there was light.', by: 'Genesis 1:3', link: 'https://www.shavat.app/ot/genesis/creation/1#v3' },
     {
       type: 'p',
-      text: 'One of the most striking features of Genesis 1 is the repeated phrase: *And God said.* God speaks, and creation responds. Light appears. The waters are separated. Dry land emerges. Vegetation grows. The heavens are filled with lights, and the seas and earth become inhabited by living creatures. The narrative presents creation as the result of God\u2019s deliberate command.',
+      text: 'One of the most striking features of Genesis 1 is the repeated phrase: *And God said.* **God speaks, and creation responds.** Light appears. The waters are separated. Dry land emerges. Vegetation grows. The heavens are filled with lights, and the seas and earth become inhabited by living creatures. The narrative presents creation as the result of God\u2019s deliberate command.',
     },
     {
       type: 'p',
@@ -81,7 +81,7 @@ export const christian: Thought = {
     },
     {
       type: 'p',
-      text: 'The first three days establish environments. The following three days populate and govern those environments. Light and darkness are followed by the heavenly lights. The sky and seas are followed by birds and sea creatures. The dry land and vegetation are followed by land animals and humanity.',
+      text: 'The first three days *establish environments*. The following three days *populate and govern those environments.* Light and darkness are followed by the heavenly lights. The sky and seas are followed by birds and sea creatures. The dry land and vegetation are followed by land animals and humanity.',
     },
     {
       type: 'p',
@@ -89,15 +89,15 @@ export const christian: Thought = {
     },
     {
       type: 'p',
-      text: 'John deliberately echoes the opening words of Genesis. He then identifies the Word as the One through whom all things were made. Later, John 1:14 tells us that the Word became flesh. This is one of the most remarkable connections in Scripture. The One through whom creation came into existence entered that same creation as Jesus Christ. The God who speaks creation into existence is not distant from the world He made.\n\n**In Christ, He has made Himself known.**',
+      text: 'John deliberately echoes the opening words of Genesis. He then identifies the Word as the One through whom all things were made. Later, John 1:14 tells us that the Word became flesh. This is one of the most remarkable connections in Scripture. **The One through whom creation came into existence, entered that same creation.** The God who speaks creation into existence is not distant from the world He made.\n\n**Through Jesus Christ, He made Himself known.**',
     },
 
     { type: 'h', text: 'And It Was Good' },
+    { type: 'figure', name: 'gen-good' },
     {
       type: 'p',
       text: 'Throughout Genesis 1, God repeatedly looks upon His creation and declares that it is good.',
     },
-    { type: 'figure', name: 'gen-good' },
     {
       type: 'p',
       text: 'After creating light, God sees that it is good.\nAfter gathering the waters and establishing dry land, He sees that it is good.\nAfter vegetation appears, He sees that it is good. The pattern continues throughout the chapter.',
@@ -110,11 +110,15 @@ export const christian: Thought = {
     },
     {
       type: 'p',
-      text: 'Why does Scripture emphasize this so frequently? The repeated declaration establishes that the material world is not inherently evil. The physical universe, the natural environment, living creatures, and the human body all belong to God\u2019s good creation. This matters because Christianity does not teach that the physical world is something humanity must escape simply because it is physical. God created the material world and called it good.',
+      text: 'Why does Scripture emphasize this so frequently? The repeated declaration establishes that the material world is not inherently evil. The physical universe, the natural environment, living creatures, and the human body all belong to God\u2019s good creation.',
     },
     {
       type: 'p',
-      text: 'Later in Scripture, sin enters the human story and creation becomes subject to frustration and corruption. Romans 8:20-22 describes creation as subjected to futility and groaning as it awaits liberation. But this condition is not how Genesis originally presents creation. The world was created good. Its present brokenness must be understood in light of that original goodness.',
+      text: 'This matters because, *Christianity does not teach that the physical world is something humanity must escape simply because it is physical.* **God created the material world and called it good.**',
+    },
+    {
+      type: 'p',
+      text: 'Later in Scripture, sin enters the human story and creation becomes subject to frustration and corruption. Romans 8:20-22 describes creation as subjected to *futility and groaning as it awaits liberation.* But this condition is not how Genesis originally presents creation. The world was created good, so its present brokenness must be understood in light of that original goodness.',
     },
     {
       type: 'p',
@@ -126,20 +130,20 @@ export const christian: Thought = {
     },
 
     { type: 'h', text: 'In His Image' },
+    { type: 'figure', name: 'gen-image' },
     {
       type: 'quote',
       text: 'So God created man in His own image; in the image of God He created him; male and female He created them.',
       by: 'Genesis 1:27',
       link: 'https://www.shavat.app/ot/genesis/creation/1#v27',
     },
-    { type: 'figure', name: 'gen-image' },
     {
       type: 'p',
-      text: 'Among all the creatures described in Genesis 1, humanity receives a unique designation. Human beings are created in the image of God.',
+      text: 'Among all the creatures described in Genesis 1, humanity receives a unique designation; *human beings are created in the image of God.*',
     },
     {
       type: 'p',
-      text: 'But what does this mean? Does it refer to our physical appearance? Our intelligence? Our ability to reason? Our moral awareness?',
+      text: 'But what does this mean? Does it refer to our physical appearance? Our intelligence? Our ability to reason?',
     },
     {
       type: 'p',
@@ -153,11 +157,15 @@ export const christian: Thought = {
     },
     {
       type: 'p',
-      text: 'The connection between God\u2019s image and humanity\u2019s responsibility is important. Humanity is given authority over other living creatures. But this authority **is not independent of God.** It is delegated by the Creator. Human beings are called to exercise responsibility within a world that ultimately belongs to Him.',
+      text: 'The connection between God\u2019s image and humanity\u2019s responsibility is important.',
     },
     {
       type: 'p',
-      text: 'Psalm 8 develops this idea. The writer asks: *What is man that You are mindful of him, or the son of man that You care for him?* He then describes humanity as crowned with glory and honor and entrusted with dominion over the works of God\u2019s hands. The psalm expresses amazement that the Creator of the heavens would give humanity such significance.',
+      text: 'Humanity is given authority over other living creatures. But this authority *is not independent of God.* It is delegated by the Creator. Human beings are called to exercise responsibility within a world that ultimately belongs to Him.'
+    },
+    {
+      type: 'p',
+      text: 'Psalm 8 develops this idea. The writer asks: *What is man that You are mindful of him, or the son of man that You care for him?* He then describes humanity as crowned with glory and honor and entrusted with dominion over the works of God\u2019s hands. The psalm expresses amazement that the Creator of the heavens would give humanity such significance!',
     },
     {
       type: 'p',
@@ -165,20 +173,23 @@ export const christian: Thought = {
     },
     {
       type: 'p',
-      text: 'These passages demonstrate that the image of God is not simply a description of humanity\u2019s abilities. It has moral consequences. Human beings possess dignity because of their relationship to their Creator. That dignity is not determined by wealth, intelligence, social position, physical strength, or worldly achievement. It is rooted in God\u2019s act of creation. This is one of the foundational biblical teachings concerning the value of human life.',
+      text: 'These passages demonstrate that the image of God is not simply a description of humanity\u2019s abilities. It has moral consequences. Human beings possess dignity because of their relationship to their Creator. That dignity is not determined by wealth, intelligence, social position, physical strength, or worldly achievement, but is rooted in *God\u2019s act of creation.*',
     },
-
+    {
+      type: 'p',
+      text: '**This is one of the foundational biblical teachings concerning the value of human life.**',
+    },
     { type: 'h', text: 'The Purpose of Man' },
+    { type: 'figure', name: 'gen-purpose' },
     {
       type: 'quote',
       text: 'Then the LORD God took the man and placed him in the Garden of Eden to cultivate and keep it.',
       by: 'Genesis 2:15',
       link: 'https://www.shavat.app/ot/genesis/creation/2#v15',
     },
-    { type: 'figure', name: 'gen-purpose' },
     {
       type: 'p',
-      text: 'One of the most revealing details in the creation account is that God gives Adam **work.** This happens before the entrance of sin. Before the serpent\u2019s temptation, before humanity\u2019s disobedience, and before the consequences described in Genesis 3, Adam is given responsibility. He is placed in the garden to cultivate and keep it. This distinction is *important.*',
+      text: 'One of the most revealing details in the creation account is that God gives Adam **"work".** This happens before the entrance of sin. Before the serpent\u2019s temptation, before humanity\u2019s disobedience, and before the consequences described in Genesis 3, Adam is given responsibility. He is placed in the garden to cultivate and keep it. This distinction is *important.*',
     },
     {
       type: 'p',
@@ -212,13 +223,13 @@ export const christian: Thought = {
     },
 
     { type: 'h', text: 'The Seventh Day' },
+    { type: 'figure', name: 'gen-seventh' },
     {
       type: 'quote',
       text: 'And by the seventh day God had finished the work He had been doing; so on that day He rested from all His work.',
       by: 'Genesis 2:2',
       link: 'https://www.shavat.app/ot/genesis/creation/2#v2',
     },
-    { type: 'figure', name: 'gen-seventh' },
     {
       type: 'p',
       text: 'After six days of creation, God rests. But why would an all-powerful God need rest?',
@@ -255,13 +266,13 @@ export const christian: Thought = {
     },
 
     { type: 'h', text: 'The Garden of Eden' },
+    { type: 'figure', name: 'gen-garden' },
     {
       type: 'quote',
       text: 'And the LORD God commanded him, "You may eat freely from every tree of the garden, but you must not eat from the tree of the knowledge of good and evil."',
       by: 'Genesis 2:16-17',
       link: 'https://www.shavat.app/ot/genesis/creation/2#v16',
     },
-    { type: 'figure', name: 'gen-garden' },
     {
       type: 'p',
       text: 'The Garden of Eden is described as a place of abundance. God provides trees that are pleasing to the eye and good for food. He places Adam within the garden and gives him responsibility for its care. Yet within this abundance, God establishes a boundary. Adam may eat from the trees of the garden, with one exception.\n\n**The tree of the knowledge of good and evil.**',
@@ -280,13 +291,13 @@ export const christian: Thought = {
     },
 
     { type: 'h', text: 'It Is Not Good to Be Alone' },
+    { type: 'figure', name: 'gen-alone' },
     {
       type: 'quote',
       text: 'The LORD God also said, "It is not good for the man to be alone. I will make for him a suitable helper."',
       by: 'Genesis 2:18',
       link: 'https://www.shavat.app/ot/genesis/creation/2#v18',
     },
-    { type: 'figure', name: 'gen-alone' },
     {
       type: 'p',
       text: 'Throughout Genesis 1, God repeatedly declares creation good. But in Genesis 2, something is described as *not good.* The man is alone. This is a remarkable statement because sin has not yet entered the narrative. The problem is not moral corruption. It is the absence of a corresponding human companion.',
@@ -326,31 +337,35 @@ export const christian: Thought = {
     },
     {
       type: 'p',
-      text: 'The chapter closes with a single line: *the man and his wife were both naked, and they felt no shame.* Read on its own, it sounds like a note about the body. Read as the last word of a chapter about aloneness, it is the answer to the problem the chapter raised.',
+      text: 'The chapter closes with a single line: *the man and his wife were both naked, and they felt no shame.* Read on its own, it sounds like a note about the body. Read as the last word of a chapter about aloneness, *it is the answer to the problem the chapter raised.*',
     },
     {
       type: 'p',
-      text: 'God said it was not good for the man to be alone. But aloneness is not only the absence of another person in the room. A man can stand beside someone and still be alone, if he is not known. What answers aloneness is not company but being seen, entirely, and not rejected. That is what the helper who corresponds to him provides, and that is what *one flesh* means at its deepest: no barrier left between two people.',
+      text: 'God said it was not good for the man to be alone. But aloneness is not only the absence of another person in the room. A man can be in a crowd and still be alone. What answers aloneness is not company but **being seen**. That is what the helper who corresponds to him provides, and that is what *one flesh* means at its deepest: no barrier left between two people.',
     },
     {
       type: 'p',
-      text: 'So the nakedness of Genesis 2 is the proof that the helper has worked. Nothing held back, nothing managed, nothing performed. Adam and his wife could be fully known, by each other and by God, and feel no need to hide any of it. The gap between who they were and who they presented did not exist. The man was no longer alone, in the fullest sense of the word.',
+      text: 'So the nakedness of Genesis 2 is the proof that the helper has worked. Nothing held back, nothing managed, nothing performed. Adam and his wife could be fully known by each other and by God. The gap between who they were and who they presented did not exist.',
     },
     {
       type: 'p',
-      text: 'Genesis 3 shows what happens when that is lost. The first thing the man and woman do after disobeying is sew coverings, from each other as much as from God. The first thing Adam says is: *I was afraid, because I was naked, so I hid.* The body has not changed. What has changed is that being seen now feels dangerous.\n\nAnd the union just formed is the first thing to crack: the man blames the woman, *the woman You gave me*; the woman blames the serpent. The helper becomes the excuse. The fig leaves are the first mask, and aloneness, which God had answered one chapter earlier, comes back in a new form: two people side by side, each hiding from the other.',
+      text: 'Genesis 3 however, shows what happens when that is lost. The first thing the man and woman do after disobeying is sew coverings, from each other as much as from God. The first thing Adam says is: *I was afraid, because I was naked, so I hid.* The body has not changed. **What has changed is that being seen now feels dangerous.**',
     },
     {
       type: 'p',
-      text: 'This is why the chapter ends where it does. For one verse, the reader is shown what God meant by *not alone*: completely known and completely unafraid. That is the condition humanity was made for, and the condition the rest of Scripture works to restore, until the last page describes God dwelling with His people with nothing between them.',
+      text: 'And the union just formed is the first thing to crack: the man blames the woman, *"the woman You gave me"*; the woman blames the serpent. The helper becomes the excuse. The fig leaves are the first mask, and the aloneness, comes back in a new form: two people side by side, hiding from God, and now even from each other. *Bone of my bones, flesh of my flesh.*',
+    },
+    {
+      type: 'p',
+      text: 'This is why the chapter ends where it does. For one verse, the reader is shown what God meant by *not alone*: completely known and completely unafraid. That is the condition humanity was made for, and the condition the rest of Scripture works to restore, until the very last page.',
     },
 
     { type: 'h', text: 'The Beginning of Our Story' },
+    { type: 'figure', name: 'gen-story' },
     {
       type: 'p',
       text: 'Genesis 1-2 establishes the foundation for the biblical understanding of existence.',
     },
-    { type: 'figure', name: 'gen-story' },
     {
       type: 'list',
       items: [
@@ -366,7 +381,7 @@ export const christian: Thought = {
     },
     {
       type: 'p',
-      text: 'These themes are not isolated ideas. They establish the foundation for what follows throughout Scripture.',
+      text: 'These themes are not isolated ideas. **They establish the foundation** as one reads through Scripture.',
     },
     {
       type: 'p',
@@ -378,7 +393,7 @@ export const christian: Thought = {
     },
     {
       type: 'p',
-      text: 'Perhaps the most important lesson from Genesis 1-2 is that humanity does not exist independently of God. We are created beings. Our existence, dignity, and responsibilities are grounded in our relationship with our Creator. This invites us to consider life differently.',
+      text: 'Perhaps the most important lesson from Genesis 1-2 is that *humanity does not exist independently of God, but are created beings.* Our existence, dignity, and responsibilities are grounded in our relationship with our Creator. This invites us to consider life differently.',
     },
     {
       type: 'list',
@@ -391,7 +406,7 @@ export const christian: Thought = {
     },
     {
       type: 'p',
-      text: 'Genesis does not answer every question about human existence. But it establishes the foundation from which those questions can be explored. Before humanity could ask why it existed, God had already given it life. And before humanity had accomplished anything, God had declared His creation very good.',
+      text: 'Genesis establishes the foundation from which those questions can be explored. Before humanity could ask why it existed, God had already given it life. And before humanity had accomplished anything, God had declared His creation very good.',
     },
   ],
 };

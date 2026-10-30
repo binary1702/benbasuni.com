@@ -34,10 +34,12 @@ function ShellInner({ sections, children }: { sections: Section[]; children: Rea
         }`}
       >
       {/* Desktop sidebar - hidden on mobile */}
-      <aside className={`relative z-20 hidden md:block md:sticky md:top-16 md:self-start transition-opacity duration-300 ${expanded ? 'md:hidden' : ''}`}>
+      <aside className={`relative z-20 hidden pt-6 md:block md:sticky md:top-0 md:self-start transition-opacity duration-300 ${expanded ? 'md:hidden' : ''}`}>
+        {/* line box mirrors the sheet's h1 (same clamp × 1.05 leading) so "Ben Basuni" sits level with the title */}
         <Link
           href="/"
-          className="font-serif text-[1.05rem] font-light tracking-[0.02em] text-ink transition-colors duration-500 hover:text-sage"
+          className="block font-serif text-[1.05rem] font-light tracking-[0.02em] text-ink transition-colors duration-500 hover:text-sage"
+          style={{ lineHeight: 'calc(clamp(1.5rem, 2.2vw, 1.75rem) * 1.05)' }}
         >
           Ben Basuni
         </Link>
