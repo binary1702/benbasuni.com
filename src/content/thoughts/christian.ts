@@ -32,7 +32,7 @@ export const christian: Thought = {
     },
     {
       type: 'p',
-      text: 'The psalmist describes God as eternal. This means that God does not depend upon the universe for His existence. The universe depends upon Him. The distinction becomes even clearer in the New Testament. John 1:3 states that through Him all things were made, and without Him nothing was made that has been made.',
+      text: 'The author describes God as eternal. This means that God does not depend upon the universe for His existence. The universe depends upon Him. The distinction becomes even clearer in the New Testament. John 1:3 states that through Him all things were made, and without Him nothing was made that has been made.',
     },
     {
       type: 'p',
