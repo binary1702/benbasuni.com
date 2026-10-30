@@ -269,7 +269,7 @@ export function BeginningOfOurStory() {
     <Frame h={230} title="The beginning of our story" desc="The Bible opens with creation, passes through disruption and promised restoration, and closes with a renewed creation.">
       <Cap x={W / 2} y={22}>The story ends where it began — made new</Cap>
       <path d={`M80 ${y} C 160 ${y - 40}, 400 ${y + 40}, 480 ${y}`} fill="none" stroke="var(--rule)" strokeWidth="1" />
-      <line x1={80} y1={y} x2={480} y2={y} stroke="var(--charcoal)" strokeWidth="0.9" {...ARROW} />
+      <line x1={80} y1={y} x2={480} y2={y} {...ARROW} />
       {pts.map(([x, ref, label, note], i) => (
         <g key={ref}>
           <circle cx={x} cy={y} r={6} fill={i === 1 ? 'var(--rust)' : i === 0 || i === 3 ? 'var(--sage-deep)' : 'var(--charcoal)'} />

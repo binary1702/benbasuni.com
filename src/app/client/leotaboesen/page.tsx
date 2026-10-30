@@ -247,13 +247,9 @@ export default function LeotaPage() {
             {L.pages.map((p) => (
               <tr key={p.route} className="border-b border-rule last:border-0">
                 <td className="bp-mono w-[9rem] py-2.5 pr-4 align-top text-ink">
-                  {'url' in p ? (
-                    <a href={p.url} target="_blank" rel="noopener noreferrer" className="underline decoration-ink/30 underline-offset-4 transition-colors duration-500 hover:decoration-sage">
-                      {p.route}
-                    </a>
-                  ) : (
-                    p.route
-                  )}
+                  <a href={p.url} target="_blank" rel="noopener noreferrer" className="underline decoration-ink/30 underline-offset-4 transition-colors duration-500 hover:decoration-sage">
+                    {p.route}
+                  </a>
                 </td>
                 <td className="py-2.5 font-serif text-[1rem] font-light leading-[1.5] text-charcoal">{p.what}</td>
               </tr>
