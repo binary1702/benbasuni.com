@@ -14,9 +14,9 @@ export const leota = {
   ],
   live: { url: 'https://leotaboesen.com' },
   hero: [
-    { src: '/media/leota-1home.png', alt: 'leotaboesen.com home page', w: 1586, h: 712 },
-    { src: '/media/leota-2violin.png', alt: 'leotaboesen.com violin lessons', w: 1592, h: 726 },
-    { src: '/media/leota-3leota.png', alt: 'leotaboesen.com Leota Sigrid Boesen', w: 1590, h: 848 },
+    { src: '/media/leota-1home.webp', alt: 'leotaboesen.com home page', w: 1586, h: 712 },
+    { src: '/media/leota-2violin.webp', alt: 'leotaboesen.com violin lessons', w: 1592, h: 726 },
+    { src: '/media/leota-3leota.webp', alt: 'leotaboesen.com Leota Sigrid Boesen', w: 1590, h: 848 },
   ],
 
   /* ---- the studio, in numbers (from the site, September 2026) ---- */

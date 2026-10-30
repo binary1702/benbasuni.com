@@ -131,7 +131,7 @@ body {
 .backdrop-photo {
   position: absolute;
   inset: -4%; /* overscan hides the blur's soft edges */
-  background-image: url('/media/backdrop-trees.jpg');
+  background-image: url('/media/backdrop-trees.webp');
   background-size: cover;
   background-position: 50% 50%;
   opacity: 0.16;

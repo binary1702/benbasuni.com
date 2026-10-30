@@ -26,8 +26,8 @@ export const site: {
   video: {
     youtubeId: 'e9bDtO3HGcE',
     src: null,
-    poster: '/media/letip-poster.jpg',
-    preview: '/media/letip-preview.mp4?v=2', // bump ?v= whenever the file is re-encoded
+    poster: '/media/letip-poster.webp',
+    preview: '/media/letip-preview.mp4?v=3', // bump ?v= whenever the file is re-encoded
     aspect: '9 / 16',
     title: 'A Life of Curiosity',
     overlay: { title: 'A Life of Curiosity', byline: 'Ben Basuni' },

@@ -10,7 +10,7 @@ export const skeletor = {
   oneLine: 'We inhabit our bodies every day, yet understand so little of what lies beneath the surface. Skeletor is an exploration of human anatomy, revealing the intricate structures and connections that make us who we are.',
   live: { url: 'https://skeletor.binary1702.com', note: 'private beta' },
   source: { name: 'Z-Anatomy', url: 'https://www.z-anatomy.com', license: 'CC BY-SA 4.0' },
-  hero: { src: '/media/skeletor-wide2.jpg', alt: 'Skeletor viewer, story mode: The Skull, stop 3 of 8 — temporal bone selected' },
+  hero: { src: '/media/skeletor-wide2.webp', alt: 'Skeletor viewer, story mode: The Skull, stop 3 of 8 — temporal bone selected' },
 
   principle: 'Complex underlying model, simple interface.',
 
