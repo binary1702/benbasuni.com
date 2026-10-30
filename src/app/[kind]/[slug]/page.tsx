@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { CopyButton, Reveal } from '@/components';
+import { CopyButton, ShareButton, Reveal, ExpandButton } from '@/components';
 import { FIGURES, type FigureName } from '@/components/figures';
 import { thoughts, getThought, getChapters, chapterText, fullText, thoughtPath, KIND_PREFIX, PREFIX_KIND, KIND_LABEL, KIND_SCHEMA, type Block } from '@/content/thoughts';
 import { SITE_URL, SITE_NAME, AUTHOR } from '@/lib/site';
@@ -35,20 +35,130 @@ export async function generateMetadata({ params }: PageProps<'/[kind]/[slug]'>):
   };
 }
 
-/* *asterisks* → italics; "\n" → single line break */
+/* Bible book mappings to Shavat URLs */
+const BIBLE_BOOKS: Record<string, { path: string; section: string }> = {
+  // Old Testament
+  'genesis': { path: 'ot/genesis', section: 'creation' },
+  'gen': { path: 'ot/genesis', section: 'creation' },
+  'exodus': { path: 'ot/exodus', section: 'exodus' },
+  'ex': { path: 'ot/exodus', section: 'exodus' },
+  'leviticus': { path: 'ot/leviticus', section: 'leviticus' },
+  'lev': { path: 'ot/leviticus', section: 'leviticus' },
+  'numbers': { path: 'ot/numbers', section: 'numbers' },
+  'num': { path: 'ot/numbers', section: 'numbers' },
+  'deuteronomy': { path: 'ot/deuteronomy', section: 'deuteronomy' },
+  'deut': { path: 'ot/deuteronomy', section: 'deuteronomy' },
+  'psalm': { path: 'ot/psalms', section: 'psalms' },
+  'psalms': { path: 'ot/psalms', section: 'psalms' },
+  'ps': { path: 'ot/psalms', section: 'psalms' },
+  'proverbs': { path: 'ot/proverbs', section: 'proverbs' },
+  'prov': { path: 'ot/proverbs', section: 'proverbs' },
+  'isaiah': { path: 'ot/isaiah', section: 'isaiah' },
+  'isa': { path: 'ot/isaiah', section: 'isaiah' },
+  'jeremiah': { path: 'ot/jeremiah', section: 'jeremiah' },
+  'jer': { path: 'ot/jeremiah', section: 'jeremiah' },
+  'ezekiel': { path: 'ot/ezekiel', section: 'ezekiel' },
+  'ezek': { path: 'ot/ezekiel', section: 'ezekiel' },
+  // New Testament
+  'matthew': { path: 'nt/matthew', section: 'matthew' },
+  'matt': { path: 'nt/matthew', section: 'matthew' },
+  'mark': { path: 'nt/mark', section: 'mark' },
+  'luke': { path: 'nt/luke', section: 'luke' },
+  'john': { path: 'nt/john', section: 'john' },
+  'acts': { path: 'nt/acts', section: 'acts' },
+  'romans': { path: 'nt/romans', section: 'romans' },
+  'rom': { path: 'nt/romans', section: 'romans' },
+  '1 corinthians': { path: 'nt/1-corinthians', section: '1-corinthians' },
+  '1 cor': { path: 'nt/1-corinthians', section: '1-corinthians' },
+  '2 corinthians': { path: 'nt/2-corinthians', section: '2-corinthians' },
+  '2 cor': { path: 'nt/2-corinthians', section: '2-corinthians' },
+  'galatians': { path: 'nt/galatians', section: 'galatians' },
+  'gal': { path: 'nt/galatians', section: 'galatians' },
+  'ephesians': { path: 'nt/ephesians', section: 'ephesians' },
+  'eph': { path: 'nt/ephesians', section: 'ephesians' },
+  'philippians': { path: 'nt/philippians', section: 'philippians' },
+  'phil': { path: 'nt/philippians', section: 'philippians' },
+  'colossians': { path: 'nt/colossians', section: 'colossians' },
+  'col': { path: 'nt/colossians', section: 'colossians' },
+  '1 thessalonians': { path: 'nt/1-thessalonians', section: '1-thessalonians' },
+  '2 thessalonians': { path: 'nt/2-thessalonians', section: '2-thessalonians' },
+  '1 timothy': { path: 'nt/1-timothy', section: '1-timothy' },
+  '2 timothy': { path: 'nt/2-timothy', section: '2-timothy' },
+  'titus': { path: 'nt/titus', section: 'titus' },
+  'philemon': { path: 'nt/philemon', section: 'philemon' },
+  'hebrews': { path: 'nt/hebrews', section: 'hebrews' },
+  'heb': { path: 'nt/hebrews', section: 'hebrews' },
+  'james': { path: 'nt/james', section: 'james' },
+  '1 peter': { path: 'nt/1-peter', section: '1-peter' },
+  '2 peter': { path: 'nt/2-peter', section: '2-peter' },
+  '1 john': { path: 'nt/1-john', section: '1-john' },
+  '2 john': { path: 'nt/2-john', section: '2-john' },
+  '3 john': { path: 'nt/3-john', section: '3-john' },
+  'jude': { path: 'nt/jude', section: 'jude' },
+  'revelation': { path: 'nt/revelation', section: 'revelation' },
+  'rev': { path: 'nt/revelation', section: 'revelation' },
+};
+
+/* Convert Bible reference to Shavat URL */
+function bibleVerseUrl(book: string, chapter: string, verse?: string): string | null {
+  const bookLower = book.toLowerCase();
+  const bookInfo = BIBLE_BOOKS[bookLower];
+  if (!bookInfo) return null;
+  const base = `https://www.shavat.app/${bookInfo.path}/${bookInfo.section}/${chapter}`;
+  return verse ? `${base}#v${verse.split('-')[0]}` : base;
+}
+
+/* **double** → bold; *single* → italics; "\n" → line break; Bible verses → links */
 function Inline({ text }: { text: string }) {
-  const parts = text.split(/(\*[^*]+\*|\n)/g);
+  // Split by **bold**, *italics*, and newlines
+  const parts = text.split(/(\*\*[^*]+\*\*|\*[^*]+\*|\n)/g);
+
   return (
     <>
-      {parts.map((part, i) =>
-        part === '\n' ? (
-          <br key={i} />
-        ) : part.startsWith('*') && part.endsWith('*') ? (
-          <em key={i}>{part.slice(1, -1)}</em>
-        ) : (
-          part
-        ),
-      )}
+      {parts.map((part, i) => {
+        if (part === '\n') return <br key={i} />;
+        if (part.startsWith('**') && part.endsWith('**')) {
+          return <strong key={i}>{part.slice(2, -2)}</strong>;
+        }
+        if (part.startsWith('*') && part.endsWith('*')) {
+          return <em key={i}>{part.slice(1, -1)}</em>;
+        }
+
+        // Check for Bible verses in this part
+        const segments: React.ReactNode[] = [];
+        let lastIndex = 0;
+        let match;
+
+        const regex = /(\d?\s?[A-Za-z]+)\s+(\d+):(\d+(?:-\d+)?)/g;
+        while ((match = regex.exec(part)) !== null) {
+          const [fullMatch, book, chapter, verse] = match;
+          const url = bibleVerseUrl(book.trim(), chapter, verse);
+
+          if (url) {
+            if (match.index > lastIndex) {
+              segments.push(part.slice(lastIndex, match.index));
+            }
+            segments.push(
+              <a
+                key={`${i}-${match.index}`}
+                href={url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sage-deep underline decoration-sage-deep/30 underline-offset-2 transition-colors hover:decoration-sage-deep"
+              >
+                {fullMatch}
+              </a>
+            );
+            lastIndex = match.index + fullMatch.length;
+          }
+        }
+
+        if (lastIndex < part.length) {
+          segments.push(part.slice(lastIndex));
+        }
+
+        return segments.length > 0 ? <span key={i}>{segments}</span> : part;
+      })}
     </>
   );
 }
@@ -75,7 +185,31 @@ function BlockView({ block }: { block: Block }) {
             <Inline text={block.text} />
           </p>
           {block.by && (
-            <footer className="mt-3 font-sans text-[11px] uppercase tracking-[0.18em] text-sage">{block.by}</footer>
+            <footer className="mt-3 font-sans text-[11px] uppercase tracking-[0.18em] text-sage">
+              {(() => {
+                // Use manual link if provided, otherwise try to auto-detect Bible verse
+                const link = block.link || (() => {
+                  const match = block.by.match(/^(\d?\s?[A-Za-z]+)\s+(\d+):(\d+(?:-\d+)?)$/);
+                  if (match) {
+                    const [, book, chapter, verse] = match;
+                    return bibleVerseUrl(book.trim(), chapter, verse);
+                  }
+                  return null;
+                })();
+                return link ? (
+                  <a
+                    href={link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline decoration-sage/40 underline-offset-2 transition-colors hover:decoration-sage"
+                  >
+                    {block.by}
+                  </a>
+                ) : (
+                  block.by
+                );
+              })()}
+            </footer>
           )}
         </blockquote>
       );
@@ -166,42 +300,25 @@ export default async function ThoughtPage({ params, searchParams }: PageProps<'/
       {/* display:contents keeps the sheet's flex sizing; the landmark is for assistive tech and crawlers */}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
     <article id="reading" className="sheet scroll-mt-4 md:flex md:min-h-0 md:flex-1 md:flex-col">
-      {/* Header as one row: title left, dek + date right. */}
-      <Reveal as="header" className="md:flex md:shrink-0 md:items-end md:justify-between md:gap-8">
-        <h1
-          className="font-serif font-light leading-[1.05] tracking-[-0.02em] text-ink md:shrink-0 md:whitespace-nowrap"
-          style={{ fontSize: 'clamp(1.75rem, 2.6vw, 2.25rem)' }}
-        >
-          {t.title}
-        </h1>
-        <div className="mt-2 md:mt-0 md:min-w-0 md:text-right">
-          <p className="font-serif text-[0.95rem] font-light italic leading-[1.45] text-muted md:text-[1rem]">
-            {/* "\n" in a dek becomes a line break */}
-            {t.dek.split('\n').map((line, i, arr) => (
-              <span key={i} className="block">
-                {line}
-                {i === arr.length - 1 && t.dekLink && (
-                  <span className="block">
-                    <span className="mr-2 text-sage" aria-hidden="true">
-                      →
-                    </span>
-                    <a
-                      href={t.dekLink.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="not-italic text-ink underline decoration-ink/30 underline-offset-4 transition-colors duration-500 hover:decoration-sage"
-                    >
-                      {t.dekLink.display}
-                    </a>
-                  </span>
-                )}
-              </span>
-            ))}
-          </p>
-          <p className="mt-1.5 flex items-center gap-3 font-sans text-[10px] uppercase tracking-[0.18em] text-muted md:justify-end">
-            <time dateTime={t.date}>{formatDate(t.date)}</time>
-            <CopyButton text={chapterText(t, chapter)} label="Copy this page" />
-          </p>
+      {/* Header: title left, date + copy + expand right, horizontally aligned */}
+      <Reveal as="header" className="flex shrink-0 items-start justify-between gap-4">
+        <div>
+          <h1
+            className="font-serif font-light leading-[1.05] tracking-[-0.02em] text-ink"
+            style={{ fontSize: 'clamp(1.5rem, 2.2vw, 1.75rem)' }}
+          >
+            {t.title}{chapter.title && chapters.length > 1 && (
+              <span className="text-muted"> : {chapter.title}</span>
+            )}
+          </h1>
+          <time dateTime={t.date} className="mt-1 block font-sans text-[10px] uppercase tracking-[0.18em] text-muted">
+            {formatDate(t.date)}
+          </time>
+        </div>
+        <div className="flex items-center gap-2">
+          <CopyButton text={chapterText(t, chapter)} label="Copy this page" />
+          <ShareButton url={url} title={t.title} />
+          <ExpandButton />
         </div>
       </Reveal>
 
@@ -212,16 +329,6 @@ export default async function ThoughtPage({ params, searchParams }: PageProps<'/
         delay={100}
         className="scroll-pane mt-4 border-t border-rule pt-4 font-serif text-[1rem] font-light leading-[1.6] text-charcoal md:min-h-0 md:flex-1 md:overflow-y-auto md:pr-4 md:text-[1.05rem] [&>*:first-child]:mt-0"
       >
-        {chapter.title && (
-          <p className="font-sans text-[11px] uppercase tracking-[0.22em] text-sage">
-            {page} / {chapters.length}
-          </p>
-        )}
-        {chapter.title && (
-          <h2 className="mt-1.5 font-serif text-[1.3rem] font-light tracking-[-0.01em] text-ink md:text-[1.45rem]">
-            {chapter.title}
-          </h2>
-        )}
         {chapter.blocks.map((block, i) => (
           <BlockView key={i} block={block} />
         ))}
@@ -241,6 +348,9 @@ export default async function ThoughtPage({ params, searchParams }: PageProps<'/
           ) : (
             <span />
           )}
+          <span className="font-sans text-[11px] uppercase tracking-[0.22em] text-sage">
+            {page} / {chapters.length}
+          </span>
           {nextChapter ? (
             <Link href={`${here}?p=${nextChapter}#reading`} className="text-ink transition-colors duration-500 hover:text-sage">
               {chapters[nextChapter - 1].title ?? 'Opening'} →

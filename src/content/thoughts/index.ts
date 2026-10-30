@@ -13,11 +13,11 @@
 export type Block =
   | { type: 'p'; text: string }
   | { type: 'h'; text: string }
-  | { type: 'quote'; text: string; by?: string }
+  | { type: 'quote'; text: string; by?: string; link?: string }
   | { type: 'list'; items: string[] }
   | { type: 'figure'; name: string; caption?: string }; // see src/components/figures
 
-export type Kind = 'speech' | 'writing' | 'engineering';
+export type Kind = 'speech' | 'philosophy' | 'engineering' | 'christianity';
 
 export type Thought = {
   slug: string;
@@ -35,19 +35,20 @@ import { meta } from './meta';
 import { oracle } from './oracle';
 import { systems } from './systems';
 import { patternRecognition } from './patterns';
+import { christian } from './christian';
 
-export const thoughts: Thought[] = [aLifeOfCuriosity, stMatthewTheBrave, meta, oracle, systems, patternRecognition];
+export const thoughts: Thought[] = [aLifeOfCuriosity, stMatthewTheBrave, meta, oracle, systems, patternRecognition, christian];
 
-export const KIND_LABEL: Record<Kind, string> = { speech: 'Speeches', writing: 'Writings', engineering: 'Engineering' };
-/** URL prefix per kind: /s/ speeches, /w/ writings, /swe/ engineering. */
-export const KIND_PREFIX: Record<Kind, string> = { speech: 's', writing: 'w', engineering: 'swe' };
-export const PREFIX_KIND: Record<string, Kind> = { s: 'speech', w: 'writing', swe: 'engineering' };
+export const KIND_LABEL: Record<Kind, string> = { speech: 'Speeches', philosophy: 'Philosophy', engineering: 'Engineering', christianity: 'Christianity' };
+/** URL prefix per kind: /s/ speeches, /phil/ philosophy, /swe/ engineering, /christ/ christianity. */
+export const KIND_PREFIX: Record<Kind, string> = { speech: 's', philosophy: 'phil', engineering: 'swe', christianity: 'christ' };
+export const PREFIX_KIND: Record<string, Kind> = { s: 'speech', phil: 'philosophy', swe: 'engineering', christ: 'christianity' };
 export function thoughtPath(t: Pick<Thought, 'kind' | 'slug'>) {
   return `/${KIND_PREFIX[t.kind]}/${t.slug}`;
 }
-export const KINDS: Kind[] = ['speech', 'writing', 'engineering'];
+export const KINDS: Kind[] = ['speech', 'philosophy', 'engineering', 'christianity'];
 /** Kinds shown on the home page; the sidebar shows all of KINDS. */
-export const HOME_KINDS: Kind[] = ['speech', 'writing'];
+export const HOME_KINDS: Kind[] = ['engineering', 'philosophy'];
 
 export function getThought(slug: string) {
   return thoughts.find((t) => t.slug === slug) ?? null;
@@ -99,6 +100,7 @@ export function fullText(t: Thought): string {
 /** Schema.org type that best fits each kind. Speeches are Articles with genre "Speech". */
 export const KIND_SCHEMA: Record<Kind, 'Article' | 'BlogPosting'> = {
   speech: 'Article',
-  writing: 'BlogPosting',
+  philosophy: 'BlogPosting',
   engineering: 'BlogPosting',
+  christianity: 'Article',
 };

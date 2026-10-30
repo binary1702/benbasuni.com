@@ -86,31 +86,6 @@ export function ThoughtsNav({ sections, onNavigate }: { sections: Section[]; onN
                       </span>
                     </Link>
 
-                    {active && item.chapters.length > 1 && (
-                      <ol className="mb-2 mt-1 space-y-0.5 pl-3">
-                        {item.chapters.map((title, i) => {
-                          const n = i + 1;
-                          const current = n === page;
-                          return (
-                            <li key={n}>
-                              <Link
-                                href={`${href}?p=${n}#reading`}
-                                onClick={onNavigate}
-                                aria-current={current ? 'step' : undefined}
-                                className={`flex items-baseline gap-2 py-1 text-[0.95rem] font-light transition-colors duration-300 ${
-                                  current ? 'text-ink' : 'text-muted hover:text-ink'
-                                }`}
-                              >
-                                <span className="font-sans text-[10px] tabular-nums tracking-[0.1em] text-sage">
-                                  {String(n).padStart(2, '0')}
-                                </span>
-                                {title}
-                              </Link>
-                            </li>
-                          );
-                        })}
-                      </ol>
-                    )}
                   </li>
                 );
               })}

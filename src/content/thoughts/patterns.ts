@@ -5,7 +5,7 @@ export const patternRecognition: Thought = {
   slug: 'patterns',
   kind: 'engineering',
   title: 'Patterns',
-  dek: 'Discovering recurring structures within relationships.',
+  dek: '',
   date: '2026-06-21',
   body: [
     { type: 'h', text: 'Finding Order' },

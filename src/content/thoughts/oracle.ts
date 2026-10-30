@@ -3,9 +3,9 @@ import type { Thought } from './index';
 // Text by Ben.
 export const oracle: Thought = {
   slug: 'oracle',
-  kind: 'writing',
+  kind: 'philosophy',
   title: 'Oracle',
-  dek: 'Nobody wants a prediction.\nThey want to be told they are right.',
+  dek: '',
   date: '2026-10-09',
   body: [
     { type: 'h', text: 'The Question Everyone Asks' },

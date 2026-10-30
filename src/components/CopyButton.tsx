@@ -53,7 +53,6 @@ export function CopyButton({ text, label = 'Copy text' }: { text: string; label?
           <path d="M10.5 5.5V3.5a1 1 0 0 0-1-1h-6a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h2" stroke="currentColor" />
         </svg>
       )}
-      {done && <span>Copied</span>}
     </button>
   );
 }

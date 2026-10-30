@@ -4,3 +4,8 @@ export { Backdrop } from './Backdrop';
 export { ThoughtsNav } from './ThoughtsNav';
 export { ThoughtsShell } from './ThoughtsShell';
 export { CopyButton } from './CopyButton';
+export { ShareButton } from './ShareButton';
+export { ExpandProvider, useExpand } from './ExpandContext';
+export { ExpandButton } from './ExpandButton';
+export { ThemeToggle } from './ThemeToggle';
+export { MobileNav } from './MobileNav';

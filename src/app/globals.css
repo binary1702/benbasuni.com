@@ -43,7 +43,7 @@ html {
    Graphite drafting table: cool, dark, dry. Same tokens, different values, so
    every component — grid, strips, spotlight, type — follows without edits.
    Scoped by :has() so no script runs and nothing flashes. */
-body:has([data-theme='blueprint']) {
+html[data-theme='blueprint'] {
   --ivory: #23272d;
   --ivory-deep: #1b1f24;
   --charcoal: #c9c6bd;
@@ -60,14 +60,14 @@ body:has([data-theme='blueprint']) {
   background: var(--ivory);
   color: var(--charcoal);
 }
-body:has([data-theme='blueprint']) .backdrop-photo {
+html[data-theme='blueprint'] .backdrop-photo {
   display: none; /* the tree wash is the home page's; the table is bare */
 }
-body:has([data-theme='blueprint']) .backdrop-grid {
+html[data-theme='blueprint'] .backdrop-grid {
   -webkit-mask-image: none;
   mask-image: none; /* drafting paper: gridded edge to edge */
 }
-body:has([data-theme='blueprint']) ::selection {
+html[data-theme='blueprint'] ::selection {
   background: var(--sage);
   color: var(--ivory-deep);
 }
@@ -387,6 +387,9 @@ body {
   border-radius: 12px;
   background: #f3efe6;
 }
+html[data-theme='blueprint'] .sheet {
+  background: #2a2f36;
+}
 @media (min-width: 768px) {
   .sheet {
     padding: 1.5rem 2.5rem 2rem;
@@ -405,6 +408,12 @@ body {
 .scroll-pane::-webkit-scrollbar-thumb {
   background: rgba(42, 40, 37, 0.18);
   border-radius: 3px;
+}
+html[data-theme='blueprint'] .scroll-pane {
+  scrollbar-color: rgba(239, 236, 228, 0.18) transparent;
+}
+html[data-theme='blueprint'] .scroll-pane::-webkit-scrollbar-thumb {
+  background: rgba(239, 236, 228, 0.18);
 }
 
 @layer components {
@@ -507,4 +516,11 @@ body {
 }
 @media (prefers-reduced-motion: reduce) {
   .enter, .bp-bar, .bp-dot { animation: none; }
+}
+
+/* Hide layout's fixed theme toggle on mobile when ThoughtsShell has its own */
+@media (max-width: 767px) {
+  body:has([data-thoughts-shell]) #layout-theme-toggle {
+    display: none;
+  }
 }

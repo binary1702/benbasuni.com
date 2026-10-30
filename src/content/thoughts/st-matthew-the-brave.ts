@@ -6,7 +6,7 @@ export const stMatthewTheBrave: Thought = {
   slug: 'st-matthew-the-brave',
   kind: 'speech',
   title: 'St. Matthew the Brave',
-  dek: 'A eulogy for my father',
+  dek: '',
   dekLink: { display: 'matheusbasuni.com', url: 'https://matheusbasuni.com' },
   date: '2026-07-19',
   body: [

@@ -1,6 +1,6 @@
 import { Reveal, VideoPlayer } from '@/components';
 import { site } from '@/content/site';
-import { thoughts, thoughtPath, HOME_KINDS, KIND_LABEL } from '@/content/thoughts';
+import { thoughts, thoughtPath, HOME_KINDS, KIND_LABEL, type Kind } from '@/content/thoughts';
 import { SITE_URL, SITE_NAME, DESCRIPTION, AUTHOR } from '@/lib/site';
 
 type LinkT = { display: string; url?: string };
@@ -40,15 +40,6 @@ function Eyebrow({ children }: { children: string }) {
 }
 
 export default function Home() {
-  // Work (from site.ts) + one column per kind shown on the home page.
-  const groups = [
-    ...site.groups,
-    ...HOME_KINDS.map((kind) => ({
-      label: KIND_LABEL[kind],
-      links: thoughts.filter((t) => t.kind === kind).map((t) => ({ display: t.title, url: thoughtPath(t) })),
-    })),
-  ];
-
   // Width-to-height ratio from site.video.aspect ("w / h"). The whole page
   // fits one viewport on desktop, so the video's height is the hard constraint
   // and its width derives from it.
@@ -74,6 +65,21 @@ export default function Home() {
       author: { '@type': 'Person', name: AUTHOR.name, url: AUTHOR.url },
       inLanguage: 'en',
     },
+    // VideoObject for Google video indexing
+    ...(site.video.youtubeId
+      ? [
+          {
+            '@context': 'https://schema.org',
+            '@type': 'VideoObject',
+            name: site.video.title,
+            description: 'An introduction to Ben Basuni and his approach to life and work.',
+            thumbnailUrl: `${SITE_URL}${site.video.poster}`,
+            uploadDate: '2026-10-01',
+            contentUrl: `https://www.youtube.com/watch?v=${site.video.youtubeId}`,
+            embedUrl: `https://www.youtube.com/embed/${site.video.youtubeId}`,
+          },
+        ]
+      : []),
   ];
 
   return (
@@ -145,24 +151,47 @@ export default function Home() {
               >
                 Binary 1702
               </a>
-              .
+              , with ambitions to change the world.
             </p>
           </div>
 
-          {/* Link groups */}
-          <div className="mt-8 grid grid-cols-1 gap-y-7 border-t border-sage/30 pt-6 text-center md:mt-10 md:grid-cols-3 md:gap-x-6 md:gap-y-0">
-            {groups.map((group) => (
-              <div key={group.label}>
-                <Eyebrow>{group.label}</Eyebrow>
-                <ul className="mt-4 space-y-2">
-                  {group.links.map((link) => (
-                    <li key={link.display}>
-                      <LinkItem link={link} />
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
+          {/* Link groups: 3 columns - Featured Work | Client Work | Writings */}
+          <div className="mt-8 grid grid-cols-1 gap-y-7 border-t border-sage/30 pt-6 text-center md:mt-10 md:grid-cols-3 md:gap-x-10 md:gap-y-0">
+            {/* Column 1: Featured Work */}
+            <div>
+              <Eyebrow>{site.groups[0].label}</Eyebrow>
+              <ul className="mt-4 space-y-2">
+                {site.groups[0].links.map((link) => (
+                  <li key={link.display}>
+                    <LinkItem link={link} />
+                  </li>
+                ))}
+              </ul>
+            </div>
+            {/* Column 2: Client Work */}
+            <div>
+              <Eyebrow>Collaborations</Eyebrow>
+              <ul className="mt-4 space-y-2">
+                <li>
+                  <LinkItem link={{ display: 'Leota Boesen', url: '/client/leotaboesen' }} />
+                </li>
+                <li>
+                  <LinkItem link={{ display: 'Norwood Construction' }} />
+                </li>
+              </ul>
+            </div>
+            {/* Column 3: Writings - Engineering and Philosophy links */}
+            <div>
+              <Eyebrow>Writings</Eyebrow>
+              <ul className="mt-4 space-y-2">
+                <li>
+                  <LinkItem link={{ display: 'Engineering', url: '/swe' }} />
+                </li>
+                <li>
+                  <LinkItem link={{ display: 'Philosophy', url: '/phil' }} />
+                </li>
+              </ul>
+            </div>
           </div>
         </Reveal>
 

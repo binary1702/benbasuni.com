@@ -122,9 +122,9 @@ export function VideoPlayer({ youtubeId, src, poster, preview, aspect, title, ov
               onClick={hasSource ? play : undefined}
               disabled={!hasSource}
               aria-label={hasSource ? `Play: ${title}` : 'Video coming soon'}
-              className="group absolute inset-0 flex flex-col items-center justify-center text-ivory enabled:cursor-pointer focus:outline-none focus-visible:ring-1 focus-visible:ring-ivory/70"
+              className="group absolute inset-0 flex flex-col items-center justify-center text-[#ebe6db] enabled:cursor-pointer focus:outline-none focus-visible:ring-1 focus-visible:ring-[#ebe6db]/70"
             >
-              <span className="flex h-16 w-16 items-center justify-center rounded-full border border-ivory/60 transition-colors duration-500 group-hover:border-sage group-hover:bg-sage/25 md:h-20 md:w-20">
+              <span className="flex h-16 w-16 items-center justify-center rounded-full border border-[#ebe6db]/60 transition-colors duration-500 group-hover:border-sage group-hover:bg-sage/25 md:h-20 md:w-20">
                 <svg viewBox="0 0 24 24" className="ml-1 h-5 w-5 fill-current md:h-6 md:w-6" aria-hidden="true">
                   <path d="M8 5.5v13l11-6.5z" />
                 </svg>

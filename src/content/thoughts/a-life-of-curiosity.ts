@@ -6,7 +6,7 @@ export const aLifeOfCuriosity: Thought = {
   slug: 'a-life-of-curiosity',
   kind: 'speech',
   title: 'A Life of Curiosity',
-  dek: 'A talk given to my LeTip chapter.\nWho are we, apart from what we do?',
+  dek: '',
   date: '2026-08-06',
   body: [
     { type: 'h', text: 'The Ritual' },

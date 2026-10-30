@@ -15,6 +15,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.6,
     })),
     { url: `${SITE_URL}/work/skeletor`, lastModified: '2026-10-29', changeFrequency: 'monthly' as const, priority: 0.8 },
+    { url: `${SITE_URL}/client/leotaboesen`, lastModified: '2026-10-30', changeFrequency: 'monthly' as const, priority: 0.8 },
     ...thoughts.map((t) => ({
       url: `${SITE_URL}${thoughtPath(t)}`,
       lastModified: t.date,

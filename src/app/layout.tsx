@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono, Newsreader } from 'next/font/google';
-import { Backdrop } from '@/components';
+import { Analytics } from '@vercel/analytics/next';
+import { Backdrop, ThemeToggle } from '@/components';
 import { SITE_URL, SITE_NAME, DESCRIPTION, AUTHOR } from '@/lib/site';
 import './globals.css';
 
@@ -52,7 +53,11 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
     <html lang="en" className={`${newsreader.variable} ${geistSans.variable} ${geistMono.variable} h-full`}>
       <body className="min-h-full bg-ivory text-charcoal">
         <Backdrop />
+        <div id="layout-theme-toggle" className="fixed right-5 top-5 z-50 sm:right-8 sm:top-8">
+          <ThemeToggle />
+        </div>
         {children}
+        <Analytics />
       </body>
     </html>
   );

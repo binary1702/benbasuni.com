@@ -5,7 +5,7 @@ export const systems: Thought = {
   slug: 'systems',
   kind: 'engineering',
   title: 'Systems',
-  dek: 'Understanding how things relate.',
+  dek: '',
   date: '2026-05-14',
   body: [
     { type: 'h', text: 'The Whole and Its Parts' },

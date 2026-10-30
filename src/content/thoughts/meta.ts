@@ -4,9 +4,9 @@ import type { Thought } from './index';
 // lesson stated plainly. Client details are generic on purpose.
 export const meta: Thought = {
   slug: 'meta',
-  kind: 'writing',
+  kind: 'philosophy',
   title: 'Meta',
-  dek: 'The most valuable question I ask\nis the one before the first one.',
+  dek: '',
   date: '2026-08-30',
   body: [
     { type: 'h', text: 'The Call' },
