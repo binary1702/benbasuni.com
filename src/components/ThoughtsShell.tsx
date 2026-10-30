@@ -21,13 +21,13 @@ function ShellInner({ sections, children }: { sections: Section[]; children: Rea
       {/* Dim overlay when expanded */}
       {expanded && (
         <div
-          className="fixed inset-0 z-40 bg-ink/40 backdrop-blur-sm transition-opacity duration-500"
+          className="fixed inset-0 z-30 bg-ink/40 backdrop-blur-sm transition-opacity duration-500"
           onClick={() => {}}
           aria-hidden="true"
         />
       )}
       <div
-        className={`relative z-30 mx-auto px-5 py-8 transition-all duration-500 ease-[cubic-bezier(0.2,0.6,0.2,1)] sm:px-8 md:grid md:h-svh md:justify-center md:gap-x-12 md:overflow-hidden md:px-12 md:py-16 lg:gap-x-20 ${
+        className={`relative z-50 mx-auto px-5 py-8 transition-all duration-500 ease-[cubic-bezier(0.2,0.6,0.2,1)] sm:px-8 md:grid md:h-svh md:justify-center md:gap-x-12 md:overflow-hidden md:px-12 md:py-16 lg:gap-x-20 ${
           expanded
             ? 'max-w-[64rem] md:grid-cols-[minmax(0,64rem)]'
             : 'max-w-[1180px] md:grid-cols-[14rem_minmax(0,42rem)] lg:grid-cols-[16rem_minmax(0,42rem)]'
