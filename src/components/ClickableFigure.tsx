@@ -12,6 +12,9 @@ type Props = {
   name?: string;
 };
 
+/** Small figures whose panel is narrowed and centered instead of spanning the column. */
+const COMPACT = new Set(['nations-nimrod-line']);
+
 export function ClickableFigure({ children, caption, context, name }: Props) {
   const [open, setOpen] = useState(false);
 
@@ -23,7 +26,7 @@ export function ClickableFigure({ children, caption, context, name }: Props) {
 
   return (
     <>
-      <figure className="my-6 rounded-lg border border-[var(--figure-edge)] bg-[var(--figure-bg)] px-4 py-5 md:px-6 md:py-6">
+      <figure className={`my-6 rounded-lg border border-[var(--figure-edge)] bg-[var(--figure-bg)] px-4 py-5 md:px-6 md:py-6 ${name && COMPACT.has(name) ? 'mx-auto max-w-[26rem] md:max-w-[32rem]' : ''}`}>
         <button
           type="button"
           onClick={() => setOpen(true)}

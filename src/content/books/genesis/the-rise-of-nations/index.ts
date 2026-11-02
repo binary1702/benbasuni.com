@@ -16,6 +16,5 @@ export const riseOfNations: Book = {
   ref: 'Genesis 10–11',
   dek: 'From Babel to the Family of Abram',
   date: '2026-11-02',
-  comingSoon: true,
   chapters: [cTheTableOfNations, cTheFirstKingdoms, cTheTowerOfBabel, cLetUsGoDown, cTheGenerationsOfShem, cTheFamilyOfAbram, cFromBabelToAbraham],
 };

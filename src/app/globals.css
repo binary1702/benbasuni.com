@@ -15,6 +15,7 @@
   --sage-soft: rgba(134, 150, 122, 0.16);
   --figure-bg: #dbd1bd; /* diagram panels: muted warm sand, a step below the sheet so it never glares */
   --figure-edge: rgba(140, 110, 60, 0.22);
+  --gold: #a8893f; /* subtle yellow: secondary highlights in figures (e.g. Abraham's line) */
   --keyword: #c0661a; /* orange: Hebrew words in the books */
   --xref: #2f5f9e; /* links to other chapters/pages (Scripture links to Shavat stay sage) */
   /* rgb triplet of the line colour used by the grid and number strips */
@@ -62,6 +63,7 @@ html[data-theme='blueprint'] {
   --sage-soft: rgba(143, 176, 138, 0.14);
   --figure-bg: #45303f; /* diagram panels: smoky plum — warm enough to feel alive, muted enough not to fight the sage/rust accents */
   --figure-edge: rgba(215, 165, 200, 0.28);
+  --gold: #cdb56e;
   --keyword: #f0a05a;
   --xref: #8db4e6;
   --line-rgb: 239, 236, 228;

@@ -162,15 +162,15 @@ export function AndGodSaid() {
       <Cap x={235} y={124} size={7.5}>Sky · sea</Cap>
       <Cap x={315} y={124} size={7.5}>Land</Cap>
       {/* filling: lights · fish & fowl · beasts & man */}
-      <Cap x={155} y={203} size={7.5}>Lights</Cap>
-      <Cap x={229} y={203} size={7.5}>Fish · fowl</Cap>
-      <Cap x={322} y={203} size={7.5}>Beasts · man</Cap>
-      <Sun x={146} y={243} s={0.55} />
-      <Moon x={166} y={243} />
-      <Bird x={236} y={236} s={0.8} />
-      <Fish x={236} y={252} />
-      <Person x={304} y={246} s={0.85} c="var(--sage-deep)" />
-      <Lamb x={330} y={248} s={0.75} c="var(--sage-deep)" />
+      <Cap x={155} y={236} size={7.5}>Lights</Cap>
+      <Cap x={235} y={236} size={7.5}>Fish · fowl</Cap>
+      <Cap x={315} y={236} size={7.5}>Beasts · man</Cap>
+      <Sun x={146} y={262} s={0.55} />
+      <Moon x={166} y={262} />
+      <Bird x={236} y={256} s={0.8} />
+      <Fish x={236} y={272} />
+      <Person x={304} y={266} s={0.85} c="var(--sage-deep)" />
+      <Lamb x={330} y={268} s={0.75} c="var(--sage-deep)" />
       <Cap x={195} y={155} size={7.5}>↑ form</Cap>
       <Cap x={195} y={175} size={7.5}>↓ fill</Cap>
       <N x={275} y={155}>1:3–13</N>
@@ -199,17 +199,18 @@ export function AndGodSaid() {
 export function AndItWasGood() {
   const y = 96;
   const lo = 228;
+  const said = ['good', '—', 'good ×2', 'good', 'good', 'good']; // day 2 has no "it was good"
   return (
-    <Frame h={330} title="And it was good" desc="God calls each day's work good, and the whole very good. Sin later subjects a good creation to futility; Scripture promises it will be set free and made new.">
+    <Frame h={330} title="And it was good" desc="God calls His work good six times across days one, three (twice), four, five and six, then the whole very good. Sin later subjects a good creation to futility; Scripture promises it will be set free and made new.">
       <Cap x={W / 2} y={22}>Good · good · good · very good</Cap>
       {[0, 1, 2, 3, 4, 5].map((i) => {
         const x = 56 + i * 52;
         return (
           <g key={i}>
             {i < 5 && <line x1={x + 5} y1={y} x2={x + 47} y2={y} stroke="var(--sage-deep)" strokeWidth="1.3" />}
-            <Stop cx={x} cy={y} stroke="var(--sage-deep)" />
+            <Stop cx={x} cy={y} stroke={i === 1 ? 'var(--charcoal)' : 'var(--sage-deep)'} />
             <Cap x={x} y={y - 16} size={7.5} fill="var(--muted)">{`day ${i + 1}`}</Cap>
-            <N x={x} y={y + 22}>good</N>
+            <N x={x} y={y + 22}>{said[i]}</N>
           </g>
         );
       })}
@@ -250,8 +251,8 @@ export function InHisImage() {
       <Hero cx={105} cy={y} r={16} />
       <Rays x={105} y={y} r={21} />
       <N x={105} y={172}>the Creator</N>
-      <line x1={140} y1={y} x2={234} y2={y} {...ARROW_SAGE} />
-      <Cap x={194} y={y - 10} size={7.5} fill="var(--sage-deep)">image</Cap>
+      <line x1={186} y1={y} x2={234} y2={y} {...ARROW_SAGE} />
+      <Cap x={210} y={y - 10} size={7.5} fill="var(--sage-deep)">image</Cap>
       <Person x={258} y={y} s={1.4} />
       <Person x={286} y={y} s={1.4} />
       <Cap x={272} y={78} size={8}>Humanity</Cap>
@@ -283,7 +284,7 @@ export function ThePurposeOfMan() {
       <Rays x={84} y={y} r={19} />
       <N x={84} y={156}>the LORD’s earth</N>
       <N x={84} y={171} size={9.5}>Ps 24:1</N>
-      <line x1={110} y1={y} x2={172} y2={y} {...ARROW_SAGE} />
+      <line x1={114} y1={y} x2={172} y2={y} {...ARROW_SAGE} />
       <Cap x={141} y={y - 10} size={7.5} fill="var(--sage-deep)">entrusts</Cap>
       <Person x={194} y={y} s={1.4} />
       <Spade x={216} y={y + 2} />
@@ -291,7 +292,7 @@ export function ThePurposeOfMan() {
       <Tree x={298} y={y} s={1} />
       <Cap x={246} y={156} size={7.5} fill="var(--sage-deep)">Cultivate · keep</Cap>
       <N x={246} y={171}>work is good · 2:15</N>
-      <line x1={318} y1={y + 6} x2={404} y2={y + 6} stroke="var(--rust)" strokeWidth="1.1" strokeDasharray="4 3" markerEnd="url(#gn-arr-rust)" />
+      <line x1={342} y1={y + 6} x2={404} y2={y + 6} stroke="var(--rust)" strokeWidth="1.1" strokeDasharray="4 3" markerEnd="url(#gn-arr-rust)" />
       <Thorns x={448} y={y + 2} s={1.4} />
       <Drop x={480} y={y - 22} s={0.7} />
       <Cap x={452} y={78} size={8} fill="var(--rust)">Toil</Cap>
@@ -391,8 +392,8 @@ export function NotGoodToBeAlone() {
       <Cap x={426} y={68} size={8}>One flesh</Cap>
       <Hero cx={426} cy={96} r={10} />
       <Rays x={426} y={96} r={14} />
-      <line x1={416} y1={112} x2={404} y2={126} {...ARROW_SAGE} />
-      <line x1={436} y1={112} x2={448} y2={126} {...ARROW_SAGE} />
+      <line x1={414} y1={117} x2={404} y2={129} {...ARROW_SAGE} />
+      <line x1={438} y1={117} x2={448} y2={129} {...ARROW_SAGE} />
       <Person x={400} y={154} s={1.4} c="var(--sage-deep)" />
       <Person x={452} y={154} s={1.4} c="var(--sage-deep)" />
       <N x={426} y={194}>bone of my bones · 2:23–24</N>

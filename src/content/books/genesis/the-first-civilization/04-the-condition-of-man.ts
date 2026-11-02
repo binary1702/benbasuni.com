@@ -17,7 +17,7 @@ const chapter: BookChapter = {
     },
     {
       type: 'p',
-      text: 'This study began with a question: how did humanity go from being created in God’s image to becoming capable of murdering its own brother? Genesis 3–5 answers it step by step.',
+      text: 'This journey began with a question: how did humanity go from being created in God’s image to becoming capable of murdering its own brother? Genesis 3–5 answers it step by step.',
     },
     {
       type: 'list',

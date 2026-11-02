@@ -28,7 +28,7 @@ import {
 
 import { SonsOfGod, GriefOfGod, RighteousMan, TheArk, DoorWasShut, UndoingOfCreation, GodRemembered, NewBeginning, MeaningOfFlood } from './GreatFlood';
 import { FruitfulAgain, TheCovenant, BowInTheClouds, NakednessOfNoah, CurseOfCanaan, PreservedNotRedeemed } from './NewWorld';
-import { TableOfNations, FirstKingdoms, TowerOfBabel, LetUsGoDown, GenerationsOfShem, FamilyOfAbram, BabelToAbraham } from './RiseOfNations';
+import { TableOfNations, NimrodLine, FirstKingdoms, TowerOfBabel, LetUsGoDown, GenerationsOfShem, FamilyOfAbram, BabelToAbraham } from './RiseOfNations';
 
 /* Figures referenced by name from content: { type: 'figure', name: 'system' } */
 export const FIGURES = {
@@ -72,6 +72,7 @@ export const FIGURES = {
   'world-preserved': PreservedNotRedeemed,
   'nations-table': TableOfNations,
   'nations-kingdoms': FirstKingdoms,
+  'nations-nimrod-line': NimrodLine,
   'nations-babel': TowerOfBabel,
   'nations-down': LetUsGoDown,
   'nations-shem': GenerationsOfShem,

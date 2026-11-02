@@ -18,7 +18,7 @@ export function FruitfulAgain() {
       <path d="M172 96 H 380" {...ARROW_SAGE} />
       <Cap x={276} y={86} size={7.5} fill="var(--sage-deep)">the same blessing</Cap>
       <Region x={388} y={46} w={132} h={100} />
-      <Cap x={454} y={68}>After the flood</Cap>
+      <Cap x={454} y={68} size={8}>After the flood</Cap>
       <Person x={438} y={104} s={1.1} c="var(--sage-deep)" />
       <Person x={470} y={104} s={1.1} c="var(--sage-deep)" />
       <N x={454} y={136} size={10}>“be fruitful” · 9:1</N>
@@ -70,11 +70,12 @@ export function BowInTheClouds() {
   return (
     <Frame h={262} title="The bow in the clouds" desc="God sets His bow in the clouds as the sign of the covenant. When the bow appears, God will see it and remember. The word for rainbow is the word for a war bow, hung in the sky and pointed away from the earth.">
       <Cap x={W / 2} y={22}>A bow hung up in the sky</Cap>
-      <Cloud x={160} y={104} s={1.3} />
-      <Cloud x={400} y={104} s={1.3} />
-      <Rainbow x={280} y={160} s={3.4} />
-      <path d="M280 52 V 30" {...ARROW_RUST} />
-      <N x={292} y={44} anchor="start" size={10} fill="var(--rust)">aimed away from the earth</N>
+      <Cloud x={136} y={104} s={1.3} />
+      <Cloud x={424} y={104} s={1.3} />
+      {/* the bands' round ends sit on the ground line, not through it */}
+      <Rainbow x={280} y={154.5} s={3.4} />
+      <path d="M280 44 V 30" {...ARROW_RUST} />
+      <N x={292} y={42} anchor="start" size={10} fill="var(--rust)">aimed away from the earth</N>
       <line x1={80} y1={160} x2={480} y2={160} stroke="var(--charcoal)" strokeWidth="0.9" />
       <Person x={250} y={146} s={0.9} c="var(--ink)" />
       <Lamb x={312} y={150} s={0.8} />
@@ -102,16 +103,16 @@ export function NakednessOfNoah() {
       {/* Ham */}
       <Person x={150} y={196} s={1.1} c="var(--rust)" />
       <Eye x={186} y={184} s={0.8} />
-      <path d="M176 204 C 280 222, 380 214, 420 182" {...ARROW_RUST} />
+      <path d="M176 204 C 290 224, 380 166, 438 150" {...ARROW_RUST} />
       <Cap x={150} y={226} size={8} fill="var(--rust)">Ham</Cap>
       <N x={300} y={232} fill="var(--rust)">saw · told his brothers · 9:22</N>
       {/* Shem and Japheth */}
-      <Person x={420} y={130} s={1.1} c="var(--sage-deep)" />
-      <Person x={448} y={130} s={1.1} c="var(--sage-deep)" />
-      <Garment x={434} y={104} s={1.1} />
-      <path d="M404 140 H 364" {...ARROW_SAGE} />
-      <Cap x={434} y={164} size={8} fill="var(--sage-deep)">Shem · Japheth</Cap>
-      <N x={434} y={180} fill="var(--sage-deep)">backward · covered · 9:23</N>
+      <Person x={450} y={130} s={1.1} c="var(--sage-deep)" />
+      <Person x={478} y={130} s={1.1} c="var(--sage-deep)" />
+      <Garment x={464} y={104} s={1.1} />
+      <path d="M434 140 H 364" {...ARROW_SAGE} />
+      <Cap x={464} y={172} size={8} fill="var(--sage-deep)">Shem · Japheth</Cap>
+      <N x={464} y={188} fill="var(--sage-deep)">backward · covered · 9:23</N>
       <Rule y={242} />
       <N x={W / 2} y={262}>Shame exposed, or shame covered, as God covered it in 3:21</N>
     </Frame>
@@ -126,7 +127,7 @@ export function CurseOfCanaan() {
       <Person x={84} y={132} s={1.3} c="var(--ink)" />
       <Cap x={84} y={168} size={8}>Noah speaks</Cap>
       <N x={84} y={184}>9:25–27</N>
-      <path d="M108 120 C 180 72, 240 66, 330 66" {...ARROW_SAGE} />
+      <path d="M108 120 C 180 72, 240 66, 324 66" {...ARROW_SAGE} />
       <path d="M108 132 H 330" {...ARROW_SAGE} />
       <path d="M108 144 C 180 196, 240 204, 330 204" {...ARROW_RUST} />
       <Hero cx={350} cy={66} r={11} />
@@ -164,7 +165,7 @@ export function PreservedNotRedeemed() {
       <Cap x={470} y={136} size={8}>after</Cap>
       <N x={470} y={152} fill="var(--rust)">“evil from youth” · 8:21</N>
       <Rainbow x={280} y={222} s={1.4} />
-      <Hero cx={280} cy={206} r={6} />
+      <Hero cx={280} cy={211} r={5} />
       <N x={280} y={242} fill="var(--sage-deep)">the promise holds anyway · 8:22</N>
       <Grave x={470} y={210} s={0.8} />
       <Vine x={90} y={206} s={0.9} />

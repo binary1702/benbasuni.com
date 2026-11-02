@@ -40,13 +40,13 @@ const chapter: BookChapter = {
 
     { type: 'sub', text: 'The Sons of Noah' },
     { type: 'quote', text: 'And Ham, the father of Canaan, saw his father’s nakedness and told his two brothers outside.', by: 'Genesis 9:22' },
-    { type: 'p', text: 'Noah had three sons: Shem, Ham, and Japheth. Together with their wives, they were the eight people who survived the flood ([7:13](https://www.shavat.app/ot/genesis/creation/7#v13)).' },
+    { type: 'p', text: 'Noah had three sons: Shem, Japheth, and Ham. Together with their wives, they were the eight people who survived the flood ([7:13](https://www.shavat.app/ot/genesis/creation/7#v13)).' },
     {
       type: 'table',
-      head: ['', 'Noah + wife', 'Shem + wife', 'Ham + wife', 'Japheth + wife'],
+      head: ['', 'Noah + wife', 'Shem + wife', 'Japheth + wife', 'Ham + wife'],
       rows: [
-        ['Who', 'The father', '1st son', '2nd son', '3rd son'],
-        ['In Genesis', 'Walked with God ([6:9](https://www.shavat.app/ot/genesis/creation/6#v9))', '“Blessed be the LORD, the God of Shem” ([9:26](https://www.shavat.app/ot/genesis/creation/9#v26))', 'The father of Canaan ([9:18](https://www.shavat.app/ot/genesis/creation/9#v18))', '“May God expand the territory of Japheth” ([9:27](https://www.shavat.app/ot/genesis/creation/9#v27))'],
+        ['Who', 'The father', '1st son', '2nd son', '3rd son ([9:24](https://www.shavat.app/ot/genesis/creation/9#v24))'],
+        ['In Genesis', 'Walked with God ([6:9](https://www.shavat.app/ot/genesis/creation/6#v9))', '“Blessed be the LORD, the God of Shem” ([9:26](https://www.shavat.app/ot/genesis/creation/9#v26))', '“May God expand the territory of Japheth” ([9:27](https://www.shavat.app/ot/genesis/creation/9#v27))', 'The father of Canaan ([9:18](https://www.shavat.app/ot/genesis/creation/9#v18))'],
       ],
     },
     { type: 'p', text: 'Now, in the new world, these three brothers find themselves at the center of another story of human shame. Ham, whose son was named Canaan, enters his father’s tent and discovers Noah lying naked. Rather than covering him, Ham goes outside and tells his brothers, Shem and Japheth.' },

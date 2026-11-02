@@ -21,6 +21,7 @@ const KEY_WORDS = new Set([
   'arummim',
   'atsav',
   'balal',
+  'bene ha-adam',
   'berit',
   'chamas',
   'chavvah',
@@ -31,9 +32,11 @@ const KEY_WORDS = new Set([
   'enosh',
   'gabar',
   'gibbor',
+  'gibborim',
   'havah',
   'hevel',
   '’ivri',
+  'ivri',
   'kaphar',
   'le-yepheth',
   'kopher',
@@ -153,17 +156,11 @@ function BlockView({ block, context }: { block: Block; context?: string }) {
       // Subheading within a chapter; em-sized so it follows the reader's − / + text size
       return <h3 className="mt-10 font-serif text-[1.15em] font-normal tracking-[-0.005em] text-ink">{block.text}</h3>;
     case 'quote': {
-      // Short quotes (one line's worth) are kept on a single row on desktop
-      // by sizing them to the column; longer ones wrap normally.
-      const oneLine = block.text.length <= 76;
+      // Every quote uses one size, whatever its length, so quotes read as a set.
       return (
         <blockquote className="my-7 border-l border-sage/50 pl-5">
           <p
-            className={`font-serif font-light ${block.italic === false ? '' : 'italic'} leading-[1.5] text-ink ${
-              oneLine
-                ? 'text-[calc(1.05rem*var(--reader-scale,1))] md:whitespace-nowrap md:text-[calc(1.3125rem*var(--reader-scale,1))]'
-                : 'text-[calc(1.15rem*var(--reader-scale,1))] md:text-[calc(1.625rem*var(--reader-scale,1))]'
-            }`}
+            className={`font-serif font-light ${block.italic === false ? '' : 'italic'} leading-[1.5] text-ink text-[calc(1.15rem*var(--reader-scale,1))] md:text-[calc(1.625rem*var(--reader-scale,1))]`}
           >
             <Inline text={block.text} />
           </p>
@@ -246,11 +243,11 @@ function BlockView({ block, context }: { block: Block; context?: string }) {
               })}
             </div>
           )}
-          <table className={`${stack ? 'hidden md:table' : ''} w-full border-collapse text-left text-[0.82em] leading-[1.4] md:text-[0.64em] md:leading-[1.45]`}>
+          <table className={`${stack ? 'hidden md:table' : ''} w-auto max-w-full border-collapse text-left text-[0.82em] leading-[1.4] md:text-[0.64em] md:leading-[1.45]`}>
             <thead>
               <tr className="border-b border-sage/50">
-                {block.head.map((h) => (
-                  <th key={h} className="pb-2 pr-3 align-bottom font-sans text-[9px] font-normal uppercase tracking-[0.16em] text-sage last:pr-0 md:pr-5 md:text-[10px] md:tracking-[0.2em]">
+                {block.head.map((h, i) => (
+                  <th key={i} className="pb-2 pr-3 align-bottom font-sans text-[9px] font-normal uppercase tracking-[0.16em] text-sage last:pr-0 md:pr-5 md:text-[10px] md:tracking-[0.2em]">
                     {h}
                   </th>
                 ))}

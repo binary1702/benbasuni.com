@@ -38,7 +38,7 @@ export function AnatomyOfDeception() {
       <N x={115} y={y + 34}>eat freely · but one tree</N>
       <N x={115} y={y + 48} size={9.5}>2:16–17</N>
       {/* the path: straight → wavering → kinked → broken */}
-      <line x1={131} y1={y} x2={256} y2={y} stroke="var(--sage-deep)" strokeWidth="1.4" />
+      <line x1={190} y1={y} x2={256} y2={y} stroke="var(--sage-deep)" strokeWidth="1.4" />
       <path d={`M268 ${y} q14 -9 26 0 t26 0 t26 0 t20 0`} fill="none" stroke="var(--rust)" strokeWidth="1.2" />
       <path d={`M378 ${y} l12 -8 l12 14 l12 -18 l12 20 l12 -16 l12 14 l12 -6 l14 0`} fill="none" stroke="var(--rust)" strokeWidth="1.2" />
       {stops.map((s, i) => (
@@ -68,15 +68,15 @@ export function TwoPathsToWisdom() {
       <Tree x={110} y={134} s={1.2} fruit />
       <N x={110} y={204}>good to want · Prov 4:7</N>
       {/* received */}
-      <path d="M118 126 C 190 70, 300 66, 446 66" {...ARROW_SAGE} />
+      <path d="M180 112 C 230 76, 320 66, 446 66" {...ARROW_SAGE} />
       <Cap x={290} y={56} size={8} fill="var(--sage-deep)">received</Cap>
-      <N x={290} y={92} fill="var(--ink)">fear of the LORD · ask</N>
+      <N x={290} y={98} fill="var(--ink)">fear of the LORD · ask</N>
       <Hero cx={470} cy={66} r={12} />
       <Rays x={470} y={66} r={16} />
       <Cap x={470} y={36}>wisdom given</Cap>
       <N x={470} y={96}>Prov 9:10 · James 1:5</N>
       {/* taken */}
-      <path d="M118 138 C 190 196, 300 200, 452 198" {...ARROW_RUST} />
+      <path d="M180 152 C 230 192, 320 200, 452 198" {...ARROW_RUST} />
       <Cap x={290} y={180} size={8} fill="var(--rust)">taken</Cap>
       <N x={290} y={216} fill="var(--ink)">saw · took · ate · 3:6</N>
       <Eye x={462} y={198} s={1.4} />
@@ -103,19 +103,19 @@ export function BeforeAndAfter() {
       <Rays x={W / 2} y={92} r={17} />
       <N x={W / 2} y={124}>walking in the garden · 3:8</N>
       {/* before */}
-      <line x1={W / 2 - 16} y1={100} x2={150} y2={gy - 10} {...ARROW_SAGE} />
+      <path d={`M${W / 2 - 26} 96 C 200 100, 160 108, 150 ${gy - 26}`} {...ARROW_SAGE} />
       <Person x={124} y={gy} s={1.3} c="var(--sage-deep)" />
       <Person x={150} y={gy} s={1.3} c="var(--sage-deep)" />
       <Cap x={137} y={gy + 34} size={8.5} fill="var(--sage-deep)">before</Cap>
       <N x={137} y={gy + 49}>naked · no shame · 2:25</N>
       {/* after */}
-      <Tree x={394} y={gy - 4} s={1.25} />
-      <Tree x={462} y={gy - 2} s={1.2} />
-      <Tree x={428} y={gy - 18} s={1.45} />
+      <Tree x={388} y={gy - 4} s={1.25} />
+      <Tree x={466} y={gy - 2} s={1.2} />
+      <Tree x={428} y={gy - 32} s={1.1} />
       <Person x={420} y={gy + 4} s={1.05} c="var(--rust)" />
       <Person x={438} y={gy + 6} s={1.05} c="var(--rust)" />
-      <Leaf x={494} y={gy + 6} s={1} />
-      <line x1={W / 2 + 16} y1={100} x2={382} y2={gy - 20} stroke="var(--muted)" strokeWidth="0.9" strokeDasharray="3 3" />
+      <Leaf x={500} y={gy + 6} s={1} />
+      <path d={`M${W / 2 + 26} 96 C 350 100, 372 108, 376 ${gy - 30}`} fill="none" stroke="var(--muted)" strokeWidth="0.9" strokeDasharray="3 3" />
       <Cap x={428} y={gy + 34} size={8.5} fill="var(--rust)">after</Cap>
       <N x={428} y={gy + 49}>hiding among the trees · 3:8</N>
       <Rule y={224} />
@@ -147,9 +147,9 @@ export function ChainOfBlame() {
       <Hero cx={115} cy={y} />
       <N x={115} y={y + 34}>“Where are you?”</N>
       <N x={115} y={y + 48} size={9.5}>3:9</N>
-      <line x1={131} y1={y} x2={252} y2={y} {...ARROW_SAGE} />
+      <line x1={190} y1={y} x2={252} y2={y} {...ARROW_SAGE} />
       <line x1={272} y1={y} x2={370} y2={y} {...ARROW_RUST} />
-      <line x1={392} y1={y} x2={482} y2={y} {...ARROW_RUST} />
+      <line x1={392} y1={y} x2={472} y2={y} {...ARROW_RUST} />
       <Cap x={322} y={y - 8} size={7} fill="var(--rust)">blames</Cap>
       <Cap x={437} y={y - 8} size={7} fill="var(--rust)">blames</Cap>
       {people.map((p, i) => (
@@ -630,7 +630,7 @@ export function CainAndAbel() {
       <Hero cx={W / 2} cy={90} r={12} />
       <Rays x={W / 2} y={90} r={15} />
       {/* Abel: arrives */}
-      <path d={`M420 ${by - 52} C 420 134, 400 116, 350 108`} {...ARROW_SAGE} />
+      <path d={`M420 ${by - 52} C 420 134, 404 116, 364 108`} {...ARROW_SAGE} />
       <N x={432} y={142} anchor="start" fill="var(--sage-deep)">looked with favor</N>
       {/* Cain: falls short */}
       <path d={`M168 ${by - 18} C 176 154, 178 146, 192 140`} {...ARROW_RUST} strokeDasharray="4 3" />
@@ -677,10 +677,11 @@ export function ProgressionOfSin() {
       <Region x={256} y={64} w={72} h={150} />
       <Cap x={292} y={82} size={7.5}>the door</Cap>
       {/* paths */}
-      <line x1={125} y1={y3} x2={352} y2={y3} stroke="var(--charcoal)" strokeWidth="0.9" />
-      <line x1={367} y1={y3} x2={496} y2={y3} stroke="var(--rust)" strokeWidth="1.1" />
-      <line x1={125} y1={y4} x2={280} y2={y4} stroke="var(--charcoal)" strokeWidth="0.9" />
-      <line x1={304} y1={y4} x2={426} y2={y4} stroke="var(--rust)" strokeWidth="1.1" />
+      <line x1={125} y1={y3} x2={256} y2={y3} stroke="var(--charcoal)" strokeWidth="0.9" />
+      <line x1={328} y1={y3} x2={352} y2={y3} stroke="var(--charcoal)" strokeWidth="0.9" />
+      <line x1={367} y1={y3} x2={486} y2={y3} stroke="var(--rust)" strokeWidth="1.1" />
+      <line x1={125} y1={y4} x2={256} y2={y4} stroke="var(--charcoal)" strokeWidth="0.9" />
+      <line x1={328} y1={y4} x2={418} y2={y4} stroke="var(--rust)" strokeWidth="1.1" />
       {row(y3, ['word doubted', 'saw'], ['took', 'ate', 'hid'], 'Adam & Eve')}
       {row(y4, ['angry', 'face fell'], ['the field', 'killed'], 'Cain')}
       <Door x={290} y={136} s={1} crouch />
@@ -714,7 +715,9 @@ export function TwoDivineQuestions() {
       {roads.map((r) => (
         <g key={r.who}>
           <line x1={150} y1={r.y} x2={cols[0] - 9} y2={r.y} {...ARROW_SAGE} />
-          <line x1={cols[0] + 6} y1={r.y} x2={cols[3] - 6} y2={r.y} stroke="var(--charcoal)" strokeWidth="0.9" />
+          <line x1={cols[0] + 9} y1={r.y} x2={cols[1] - 7} y2={r.y} stroke="var(--charcoal)" strokeWidth="0.9" />
+          <line x1={cols[1] + 7} y1={r.y} x2={cols[2] - (r.self ? 10 : 19)} y2={r.y} stroke="var(--charcoal)" strokeWidth="0.9" />
+          <line x1={cols[2] + (r.self ? 10 : 19)} y1={r.y} x2={cols[3] - 15} y2={r.y} stroke="var(--charcoal)" strokeWidth="0.9" />
           <Person x={cols[0]} y={r.y + 1} s={1} c="var(--ink)" />
           <Cap x={cols[0]} y={r.y - 16} size={8.5}>{r.who}</Cap>
           <N x={cols[0]} y={r.y + 28} fill="var(--ink)">{r.q}</N>
@@ -738,7 +741,7 @@ export function TwoDivineQuestions() {
    and a dashed road points to forgiveness 77×. */
 export function CivilizationAndViolence() {
   const y = 70;
-  const names = ['Adam', 'Cain', 'Enoch', 'Irad', 'Mehujael', 'Methusael', 'Lamech'];
+  const names = ['Adam', 'Cain', 'Enoch', 'Irad', 'Mehujael', 'Methushael', 'Lamech'];
   const xs = names.map((_, i) => 60 + i * 72);
   const gifts: [number, string, string][] = [[336, 'Jabal', 'Economy'], [424, 'Jubal', 'Art'], [512, 'Tubal-cain', 'Technology']];
   return (
@@ -797,7 +800,7 @@ export function TwoLinesOfAdam() {
   const top = { x: W / 2, y: 82 };
   const L = { x: 120, y: 236 };
   const R = { x: 440, y: 236 };
-  const cain = ['Cain', 'Enoch', 'Irad', 'Mehujael', 'Methusael', 'Lamech'];
+  const cain = ['Cain', 'Enoch', 'Irad', 'Mehujael', 'Methushael', 'Lamech'];
   const seth = ['Seth', 'Enosh', 'Kenan', 'Mahalalel', 'Jared', 'Enoch'];
   const at = (end: { x: number; y: number }, i: number) => ({
     x: top.x + ((end.x - top.x) * (i + 1)) / 6,
@@ -810,7 +813,7 @@ export function TwoLinesOfAdam() {
       <Person x={W / 2 - 34} y={62} s={0.95} c="var(--ink)" />
       <Cap x={W / 2 + 10} y={63}>Adam</Cap>
       <line x1={top.x - 8} y1={top.y} x2={L.x} y2={L.y} stroke="var(--rust)" strokeWidth="1.1" />
-      <line x1={top.x + 8} y1={top.y} x2={R.x} y2={R.y} stroke="var(--sage-deep)" strokeWidth="1.1" />
+      <line x1={top.x + 8} y1={top.y} x2={R.x - 17} y2={R.y - 17} stroke="var(--sage-deep)" strokeWidth="1.1" />
       {cain.map((n, i) => {
         const p = at(L, i);
         const last = i === 5;
@@ -893,9 +896,9 @@ export function GenerationsOfAdam() {
         const ry = y0 - 6 + Math.floor(i / 6) * 34 + (i % 2) * 12;
         return <line key={i} x1={rx + 3} y1={ry} x2={rx - 1} y2={ry + 9} stroke="var(--sage-deep)" strokeWidth="1" strokeLinecap="round" opacity={0.7} />;
       })}
-      <Waves x={(fx + 540) / 2} y={bottom - 34} s={1} w={48} c="var(--sage-deep)" />
-      <Waves x={(fx + 540) / 2} y={bottom + 12} s={1} w={48} />
-      <Ark x={(fx + 540) / 2 + 6} y={bottom - 3} s={1.15} />
+      <Waves x={(fx + 540) / 2} y={bottom - 38} s={1} w={48} c="var(--sage-deep)" />
+      <Waves x={(fx + 540) / 2} y={bottom + 7} s={1} w={48} />
+      <Ark x={(fx + 540) / 2 + 6} y={bottom - 8} s={1.15} />
       {[0, 500, 1000, 1500].map((yr) => (
         <g key={yr}>
           <line x1={sx(yr)} y1={y0 - 10} x2={sx(yr)} y2={bottom + 10} stroke="var(--rule)" strokeWidth="0.6" />
@@ -910,7 +913,7 @@ export function GenerationsOfAdam() {
         return (
           <g key={n}>
             <Cap x={x0 - 12} y={y + 3} anchor="end" size={7.5} fill={enoch ? 'var(--sage-deep)' : 'var(--ink)'}>{n}</Cap>
-            <line x1={sx(b)} y1={y} x2={sx(end)} y2={y} stroke={enoch ? 'var(--sage-deep)' : 'var(--charcoal)'} strokeWidth={1.4} />
+            {!noah && <line x1={sx(b)} y1={y} x2={Math.min(sx(end), fx - 4)} y2={y} stroke={enoch ? 'var(--sage-deep)' : 'var(--charcoal)'} strokeWidth={1.4} />}
             {enoch ? (
               <>
                 <Hero cx={sx(end)} cy={y} r={7} />
@@ -918,9 +921,9 @@ export function GenerationsOfAdam() {
                 <N x={sx(end) + 12} y={y + 4} anchor="start" fill="var(--sage-deep)">taken · 5:24</N>
               </>
             ) : noah ? (
-              <line x1={sx(b)} y1={y} x2={(fx + 540) / 2 - 12} y2={y} {...ARROW} />
+              <line x1={sx(b)} y1={y} x2={fx - 3} y2={y} {...ARROW} />
             ) : (
-              <circle cx={sx(end)} cy={y} r={3.2} fill="var(--rust)" />
+              <circle cx={Math.min(sx(end), fx - 4)} cy={y} r={3.2} fill="var(--rust)" />
             )}
           </g>
         );
@@ -942,7 +945,7 @@ export function FromCreationToCondition() {
   return (
     <Frame h={330} title="From creation to the human condition" desc="Across Genesis 1 to 5, humanity's actions descend from image-bearing to doubt, hiding, blame, murder, boasting and death, while God's actions hold steady: blessing, seeking, promising, clothing, guarding, warning, marking, giving another seed, taking Enoch.">
       <Cap x={W / 2} y={22}>The human road falls · God’s road holds</Cap>
-      <path d={xs.map((x, i) => `${i ? 'L' : 'M'}${x} ${hy(i)}`).join(' ')} fill="none" stroke="var(--rust)" strokeWidth="1.2" />
+      <path d={`M${xs[0] + 23} ${hy(0) + 5.75} ` + xs.slice(1).map((x, i) => `L${x} ${hy(i + 1)}`).join(' ')} fill="none" stroke="var(--rust)" strokeWidth="1.2" />
       {human.map((w, i) => (
         <g key={w}>
           {i === 0 ? (

@@ -23,7 +23,7 @@ function seg(a: Pt, b: Pt, ra: number, rb: number) {
 export function SystemDiagram() {
   const W = 560;
   const cx = W / 2;
-  const cy = 232;
+  const cy = 250;
   const R = 130;
   const r = 38;
   const rc = 46;
@@ -66,7 +66,7 @@ export function SystemDiagram() {
       {pts.map((p, i) => (
         <g key={NODES[i]}>
           <circle cx={p.x} cy={p.y} r={r} fill="var(--ivory)" stroke="var(--charcoal)" strokeWidth="0.9" />
-          <text x={p.x} y={p.y + 3.5} textAnchor="middle" fontSize="9.5" letterSpacing="1.6" fontFamily={SANS} fill="var(--ink)">
+          <text x={p.x} y={p.y + 3} textAnchor="middle" fontSize="8" letterSpacing="1" fontFamily={SANS} fill="var(--ink)">
             {NODES[i].toUpperCase()}
           </text>
         </g>

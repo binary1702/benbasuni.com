@@ -6,6 +6,12 @@ import { firstCivilization } from './genesis/the-first-civilization';
 import { greatFlood } from './genesis/the-great-flood';
 import { newWorld } from './genesis/the-new-world';
 import { riseOfNations } from './genesis/the-rise-of-nations';
+import { callingOfAbram } from './genesis/the-calling-of-abram';
+import { covenant } from './genesis/the-covenant';
+import { citiesOfThePlain } from './genesis/the-cities-of-the-plain';
+import { promisedSon } from './genesis/the-promised-son';
+import { mountainOfTheLord } from './genesis/the-mountain-of-the-lord';
+import { generationsOfAbraham } from './genesis/the-generations-of-abraham';
 
 export type { Book, BookChapter } from './types';
 
@@ -20,8 +26,14 @@ const allSeries: Series[] = [
   {
     slug: 'the-first-world',
     title: 'The First World',
-    dek: 'A study of Genesis 1–11, in six books.',
+    dek: 'Genesis 1–11, in six books.',
     books: [bookOfCreation, bookOfMan, firstCivilization, greatFlood, newWorld, riseOfNations],
+  },
+  {
+    slug: 'abraham-our-father',
+    title: 'Abraham, Our Father',
+    dek: 'Genesis 12–25, in six books.',
+    books: [callingOfAbram, covenant, citiesOfThePlain, promisedSon, mountainOfTheLord, generationsOfAbraham],
   },
 ];
 

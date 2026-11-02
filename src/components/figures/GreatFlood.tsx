@@ -1,5 +1,5 @@
 import { W, Frame, Cap, ARROW, ARROW_RUST, ARROW_SAGE, Region, Hero, N } from './Genesis';
-import { Person, Rays, Altar, Lamb, Door, Waves, Ark, Grave, Drop, Dove, Raven, Mountain, Cloud, Heart } from './Drawings';
+import { Person, Rays, Altar, Lamb, Waves, Ark, Grave, Drop, Dove, Raven, Mountain, Cloud, Heart } from './Drawings';
 
 /* Figures for "Noah’s Ark" (Genesis 6–8), one per chapter, in the illustrated map style
    (see _docs/diagram_prompt.md): one soft region, one hero, line drawings, arrows that tell the story. */
@@ -50,17 +50,17 @@ export function GriefOfGod() {
       <Region x={210} y={40} w={140} h={86} />
       <Cap x={280} y={60}>The LORD</Cap>
       <Heart x={280} y={88} s={1.3} c="var(--sage-deep)" />
-      <Drop x={300} y={104} s={0.6} c="var(--sage-deep)" />
+      <Drop x={306} y={98} s={0.6} c="var(--sage-deep)" />
       <N x={280} y={118} size={10}>grieved · 6:6</N>
       {/* the earth */}
       <line x1={60} y1={196} x2={500} y2={196} stroke="var(--charcoal)" strokeWidth="0.9" />
       {crowd.map((x) => <Person key={x} x={x} y={180} s={0.85} c="var(--rust)" />)}
       <Heart x={190} y={150} s={0.9} />
       <N x={190} y={216} fill="var(--rust)">“only evil all the time” · 6:5</N>
-      <path d="M200 140 C 214 128, 222 124, 236 120" {...ARROW_RUST} strokeDasharray="3 3" />
+      <path d="M200 140 C 206 136, 212 133, 220 131" {...ARROW_RUST} strokeDasharray="3 3" />
       {/* Noah */}
       <Person x={440} y={180} s={1.2} c="var(--sage-deep)" />
-      <path d="M330 120 C 380 126, 420 140, 436 158" {...ARROW_SAGE} />
+      <path d="M352 100 C 400 106, 428 132, 438 158" {...ARROW_SAGE} />
       <Cap x={440} y={214} size={8} fill="var(--sage-deep)">Noah</Cap>
       <N x={440} y={230} fill="var(--sage-deep)">found favor · 6:8</N>
       <Rule y={240} />
@@ -76,14 +76,14 @@ export function RighteousMan() {
       <Cap x={W / 2} y={22}>One man walks with God</Cap>
       <Region x={40} y={44} w={480} h={140} fill="var(--sage-soft)" />
       <Cap x={64} y={66} anchor="start" size={7.5} fill="var(--rust)">the earth · corrupt · violent · 6:11</Cap>
-      {[[80, 160], [140, 150], [360, 166], [400, 168], [470, 150], [500, 172], [110, 92], [470, 96], [260, 88]].map(([x, y]) => (
+      {[[80, 160], [140, 150], [360, 166], [400, 168], [470, 150], [500, 172], [110, 92], [470, 96], [196, 86]].map(([x, y]) => (
         <Drop key={`${x}${y}`} x={x} y={y} s={0.7} />
       ))}
       {/* the walk */}
       <line x1={120} y1={126} x2={440} y2={126} {...ARROW_SAGE} />
-      <Person x={250} y={118} s={1.3} c="var(--ink)" />
-      <Hero cx={300} cy={110} r={11} />
-      <Rays x={300} y={110} r={14} />
+      <Person x={250} y={109} s={1.3} c="var(--ink)" />
+      <Hero cx={300} cy={100} r={11} />
+      <Rays x={300} y={100} r={14} />
       <Cap x={250} y={154} size={8}>Noah</Cap>
       <N x={250} y={170} fill="var(--sage-deep)">walked with God · 6:9</N>
       <Rule y={204} />
@@ -95,32 +95,33 @@ export function RighteousMan() {
 /* 4 — The Ark: God gives the design; Noah does everything. */
 export function TheArk() {
   return (
-    <Frame h={270} title="The ark" desc="God gives Noah the ark's design: 300 cubits long, 50 wide, 30 high, three decks, a door in its side, a window above. Two of every living thing come to keep alive. Noah did everything just as God commanded.">
+    <Frame h={246} title="The ark" desc="God gives Noah the ark's design: 300 cubits long, 50 wide, 30 high, three decks, a door in its side, a window above. Two of every living thing come to keep alive. Noah did everything just as God commanded.">
       <Cap x={W / 2} y={22}>God designs · Noah builds</Cap>
       {/* God's word */}
-      <Region x={40} y={46} w={120} h={92} />
+      <Region x={40} y={46} w={120} h={100} />
       <Cap x={100} y={68}>God</Cap>
       <Hero cx={100} cy={100} r={12} />
       <Rays x={100} y={100} r={15} />
-      <N x={100} y={132} fill="var(--sage-deep)">My covenant · 6:18</N>
-      <path d="M160 92 H 200" {...ARROW_SAGE} />
-      {/* the ark, drawn large */}
-      <Ark x={340} y={104} s={4.6} />
-      {/* three decks and a door in the side */}
-      <line x1={282} y1={114} x2={398} y2={114} stroke="var(--charcoal)" strokeWidth="0.7" />
-      <line x1={286} y1={124} x2={394} y2={124} stroke="var(--charcoal)" strokeWidth="0.7" />
-      <rect x={300} y={106} width={11} height={16} rx={1.5} fill="var(--sage-soft)" stroke="var(--charcoal)" strokeWidth="1" />
-      <N x={306} y={152} size={9.5}>door · 6:16</N>
-      <path d="M210 168 H 470" stroke="var(--muted)" strokeWidth="0.8" markerEnd="url(#gn-arr)" />
-      <path d="M470 168 H 210" stroke="var(--muted)" strokeWidth="0.8" markerEnd="url(#gn-arr)" />
-      <N x={340} y={186}>300 × 50 × 30 cubits · three decks</N>
-      <Lamb x={230} y={210} s={0.9} />
-      <Lamb x={256} y={210} s={0.9} />
-      <Dove x={300} y={208} s={0.8} />
-      <Dove x={324} y={210} s={0.8} />
-      <N x={420} y={214}>two of every kind · 6:19</N>
-      <Rule y={232} />
-      <N x={W / 2} y={254} fill="var(--ink)">“Noah did everything just as God had commanded him” · 6:22</N>
+      <N x={100} y={136} size={10} fill="var(--sage-deep)">covenant · 6:18</N>
+      <path d="M160 99 H 190" {...ARROW_SAGE} />
+      {/* the ark to scale: 1 unit = 1 cubit · 300 long × 30 high, three decks of 10 */}
+      <rect x={200} y={84} width={300} height={30} rx={2} fill="var(--ivory)" stroke="var(--charcoal)" strokeWidth="1.1" />
+      <line x1={200} y1={94} x2={500} y2={94} stroke="var(--charcoal)" strokeWidth="0.6" />
+      <line x1={200} y1={104} x2={500} y2={104} stroke="var(--charcoal)" strokeWidth="0.6" />
+      <rect x={236} y={105.5} width={8} height={8} rx={1} fill="var(--sage-soft)" stroke="var(--charcoal)" strokeWidth="0.9" />
+      <N x={240} y={76} size={9.5}>door · 6:16</N>
+      <path d="M200 128 H 500" stroke="var(--muted)" strokeWidth="0.8" markerEnd="url(#gn-arr)" markerStart="url(#gn-arr)" />
+      <N x={350} y={144}>300 cubits long · 50 wide</N>
+      <path d="M512 84 V 114" stroke="var(--muted)" strokeWidth="0.8" markerEnd="url(#gn-arr)" markerStart="url(#gn-arr)" />
+      <N x={520} y={103} anchor="start" size={9.5}>30</N>
+      <N x={350} y={160} size={9.5}>drawn to scale · three decks · 6:15–16</N>
+      <Lamb x={230} y={186} s={0.9} />
+      <Lamb x={256} y={186} s={0.9} />
+      <Dove x={300} y={184} s={0.8} />
+      <Dove x={324} y={186} s={0.8} />
+      <N x={420} y={190}>two of every kind · 6:19</N>
+      <Rule y={208} />
+      <N x={W / 2} y={230} fill="var(--ink)">“Noah did everything just as God had commanded him” · 6:22</N>
     </Frame>
   );
 }
@@ -131,8 +132,9 @@ export function DoorWasShut() {
     <Frame h={262} title="The door was shut" desc="Noah, his family and the animals enter the ark in pairs. Then the LORD shut him in, and the rain began.">
       <Cap x={W / 2} y={22}>They went in · the LORD shut the door</Cap>
       {/* the procession */}
-      <Person x={70} y={150} s={1} c="var(--ink)" />
-      <Person x={90} y={150} s={1} c="var(--ink)" />
+      {[0, 1, 2, 3, 4, 5, 6, 7].map((i) => (
+        <Person key={i} x={52 + (i % 4) * 16} y={i < 4 ? 132 : 162} s={0.7} c="var(--ink)" />
+      ))}
       <Lamb x={124} y={156} s={0.9} />
       <Lamb x={150} y={156} s={0.9} />
       <Dove x={130} y={124} s={0.8} />
@@ -143,10 +145,11 @@ export function DoorWasShut() {
       {/* the ark and its door */}
       <Region x={240} y={70} w={170} h={120} />
       <Ark x={325} y={140} s={3.2} />
-      <Door x={290} y={140} s={0.75} />
-      <Hero cx={290} cy={92} r={10} />
-      <Rays x={290} y={92} r={13} />
-      <path d="M290 106 V 118" {...ARROW_SAGE} />
+      {/* the door, in the hull's side */}
+      <rect x={348} y={143} width={8} height={12} rx={1} fill="var(--sage-soft)" stroke="var(--charcoal)" strokeWidth="0.9" />
+      <Hero cx={384} cy={96} r={10} />
+      <Rays x={384} y={96} r={13} />
+      <path d="M374 111 L 359 132" {...ARROW_SAGE} />
       <N x={325} y={206} fill="var(--sage-deep)">“the LORD shut him in” · 7:16</N>
       {/* outside: the rain */}
       <Cloud x={470} y={74} s={1.2} />
@@ -164,14 +167,14 @@ export function UndoingOfCreation() {
   return (
     <Frame h={268} title="The undoing of creation" desc="The waters rose and covered the highest mountains by fifteen cubits. Every living thing on the land perished; only Noah and those with him in the ark were left. The waters prevailed 150 days.">
       <Cap x={W / 2} y={22}>Creation reversed</Cap>
-      <Mountain x={150} y={176} s={2.2} />
-      <Mountain x={370} y={182} s={1.8} />
+      <Mountain x={150} y={184} s={1.8} />
+      <Mountain x={370} y={188} s={1.5} />
       {/* rising water */}
       <rect x={40} y={128} width={480} height={84} rx={14} fill="var(--sage-soft)" stroke="var(--charcoal)" strokeWidth="0.9" />
-      <Waves x={150} y={140} s={1.1} w={72} />
-      <Waves x={370} y={146} s={1.1} w={72} />
-      <path d="M480 204 V 138" {...ARROW_RUST} />
-      <N x={472} y={118} anchor="end" fill="var(--rust)">15 cubits above · 7:20</N>
+      <Waves x={265} y={156} s={1.1} w={40} />
+      <Waves x={472} y={156} s={1.1} w={40} />
+      <path d="M168 149 V 131" stroke="var(--rust)" strokeWidth="1" markerEnd="url(#gn-arr-rust)" markerStart="url(#gn-arr-rust)" />
+      <N x={160} y={118} anchor="end" fill="var(--rust)">15 cubits above · 7:20</N>
       {/* the ark rides on top */}
       <Ark x={270} y={116} s={1.8} />
       <Hero cx={270} cy={84} r={9} />
@@ -201,12 +204,12 @@ export function GodRemembered() {
       <N x={210} y={118} size={10}>a wind</N>
       {/* Ararat and the ark */}
       <Mountain x={150} y={204} s={2.2} />
-      <Ark x={142} y={158} s={1.4} />
+      <Ark x={172} y={154.5} s={1.4} />
       <Cap x={150} y={256} size={8}>Ararat · 8:4</Cap>
       {/* receding water, in steps */}
       <Waves x={300} y={176} s={1} w={48} />
       <Waves x={300} y={200} s={1} w={48} c="var(--muted)" />
-      <path d="M300 160 V 214" {...ARROW} />
+      <path d="M334 166 V 212" {...ARROW} />
       {/* the birds */}
       <Raven x={380} y={92} s={1.1} />
       <N x={380} y={114} size={10}>raven · to and fro</N>
@@ -216,7 +219,7 @@ export function GodRemembered() {
       <N x={470} y={150} size={10} fill="var(--sage-deep)">olive leaf</N>
       <Dove x={494} y={74} s={1} />
       <N x={490} y={96} size={10}>did not return</N>
-      <path d="M176 148 C 250 110, 340 120, 402 154" {...ARROW} fill="none" strokeDasharray="3 3" />
+      <path d="M192 146 C 250 110, 340 120, 402 154" {...ARROW} fill="none" strokeDasharray="3 3" />
       <Rule y={266} />
       <N x={W / 2} y={284}>A raven, then a dove three times · 8:6–12</N>
     </Frame>
@@ -237,7 +240,7 @@ export function NewBeginning() {
       <Cap x={212} y={200} size={8}>Noah’s altar</Cap>
       <N x={212} y={216}>8:20</N>
       <path d="M232 104 C 236 86, 262 70, 300 66" {...ARROW_SAGE} />
-      <N x={262} y={58} size={10} fill="var(--sage-deep)">a pleasing aroma · 8:21</N>
+      <N x={290} y={58} anchor="end" size={10} fill="var(--sage-deep)">a pleasing aroma · 8:21</N>
       <Region x={300} y={40} w={220} h={160} />
       <Hero cx={410} cy={120} r={12} />
       <Rays x={410} y={120} r={15} />
@@ -267,10 +270,10 @@ export function MeaningOfFlood() {
       <Waves x={430} y={166} s={1.1} w={80} />
       {/* the ark carries life through */}
       <Ark x={280} y={126} s={2.2} />
-      <path d="M210 112 C 250 96, 320 96, 360 112" {...ARROW_SAGE} />
-      <Hero cx={280} cy={76} r={11} />
-      <Rays x={280} y={76} r={14} />
-      <Cap x={280} y={52} size={8} fill="var(--sage-deep)">preservation</Cap>
+      <path d="M210 110 C 250 88, 320 88, 360 110" {...ARROW_SAGE} />
+      <Hero cx={280} cy={66} r={11} />
+      <Rays x={280} y={66} r={14} />
+      <Cap x={280} y={40} size={8} fill="var(--sage-deep)">preservation</Cap>
       <Person x={420} y={110} s={1} c="var(--sage-deep)" />
       <Person x={440} y={110} s={1} c="var(--sage-deep)" />
       <N x={430} y={92} fill="var(--sage-deep)">life carried through</N>
