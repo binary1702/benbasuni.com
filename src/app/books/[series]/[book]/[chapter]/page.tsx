@@ -6,6 +6,8 @@ import { SITE_URL, SITE_NAME, AUTHOR } from '@/lib/site';
 
 type Params = { series: string; book: string; chapter: string };
 
+const ROMAN = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X', 'XI', 'XII'];
+
 export function generateStaticParams(): Params[] {
   return allChapters().map(({ series, book, chapter }) => ({ series: series.slug, book: book.slug, chapter: chapter.slug }));
 }
@@ -70,6 +72,8 @@ export default async function ChapterPage({ params }: { params: Promise<Params> 
   return (
     <Reader
       title={book.title}
+      kicker={`Book ${ROMAN[index] ?? index + 1}`}
+      numbered
       date={book.date}
       chapters={book.chapters}
       page={n}

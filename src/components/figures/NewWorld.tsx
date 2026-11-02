@@ -44,8 +44,8 @@ export function TheCovenant() {
     <Frame h={262} title="The covenant" desc="God establishes His covenant with Noah, his descendants, and every living creature: never again will all life be cut off by a flood. God alone makes the promise; nothing is required in return.">
       <Cap x={W / 2} y={22}>God binds Himself</Cap>
       <Region x={210} y={40} w={140} h={78} />
-      <Hero cx={280} cy={80} r={14} />
-      <Rays x={280} y={80} r={17} />
+      <Hero cx={280} cy={76} r={14} />
+      <Rays x={280} y={76} r={17} />
       <N x={280} y={110} fill="var(--sage-deep)">“I establish” · 9:9</N>
       <path d="M240 118 C 200 140, 150 150, 120 168" {...ARROW_SAGE} />
       <path d="M280 120 V 166" {...ARROW_SAGE} />
@@ -137,7 +137,7 @@ export function CurseOfCanaan() {
       <Cap x={372} y={128} anchor="start" size={8} fill="var(--sage-deep)">Japheth</Cap>
       <N x={372} y={144} anchor="start">“may God enlarge Japheth”</N>
       <Hero cx={350} cy={204} r={7} fill="var(--rust)" />
-      <Cap x={372} y={200} anchor="start" size={8} fill="var(--rust)">Canaan</Cap>
+      <Cap x={372} y={200} anchor="start" size={8} fill="var(--rust)">Canaan · son of Ham</Cap>
       <N x={372} y={216} anchor="start" fill="var(--rust)">“cursed be Canaan”</N>
       <Rule y={232} />
       <Grave x={W / 2 - 104} y={250} s={0.8} />

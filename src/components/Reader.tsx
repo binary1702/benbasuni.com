@@ -27,6 +27,7 @@ const KEY_WORDS = new Set([
   'chemar',
   'chen',
   'chomer',
+  'elohim',
   'enosh',
   'gabar',
   'gibbor',
@@ -34,6 +35,7 @@ const KEY_WORDS = new Set([
   'hevel',
   '’ivri',
   'kaphar',
+  'le-yepheth',
   'kopher',
   'marad',
   'mashal',
@@ -46,11 +48,14 @@ const KEY_WORDS = new Set([
   'sha’ar',
   'shachat',
   'shat',
+  'shem',
+  'shofekh dam ha-adam, ba-adam damo yishafekh',
   'shomer',
   'teshuqah',
   'tevah',
   'tov',
   'yapht',
+  'yapht elohim le-yepheth',
   'yatsar',
   'yepheth',
   'yetzer',
@@ -202,15 +207,50 @@ function BlockView({ block, context }: { block: Block; context?: string }) {
       );
     }
     case 'table':
-      // Small fact table: caps header, serif rows, hairline rules. Scrolls sideways on narrow phones
-      // instead of squeezing; the first column reads as the row's name.
+      // Small fact table: caps header, serif rows, hairline rules. Built to fit the reading column with no
+      // sideways scrolling: cells wrap, and only short cells (numbers, names, "0 – 930") stay on one line.
+      // Tighter type and padding on phones so four columns still fit.
+      // Phones: a 4+ column table can't fit, so each row becomes a small stacked entry
+      // (first cell as its title, the rest as label · value lines). Desktop keeps the table.
+      const stack = block.head.length >= 4;
       return (
-        <div className="my-7 overflow-x-auto">
-          <table className="w-full border-collapse text-left text-[0.92em] leading-[1.45]">
+        <div className="my-7">
+          {stack && (
+            <div className="divide-y divide-rule border-y border-rule text-[0.84em] leading-[1.35] md:hidden">
+              {block.rows.map((r, i) => {
+                // A column whose cells are all short (e.g. a sign, a number) rides on the title line as a badge,
+                // the same column in every row; everything else stacks below with its label.
+                const badge = block.head.findIndex((_, j) => j > 0 && block.rows.every((row) => row[j].split('*').join('').length <= 20));
+                return (
+                  <div key={i} className="py-2">
+                    <p className="flex items-baseline justify-between gap-3 text-ink">
+                      <span>
+                        <Inline text={r[0]} />
+                      </span>
+                      {badge > 0 && (
+                        <span className="shrink-0 font-sans text-[9px] uppercase tracking-[0.16em] text-sage">
+                          <Inline text={r[badge]} />
+                        </span>
+                      )}
+                    </p>
+                    {r.map((c, j) =>
+                      j === 0 || j === badge ? null : (
+                        <p key={j} className="mt-0.5">
+                          <span className="mr-1.5 font-sans text-[8.5px] uppercase tracking-[0.14em] text-muted">{block.head[j]}</span>
+                          <Inline text={c} />
+                        </p>
+                      ),
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          )}
+          <table className={`${stack ? 'hidden md:table' : ''} w-full border-collapse text-left text-[0.82em] leading-[1.4] md:text-[0.64em] md:leading-[1.45]`}>
             <thead>
               <tr className="border-b border-sage/50">
                 {block.head.map((h) => (
-                  <th key={h} className="whitespace-nowrap pb-2 pr-5 align-bottom font-sans text-[10px] font-normal uppercase tracking-[0.2em] text-sage last:pr-0">
+                  <th key={h} className="pb-2 pr-3 align-bottom font-sans text-[9px] font-normal uppercase tracking-[0.16em] text-sage last:pr-0 md:pr-5 md:text-[10px] md:tracking-[0.2em]">
                     {h}
                   </th>
                 ))}
@@ -220,7 +260,10 @@ function BlockView({ block, context }: { block: Block; context?: string }) {
               {block.rows.map((r, i) => (
                 <tr key={i} className="border-b border-rule">
                   {r.map((c, j) => (
-                    <td key={j} className={`py-2.5 pr-5 align-top last:pr-0 ${j < 2 ? 'whitespace-nowrap' : ''} ${j === 0 ? 'text-ink' : ''}`}>
+                    <td
+                      key={j}
+                      className={`py-2 pr-3 align-top last:pr-0 md:py-2.5 md:pr-5 ${j === 0 || c.split('*').join('').length <= 14 ? 'whitespace-nowrap' : ''} ${j === 0 ? 'text-ink' : ''}`}
+                    >
                       <Inline text={c} />
                     </td>
                   ))}
@@ -261,6 +304,8 @@ function formatDate(iso: string) {
 
 export function Reader({
   title,
+  kicker,
+  numbered = false,
   date,
   chapters,
   page,
@@ -273,6 +318,10 @@ export function Reader({
   jsonLd,
 }: {
   title: string;
+  /** small label before the title, e.g. "Book V", so a reader knows where this piece sits in its series */
+  kicker?: string;
+  /** show the chapter number before the chapter title ("4 | The Nakedness of Noah") */
+  numbered?: boolean;
   date: string;
   chapters: ReaderChapter[];
   /** 1-based index of the chapter being shown */
@@ -303,6 +352,9 @@ export function Reader({
               className="font-serif font-light leading-[1.05] tracking-[-0.02em] text-ink"
               style={{ fontSize: 'clamp(1.5rem, 2.2vw, 1.75rem)' }}
             >
+              {kicker && (
+                <span className="mb-1.5 block font-sans text-[10px] uppercase tracking-[0.3em] text-sage">{kicker}</span>
+              )}
               {title}
             </h1>
           </CopyableTitle>
@@ -310,7 +362,15 @@ export function Reader({
               Keyed by page so the passage fades in on every chapter change. */}
           {chapter.title && chapters.length > 1 && (
             <p className="mt-0.5 flex flex-wrap items-baseline gap-x-2 font-serif font-light text-muted" style={{ fontSize: 'clamp(0.9rem, 1.5vw, 1rem)' }}>
-              <span>{chapter.title}</span>
+              <span>
+                {numbered && (
+                  <>
+                    <span className="font-sans text-[0.8em] tabular-nums text-muted">{page}</span>
+                    <span aria-hidden="true" className="mx-2 text-rule">|</span>
+                  </>
+                )}
+                {chapter.title}
+              </span>
               {chapter.ref && (() => {
                 const m = chapter.ref.match(/^((?:[123]\s)?[A-Za-z]+)\s+(\d+)(?::(\d+))?/);
                 const href = m ? bibleVerseUrl(m[1], m[2], m[3]) : null;
