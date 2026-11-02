@@ -5,7 +5,7 @@ import { SITE_URL, SITE_NAME, DESCRIPTION, AUTHOR } from '@/lib/site';
 
 type LinkT = { display: string; url?: string };
 function LinkItem({ link }: { link: LinkT }) {
-  const cls = 'font-serif text-[1.05rem] font-light md:text-[1.125rem]';
+  const cls = 'font-serif text-[0.95rem] font-light sm:text-[1.05rem] md:text-[1.125rem]';
   if (!link.url) return <span className={`${cls} italic text-muted`}>{link.display}</span>;
   const external = !link.url.startsWith('/');
   return (
@@ -36,7 +36,7 @@ function Quiet({ href, children }: { href: string; children: string }) {
 }
 
 function Eyebrow({ children }: { children: string }) {
-  return <p className="font-sans text-[11px] uppercase tracking-[0.22em] text-muted">{children}</p>;
+  return <p className="font-sans text-[10px] uppercase tracking-[0.1em] text-muted sm:text-[11px] sm:tracking-[0.22em]">{children}</p>;
 }
 
 export default function Home() {
@@ -124,24 +124,32 @@ export default function Home() {
         <Reveal className="text-center md:col-start-1 md:row-start-3" delay={100}>
           <blockquote className="md:mt-4">
             <p
-              className="font-serif font-medium italic leading-[1.5] text-sage-deep md:whitespace-nowrap"
-              style={{ fontSize: 'clamp(0.95rem, 3.5vw, 1.25rem)' }}
+              className="whitespace-nowrap font-serif font-medium italic leading-[1.5] text-sage-deep"
+              // One line at every width: the quote is ~20.3em wide in Newsreader italic,
+              // so size = (viewport − 40px page padding) / 21 keeps it on a single row.
+              style={{ fontSize: 'min(1.25rem, calc((100vw - 40px) / 21))' }}
             >
               &ldquo;Get in, get it done, get it done right, and get out.&rdquo;
             </p>
           </blockquote>
 
           {/* One idea per line. Each <p> is a row; the gap between rows does the pacing. */}
-          <div className="mt-8 space-y-3 font-serif font-light leading-[1.5] text-charcoal" style={{ fontSize: 'clamp(0.8rem, 2.8vw, 1.2rem)' }}>
-            <p className="md:whitespace-nowrap">I was born in Indonesia but grew up in the US and Taiwan.</p>
-            <p className="md:whitespace-nowrap">
+          {/* One row per line at every width, left-aligned as a block centered under the quote.
+              Longest line ("spent 10+ years…") is ~27.2em in Newsreader light, so
+              size = (viewport − 40px page padding) / 28 keeps every line on one row. */}
+          <div
+            className="mx-auto mt-8 w-fit space-y-3 whitespace-nowrap text-left font-serif font-light leading-[1.5] text-charcoal"
+            style={{ fontSize: 'min(1.2rem, calc((100vw - 40px) / 28))' }}
+          >
+            <p>I was born in Indonesia but grew up in the US and Taiwan.</p>
+            <p>
               I studied philosophy at <Quiet href="https://www.ucsb.edu">UC Santa Barbara</Quiet>, then
             </p>
-            <p className="md:whitespace-nowrap">
+            <p>
               spent 10+ years in tech, including <Quiet href="https://www.datadoghq.com">Datadog</Quiet> and{' '}
               <Quiet href="https://www.montecarlodata.com">Monte Carlo Data</Quiet>.
             </p>
-            <p className="md:whitespace-nowrap">
+            <p>
               Today I run{' '}
               <a
                 href="https://binary1702.com"
@@ -155,8 +163,8 @@ export default function Home() {
             </p>
           </div>
 
-          {/* Link groups: 3 columns - Featured Work | Client Work | Writings */}
-          <div className="mt-8 grid grid-cols-1 gap-y-7 border-t border-sage/30 pt-6 text-center md:mt-10 md:grid-cols-3 md:gap-x-10 md:gap-y-0">
+          {/* Link groups: 3 columns at every width - Featured Work | Collaborations | Essays */}
+          <div className="mt-8 grid grid-cols-3 gap-x-3 border-t border-sage/30 pt-6 text-center sm:gap-x-6 md:mt-10 md:gap-x-10">
             {/* Column 1: Featured Work */}
             <div>
               <Eyebrow>{site.groups[0].label}</Eyebrow>
@@ -180,12 +188,12 @@ export default function Home() {
                 </li>
               </ul>
             </div>
-            {/* Column 3: Writings - Engineering and Philosophy links */}
+            {/* Column 3: Essays - The First World and Philosophy links */}
             <div>
-              <Eyebrow>Writings</Eyebrow>
+              <Eyebrow>Essays</Eyebrow>
               <ul className="mt-4 space-y-2">
                 <li>
-                  <LinkItem link={{ display: 'Engineering', url: '/swe' }} />
+                  <LinkItem link={{ display: 'The First World', url: '/books/the-first-world' }} />
                 </li>
                 <li>
                   <LinkItem link={{ display: 'Philosophy', url: '/phil' }} />

@@ -1,19 +1,7 @@
 import { ThoughtsShell } from '@/components';
-import { thoughts, getChapters, thoughtPath, KINDS, KIND_LABEL, KIND_PREFIX } from '@/content/thoughts';
+import { navSections } from '@/content/nav';
 
 /* Essay pages: collapsible sidebar on the left, the essay on the right. */
 export default function ThoughtsLayout({ children }: LayoutProps<'/[kind]'>) {
-  const sections = KINDS.map((kind) => ({
-    label: KIND_LABEL[kind],
-    href: `/${KIND_PREFIX[kind]}`,
-    items: thoughts
-      .filter((t) => t.kind === kind)
-      .map((t) => ({
-        href: thoughtPath(t),
-        title: t.title,
-        date: t.date,
-        chapters: getChapters(t).map((c) => c.title ?? 'Opening'),
-      })),
-  }));
-  return <ThoughtsShell sections={sections}>{children}</ThoughtsShell>;
+  return <ThoughtsShell sections={navSections()}>{children}</ThoughtsShell>;
 }

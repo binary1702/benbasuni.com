@@ -4,8 +4,8 @@ import Link from 'next/link';
 import { Suspense, useState } from 'react';
 import { ThoughtsNav } from './ThoughtsNav';
 
-type Item = { href: string; title: string; date: string; chapters: string[] };
-type Section = { label: string; href: string; items: Item[] };
+type Item = { href: string; title: string; date: string; chapters: string[]; match?: string };
+type Section = { label: string; href: string; items: Item[]; match?: string };
 
 function HamburgerIcon({ open }: { open: boolean }) {
   return (

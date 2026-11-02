@@ -3,13 +3,13 @@ import type { Thought } from './index';
 // Genesis Chapter 1: In The Beginning
 // Understanding Creation, God, and the Purpose of Man
 export const christian: Thought = {
-  slug: 'the-creation',
+  slug: 'the-book-of-creation',
   kind: 'christianity',
   title: 'The Book of Creation',
   dek: '',
   date: '2026-10-30',
   body: [
-    { type: 'h', text: 'Before the Beginning' },
+    { type: 'h', text: 'Before the Beginning', ref: 'Genesis 1:1–2' },
     { type: 'figure', name: 'gen-before' },
     { type: 'quote', text: 'In the beginning God created the heavens and the earth.', by: 'Genesis 1:1', link: 'https://www.shavat.app/ot/genesis/creation/1#v1' },
     {
@@ -51,7 +51,7 @@ export const christian: Thought = {
       text: 'This changes the way we approach the most fundamental questions of life. Rather than beginning with ourselves and asking what purpose we should invent, Scripture invites us to begin with God and ask what purpose He has given.\n\n**To understand creation, we must first understand its Creator.**',
     },
 
-    { type: 'h', text: 'And God Said' },
+    { type: 'h', text: 'And God Said', ref: 'Genesis 1:3–25' },
     { type: 'figure', name: 'gen-said' },
     { type: 'quote', text: 'And God said, "Let there be light," and there was light.', by: 'Genesis 1:3', link: 'https://www.shavat.app/ot/genesis/creation/1#v3' },
     {
@@ -92,7 +92,7 @@ export const christian: Thought = {
       text: 'John deliberately echoes the opening words of Genesis. He then identifies the Word as the One through whom all things were made. Later, John 1:14 tells us that the Word became flesh. This is one of the most remarkable connections in Scripture. **The One through whom creation came into existence, entered that same creation.** The God who speaks creation into existence is not distant from the world He made.\n\n**Through Jesus Christ, He made Himself known.**',
     },
 
-    { type: 'h', text: 'And It Was Good' },
+    { type: 'h', text: 'And It Was Good', ref: 'Genesis 1:31' },
     { type: 'figure', name: 'gen-good' },
     {
       type: 'p',
@@ -129,7 +129,7 @@ export const christian: Thought = {
       text: 'The biblical account presents a world in which everything has its place within God\u2019s design. And humanity is given a particular responsibility within that world.',
     },
 
-    { type: 'h', text: 'In His Image' },
+    { type: 'h', text: 'In His Image', ref: 'Genesis 1:26–28' },
     { type: 'figure', name: 'gen-image' },
     {
       type: 'quote',
@@ -179,7 +179,7 @@ export const christian: Thought = {
       type: 'p',
       text: '**This is one of the foundational biblical teachings concerning the value of human life.**',
     },
-    { type: 'h', text: 'The Purpose of Man' },
+    { type: 'h', text: 'The Purpose of Man', ref: 'Genesis 2:15' },
     { type: 'figure', name: 'gen-purpose' },
     {
       type: 'quote',
@@ -222,7 +222,7 @@ export const christian: Thought = {
       text: 'Whether someone is cultivating land, raising a family, building a business, teaching, or caring for others, the question is not merely what they accomplish. It is whether they exercise their responsibilities faithfully. Genesis presents humanity as created with purpose, responsibility, and accountability to God.',
     },
 
-    { type: 'h', text: 'The Seventh Day' },
+    { type: 'h', text: 'The Seventh Day', ref: 'Genesis 2:1–3' },
     { type: 'figure', name: 'gen-seventh' },
     {
       type: 'quote',
@@ -265,7 +265,7 @@ export const christian: Thought = {
       text: 'And humanity is invited to live in faithful relationship with Him rather than treating its own labor as the ultimate foundation of existence.',
     },
 
-    { type: 'h', text: 'The Garden of Eden' },
+    { type: 'h', text: 'The Garden of Eden', ref: 'Genesis 2:8–17' },
     { type: 'figure', name: 'gen-garden' },
     {
       type: 'quote',
@@ -290,7 +290,7 @@ export const christian: Thought = {
       text: 'However, the narrative clearly establishes that eating from it would constitute disobedience to God\u2019s explicit command. The issue is therefore not simply the acquisition of information. It is humanity\u2019s relationship to divine authority.\n\nThe question of whether human beings will trust God\u2019s wisdom becomes central to the story that follows, which prepares us for the Fall.',
     },
 
-    { type: 'h', text: 'It Is Not Good to Be Alone' },
+    { type: 'h', text: 'It Is Not Good to Be Alone', ref: 'Genesis 2:18–25' },
     { type: 'figure', name: 'gen-alone' },
     {
       type: 'quote',
@@ -360,7 +360,7 @@ export const christian: Thought = {
       text: 'This is why the chapter ends where it does. For one verse, the reader is shown what God meant by *not alone*: completely known and completely unafraid. That is the condition humanity was made for, and the condition the rest of Scripture works to restore, until the very last page.',
     },
 
-    { type: 'h', text: 'The Beginning of Our Story' },
+    { type: 'h', text: 'The Beginning of Our Story', ref: 'Genesis 1–2' },
     { type: 'figure', name: 'gen-story' },
     {
       type: 'p',

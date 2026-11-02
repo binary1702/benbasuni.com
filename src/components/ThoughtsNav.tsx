@@ -4,8 +4,8 @@ import Link from 'next/link';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
-type Item = { href: string; title: string; date: string; chapters: string[] };
-type Section = { label: string; href: string; items: Item[] };
+type Item = { href: string; title: string; date: string; chapters: string[]; match?: string };
+type Section = { label: string; href: string; items: Item[]; match?: string };
 
 /* Left sidebar on /s/* and /w/* pages. Each section (Speeches, Writings) is
    a foldable group; the current piece is marked and its chapters listed. The
@@ -41,7 +41,9 @@ export function ThoughtsNav({ sections, onNavigate }: { sections: Section[]; onN
 
   // Determine which section should be open: either explicitly opened, or the one holding current page (if none explicitly set)
   const hasExplicitOpen = Object.values(opened).some(Boolean);
-  const currentSection = sections.find((s) => s.items.some((i) => i.href === pathname) || pathname === s.href);
+  // `match` is a path prefix that also counts as "here" (a book is current on any of its chapter pages)
+  const isHere = (x: { href: string; match?: string }) => pathname === x.href || (!!x.match && pathname.startsWith(`${x.match}/`));
+  const currentSection = sections.find((s) => s.items.some(isHere) || pathname === s.href || (!!s.match && pathname.startsWith(s.match)));
 
   return (
     <nav aria-label="Speeches and writings" className="space-y-3 font-serif">
@@ -79,7 +81,7 @@ export function ThoughtsNav({ sections, onNavigate }: { sections: Section[]; onN
             <ul id={id} className={`mt-1 space-y-1 ${open ? '' : 'hidden'}`}>
               {section.items.map((item) => {
                 const href = item.href;
-                const active = pathname === href;
+                const active = isHere(item);
                 return (
                   <li key={item.href}>
                     <Link

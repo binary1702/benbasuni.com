@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { notFound } from 'next/navigation';
+import { notFound, permanentRedirect } from 'next/navigation';
 import { Reveal } from '@/components';
 import { thoughts, thoughtPath, getChapters, KIND_PREFIX, PREFIX_KIND, KIND_LABEL, KINDS } from '@/content/thoughts';
 import { SITE_NAME, AUTHOR, SITE_URL } from '@/lib/site';
@@ -48,6 +48,8 @@ export default async function KindIndex({ params }: { params: Promise<{ kind: st
   const { kind } = await params;
   const k = PREFIX_KIND[kind];
   if (!k) notFound();
+  // Christianity is books now: /christ → /books
+  if (k === 'christianity') permanentRedirect('/books');
   const items = thoughts.filter((t) => t.kind === k);
 
   const jsonLd = {

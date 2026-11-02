@@ -11,6 +11,8 @@ export const BIBLE_BOOKS: Record<string, { path: string; section: string }> = {
   'num': { path: 'ot/numbers', section: 'numbers' },
   'deuteronomy': { path: 'ot/deuteronomy', section: 'deuteronomy' },
   'deut': { path: 'ot/deuteronomy', section: 'deuteronomy' },
+  '1 kings': { path: 'ot/1-kings', section: '1-kings' },
+  '2 kings': { path: 'ot/2-kings', section: '2-kings' },
   'psalm': { path: 'ot/psalms', section: 'psalms' },
   'psalms': { path: 'ot/psalms', section: 'psalms' },
   'ps': { path: 'ot/psalms', section: 'psalms' },
@@ -22,6 +24,34 @@ export const BIBLE_BOOKS: Record<string, { path: string; section: string }> = {
   'jer': { path: 'ot/jeremiah', section: 'jeremiah' },
   'ezekiel': { path: 'ot/ezekiel', section: 'ezekiel' },
   'ezek': { path: 'ot/ezekiel', section: 'ezekiel' },
+  // Rest of the Old Testament (Shavat redirects book/book/N to the right section)
+  'joshua': { path: 'ot/joshua', section: 'joshua' },
+  'judges': { path: 'ot/judges', section: 'judges' },
+  'ruth': { path: 'ot/ruth', section: 'ruth' },
+  '1 samuel': { path: 'ot/1-samuel', section: '1-samuel' },
+  '2 samuel': { path: 'ot/2-samuel', section: '2-samuel' },
+  '1 chronicles': { path: 'ot/1-chronicles', section: '1-chronicles' },
+  '2 chronicles': { path: 'ot/2-chronicles', section: '2-chronicles' },
+  'ezra': { path: 'ot/ezra', section: 'ezra' },
+  'nehemiah': { path: 'ot/nehemiah', section: 'nehemiah' },
+  'esther': { path: 'ot/esther', section: 'esther' },
+  'job': { path: 'ot/job', section: 'job' },
+  'ecclesiastes': { path: 'ot/ecclesiastes', section: 'ecclesiastes' },
+  'song of solomon': { path: 'ot/song-of-solomon', section: 'song-of-solomon' },
+  'lamentations': { path: 'ot/lamentations', section: 'lamentations' },
+  'daniel': { path: 'ot/daniel', section: 'daniel' },
+  'hosea': { path: 'ot/hosea', section: 'hosea' },
+  'joel': { path: 'ot/joel', section: 'joel' },
+  'amos': { path: 'ot/amos', section: 'amos' },
+  'obadiah': { path: 'ot/obadiah', section: 'obadiah' },
+  'jonah': { path: 'ot/jonah', section: 'jonah' },
+  'micah': { path: 'ot/micah', section: 'micah' },
+  'nahum': { path: 'ot/nahum', section: 'nahum' },
+  'habakkuk': { path: 'ot/habakkuk', section: 'habakkuk' },
+  'zephaniah': { path: 'ot/zephaniah', section: 'zephaniah' },
+  'haggai': { path: 'ot/haggai', section: 'haggai' },
+  'zechariah': { path: 'ot/zechariah', section: 'zechariah' },
+  'malachi': { path: 'ot/malachi', section: 'malachi' },
   // New Testament
   'matthew': { path: 'nt/matthew', section: 'matthew' },
   'matt': { path: 'nt/matthew', section: 'matthew' },
@@ -68,5 +98,5 @@ export function bibleVerseUrl(book: string, chapter: string, verse?: string): st
   const bookInfo = BIBLE_BOOKS[bookLower];
   if (!bookInfo) return null;
   const base = `https://www.shavat.app/${bookInfo.path}/${bookInfo.section}/${chapter}`;
-  return verse ? `${base}#v${verse.split('-')[0]}` : base;
+  return verse ? `${base}#v${verse.split(/[-–]/)[0]}` : base;
 }

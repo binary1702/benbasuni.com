@@ -23,7 +23,7 @@ export const leota = {
   stats: [
     { n: '30+', label: 'years teaching', note: 'The Woodlands studio, founded September 1993' },
     { n: '19', label: 'countries', note: 'students taught, in person and online' },
-    { n: '36', label: 'five-star reviews', note: 'Google rating 5.0, September 2026' },
+    { n: '39', label: 'five-star reviews', note: 'Google rating 5.0, September 2026' },
     { n: '20', label: 'years with Lyle Lovett', note: 'Christmas Eve and Easter, Trinity Lutheran, Spring TX' },
     { n: '~40', label: 'years in orchestras', note: 'The Woodlands Symphony and ensembles' },
     { n: '1973', label: 'first student', note: 'tutoring in her own teacher’s studio' },

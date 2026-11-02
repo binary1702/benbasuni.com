@@ -10,6 +10,25 @@ import {
   NotGoodToBeAlone,
   BeginningOfOurStory,
 } from './Genesis';
+import {
+  AnatomyOfDeception,
+  TwoPathsToWisdom,
+  BeforeAndAfter,
+  ChainOfBlame,
+  ConsequencesOfTheFall,
+  EdenToExile,
+  CainAndAbel,
+  ProgressionOfSin,
+  TwoDivineQuestions,
+  CivilizationAndViolence,
+  TwoLinesOfAdam,
+  GenerationsOfAdam,
+  FromCreationToCondition,
+} from './BookOfMan';
+
+import { SonsOfGod, GriefOfGod, RighteousMan, TheArk, DoorWasShut, UndoingOfCreation, GodRemembered, NewBeginning, MeaningOfFlood } from './GreatFlood';
+import { FruitfulAgain, TheCovenant, BowInTheClouds, NakednessOfNoah, CurseOfCanaan, PreservedNotRedeemed } from './NewWorld';
+import { TableOfNations, FirstKingdoms, TowerOfBabel, LetUsGoDown, GenerationsOfShem, FamilyOfAbram, BabelToAbraham } from './RiseOfNations';
 
 /* Figures referenced by name from content: { type: 'figure', name: 'system' } */
 export const FIGURES = {
@@ -23,5 +42,40 @@ export const FIGURES = {
   'gen-garden': TheGardenOfEden,
   'gen-alone': NotGoodToBeAlone,
   'gen-story': BeginningOfOurStory,
+  'man-deception': AnatomyOfDeception,
+  'man-wisdom': TwoPathsToWisdom,
+  'man-shame': BeforeAndAfter,
+  'man-blame': ChainOfBlame,
+  'man-curse': ConsequencesOfTheFall,
+  'man-exile': EdenToExile,
+  'man-brothers': CainAndAbel,
+  'man-sin': ProgressionOfSin,
+  'man-questions': TwoDivineQuestions,
+  'man-civilization': CivilizationAndViolence,
+  'man-lines': TwoLinesOfAdam,
+  'man-generations': GenerationsOfAdam,
+  'man-condition': FromCreationToCondition,
+  'flood-sons': SonsOfGod,
+  'flood-grief': GriefOfGod,
+  'flood-righteous': RighteousMan,
+  'flood-ark': TheArk,
+  'flood-door': DoorWasShut,
+  'flood-undoing': UndoingOfCreation,
+  'flood-remembered': GodRemembered,
+  'flood-beginning': NewBeginning,
+  'flood-meaning': MeaningOfFlood,
+  'world-fruitful': FruitfulAgain,
+  'world-covenant': TheCovenant,
+  'world-bow': BowInTheClouds,
+  'world-nakedness': NakednessOfNoah,
+  'world-canaan': CurseOfCanaan,
+  'world-preserved': PreservedNotRedeemed,
+  'nations-table': TableOfNations,
+  'nations-kingdoms': FirstKingdoms,
+  'nations-babel': TowerOfBabel,
+  'nations-down': LetUsGoDown,
+  'nations-shem': GenerationsOfShem,
+  'nations-abram': FamilyOfAbram,
+  'nations-conclusion': BabelToAbraham,
 } as const;
 export type FigureName = keyof typeof FIGURES;

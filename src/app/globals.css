@@ -13,6 +13,10 @@
   --sage-deep: #2f7a4a; /* saturated green for text accents: dark enough to read, green enough to stand out */
   --rust: #b5584a; /* "before" in before/after charts */
   --sage-soft: rgba(134, 150, 122, 0.16);
+  --figure-bg: #dbd1bd; /* diagram panels: muted warm sand, a step below the sheet so it never glares */
+  --figure-edge: rgba(140, 110, 60, 0.22);
+  --keyword: #c0661a; /* orange: Hebrew words in the books */
+  --xref: #2f5f9e; /* links to other chapters/pages (Scripture links to Shavat stay sage) */
   /* rgb triplet of the line colour used by the grid and number strips */
   --line-rgb: 42, 40, 37;
   --sheet-bg: rgba(252, 250, 244, 0.55);
@@ -56,6 +60,10 @@ html[data-theme='blueprint'] {
   --sage-deep: #9fcf98;
   --rust: #d2705f;
   --sage-soft: rgba(143, 176, 138, 0.14);
+  --figure-bg: #45303f; /* diagram panels: smoky plum — warm enough to feel alive, muted enough not to fight the sage/rust accents */
+  --figure-edge: rgba(215, 165, 200, 0.28);
+  --keyword: #f0a05a;
+  --xref: #8db4e6;
   --line-rgb: 239, 236, 228;
   --sheet-bg: rgba(255, 255, 255, 0.03);
   --sheet-bg-strong: rgba(255, 255, 255, 0.07);
@@ -374,10 +382,10 @@ body {
   z-index: 20; /* above the number strips (z 10): the page wins, not the ticker */
   padding: 1.5rem 1.25rem 2rem;
   border-radius: 12px;
-  background: #f3efe6;
+  background: #e3ddd1; /* a shade below the desk (#ebe6db) */
 }
 html[data-theme='blueprint'] .sheet {
-  background: #2a2f36;
+  background: #1d2025; /* a shade below the desk (#23272d) so plum figures pop */
 }
 @media (min-width: 768px) {
   .sheet {
@@ -512,4 +520,23 @@ html[data-theme='blueprint'] .scroll-pane::-webkit-scrollbar-thumb {
   body:has([data-thoughts-shell]) #layout-theme-toggle {
     display: none;
   }
+}
+
+/* On desktop essay pages the theme toggle lives in the essay header instead of the corner. */
+@media (min-width: 768px) {
+  body:has([data-thoughts-shell]) #layout-theme-toggle {
+    display: none;
+  }
+}
+
+/* Chapter pager: the Scripture reference cross-fades in on each chapter change */
+@keyframes ref-fade {
+  from { opacity: 0; transform: translateY(3px); }
+  to { opacity: 1; transform: none; }
+}
+.ref-fade {
+  animation: ref-fade 0.6s ease-out both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .ref-fade { animation: none; }
 }

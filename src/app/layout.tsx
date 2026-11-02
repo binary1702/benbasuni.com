@@ -53,7 +53,7 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
     <html lang="en" className={`${newsreader.variable} ${geistSans.variable} ${geistMono.variable} h-full`}>
       <body className="min-h-full bg-ivory text-charcoal">
         <Backdrop />
-        <div id="layout-theme-toggle" className="fixed right-5 top-5 z-50 sm:right-8 sm:top-8">
+        <div id="layout-theme-toggle" className="fixed bottom-5 left-5 z-[60] sm:bottom-8 sm:left-8">
           <ThemeToggle />
         </div>
         {children}

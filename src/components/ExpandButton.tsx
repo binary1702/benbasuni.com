@@ -1,6 +1,5 @@
 'use client';
 
-import { useEffect } from 'react';
 import { useExpand } from './ExpandContext';
 
 /* Expand/collapse icon */
@@ -24,28 +23,37 @@ function ExpandIcon({ expanded }: { expanded: boolean }) {
   );
 }
 
+/** − / + buttons that step the reading text size (essay paragraphs, lists and pull quotes). */
+export function FontSizeButtons() {
+  const { canShrink, canGrow, shrinkFont, growFont } = useExpand();
+  const cls =
+    'flex h-7 w-7 cursor-pointer items-center justify-center rounded-sm font-sans text-[15px] leading-none text-muted transition-colors duration-500 hover:bg-sage-soft hover:text-ink focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-sage disabled:cursor-default disabled:opacity-30 disabled:hover:bg-transparent';
+  return (
+    <>
+      <button type="button" onClick={shrinkFont} disabled={!canShrink} title="Smaller text" aria-label="Smaller text" className={cls}>
+        −
+      </button>
+      <button type="button" onClick={growFont} disabled={!canGrow} title="Larger text" aria-label="Larger text" className={cls}>
+        +
+      </button>
+    </>
+  );
+}
+
+/** Expand = hide the sidebar so the reading card widens (animated in ThoughtsShell); press again to bring it back. */
 export function ExpandButton() {
-  const { expanded, toggleExpand } = useExpand();
-
-  // Escape key exits expanded mode
-  useEffect(() => {
-    if (!expanded) return;
-    const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') toggleExpand();
-    };
-    window.addEventListener('keydown', onKeyDown);
-    return () => window.removeEventListener('keydown', onKeyDown);
-  }, [expanded, toggleExpand]);
-
+  const { sidebarOpen, toggleSidebar } = useExpand();
+  const expanded = !sidebarOpen;
   return (
     <button
       type="button"
-      onClick={toggleExpand}
-      title={expanded ? 'Exit fullscreen (Esc)' : 'Expand'}
+      onClick={toggleSidebar}
+      title={expanded ? 'Show sidebar' : 'Expand'}
+      aria-pressed={expanded}
       className="hidden md:flex h-7 w-7 cursor-pointer items-center justify-center rounded-sm text-muted transition-colors duration-500 hover:bg-sage-soft hover:text-ink focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-sage"
     >
       <ExpandIcon expanded={expanded} />
-      <span className="sr-only">{expanded ? 'Exit fullscreen' : 'Expand'}</span>
+      <span className="sr-only">{expanded ? 'Show sidebar' : 'Expand'}</span>
     </button>
   );
 }
