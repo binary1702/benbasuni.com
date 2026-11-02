@@ -4,7 +4,7 @@ const chapter: BookChapter = {
   slug: 'the-ark',
   title: 'The Ark',
   ref: 'Genesis 6:14–22',
-  draft: true,
+  
   blocks: [
     { type: 'figure', name: 'flood-ark' },
     { type: 'quote', text: 'Make for yourself an ark of gopher wood; make rooms in the ark and coat it with pitch inside and out.', by: 'Genesis 6:14' },

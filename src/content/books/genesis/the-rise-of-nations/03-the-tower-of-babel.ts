@@ -4,7 +4,7 @@ const chapter: BookChapter = {
   slug: 'the-tower-of-babel',
   title: 'The Tower of Babel',
   ref: 'Genesis 11:1–4',
-  draft: true,
+  
   blocks: [
     { type: 'figure', name: 'nations-babel' },
     { type: 'quote', text: 'Now the whole world had one language and a common form of speech. And as people journeyed eastward, they found a plain in the land of Shinar and settled there.', by: 'Genesis 11:1–2' },

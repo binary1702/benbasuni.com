@@ -4,7 +4,7 @@ const chapter: BookChapter = {
   slug: 'but-god-remembered-noah',
   title: 'But God Remembered Noah',
   ref: 'Genesis 8:1–14',
-  draft: true,
+  
   blocks: [
     { type: 'figure', name: 'flood-remembered' },
     { type: 'quote', text: 'But God remembered Noah and all the animals and livestock that were with him in the ark. And God sent a wind over the earth, and the waters began to subside.', by: 'Genesis 8:1' },

@@ -4,7 +4,7 @@ const chapter: BookChapter = {
   slug: 'the-grief-of-god',
   title: 'The Grief of God',
   ref: 'Genesis 6:5–8',
-  draft: true,
+  
   blocks: [
     { type: 'figure', name: 'flood-grief' },
     { type: 'quote', text: 'Then the LORD saw that the wickedness of man was great upon the earth, and that every inclination of the thoughts of his heart was altogether evil all the time.', by: 'Genesis 6:5' },

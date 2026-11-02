@@ -4,7 +4,7 @@ const chapter: BookChapter = {
   slug: 'the-curse-of-canaan',
   title: 'The Curse of Canaan',
   ref: 'Genesis 9:24–29',
-  draft: true,
+  
   blocks: [
     { type: 'figure', name: 'world-canaan' },
     { type: 'quote', text: 'Cursed be Canaan! A servant of servants shall he be to his brothers.', by: 'Genesis 9:25' },

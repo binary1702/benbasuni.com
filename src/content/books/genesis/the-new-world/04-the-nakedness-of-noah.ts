@@ -4,7 +4,7 @@ const chapter: BookChapter = {
   slug: 'the-nakedness-of-noah',
   title: 'The Nakedness of Noah',
   ref: 'Genesis 9:18–23',
-  draft: true,
+  
   blocks: [
     { type: 'figure', name: 'world-nakedness' },
     { type: 'quote', text: 'Now Noah, a man of the soil, proceeded to plant a vineyard. But when he drank some of its wine, he became drunk and uncovered himself inside his tent.', by: 'Genesis 9:20–21' },

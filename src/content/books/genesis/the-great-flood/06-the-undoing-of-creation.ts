@@ -4,7 +4,7 @@ const chapter: BookChapter = {
   slug: 'the-undoing-of-creation',
   title: 'The Undoing of Creation',
   ref: 'Genesis 7:17–24',
-  draft: true,
+  
   blocks: [
     { type: 'figure', name: 'flood-undoing' },
     {

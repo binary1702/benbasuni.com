@@ -4,7 +4,7 @@ const chapter: BookChapter = {
   slug: 'the-meaning-of-the-flood',
   title: 'The Meaning of the Flood',
   ref: 'Genesis 6–8',
-  draft: true,
+  
   blocks: [
     { type: 'figure', name: 'flood-meaning' },
     { type: 'p', text: 'This book began with a question: Why did God judge the world, and how did He preserve life? Genesis 6–8 answers both. And the answers are closely connected.' },

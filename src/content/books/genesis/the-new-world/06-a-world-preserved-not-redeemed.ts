@@ -4,7 +4,7 @@ const chapter: BookChapter = {
   slug: 'a-world-preserved-not-redeemed',
   title: 'A World Preserved, Not Redeemed',
   ref: 'Genesis 9',
-  draft: true,
+  
   blocks: [
     { type: 'figure', name: 'world-preserved' },
     {

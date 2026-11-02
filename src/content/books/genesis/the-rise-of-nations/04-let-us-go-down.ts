@@ -4,7 +4,7 @@ const chapter: BookChapter = {
   slug: 'let-us-go-down',
   title: 'Let Us Go Down',
   ref: 'Genesis 11:5–9',
-  draft: true,
+  
   blocks: [
     { type: 'figure', name: 'nations-down' },
     { type: 'quote', text: 'Then the LORD came down to see the city and the tower that the sons of men were building.', by: 'Genesis 11:5' },

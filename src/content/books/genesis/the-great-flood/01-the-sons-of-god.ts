@@ -4,7 +4,7 @@ const chapter: BookChapter = {
   slug: 'the-sons-of-god',
   title: 'The Sons of God',
   ref: 'Genesis 6:1–4',
-  draft: true,
+  
   blocks: [
     { type: 'figure', name: 'flood-sons' },
     { type: 'quote', text: 'The sons of God saw that the daughters of men were beautiful, and they took as wives whomever they chose.', by: 'Genesis 6:2' },

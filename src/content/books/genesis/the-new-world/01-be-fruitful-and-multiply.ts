@@ -4,7 +4,7 @@ const chapter: BookChapter = {
   slug: 'be-fruitful-and-multiply',
   title: 'Be Fruitful and Multiply',
   ref: 'Genesis 9:1–7',
-  draft: true,
+  
   blocks: [
     { type: 'figure', name: 'world-fruitful' },
     { type: 'quote', text: 'And God blessed Noah and his sons and said to them, “Be fruitful and multiply and fill the earth.”', by: 'Genesis 9:1' },

@@ -4,7 +4,7 @@ const chapter: BookChapter = {
   slug: 'the-generations-of-shem',
   title: 'The Generations of Shem',
   ref: 'Genesis 11:10–26',
-  draft: true,
+  
   blocks: [
     { type: 'figure', name: 'nations-shem' },
     { type: 'quote', text: 'This is the account of Shem. Two years after the flood, when Shem was 100 years old, he became the father of Arphaxad.', by: 'Genesis 11:10' },

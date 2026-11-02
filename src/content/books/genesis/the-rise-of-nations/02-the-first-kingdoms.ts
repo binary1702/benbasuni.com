@@ -6,7 +6,7 @@ const chapter: BookChapter = {
   slug: 'the-first-kingdoms',
   title: 'The First Kingdoms',
   ref: 'Genesis 10:8–12',
-  draft: true,
+  
   blocks: [
     { type: 'figure', name: 'nations-kingdoms' },
     { type: 'quote', text: 'Cush was the father of Nimrod, who began to be a mighty one on the earth. He was a mighty hunter before the LORD.', by: 'Genesis 10:8–9' },

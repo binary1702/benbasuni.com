@@ -4,7 +4,7 @@ const chapter: BookChapter = {
   slug: 'a-new-beginning',
   title: 'A New Beginning',
   ref: 'Genesis 8:15–22',
-  draft: true,
+  
   blocks: [
     { type: 'figure', name: 'flood-beginning' },
     {

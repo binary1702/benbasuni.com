@@ -4,7 +4,7 @@ const chapter: BookChapter = {
   slug: 'the-table-of-nations',
   title: 'The Table of Nations',
   ref: 'Genesis 10:1–32',
-  draft: true,
+  
   blocks: [
     { type: 'figure', name: 'nations-table' },
     {

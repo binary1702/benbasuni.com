@@ -4,7 +4,7 @@ const chapter: BookChapter = {
   slug: 'the-righteous-man',
   title: 'The Righteous Man',
   ref: 'Genesis 6:9–13',
-  draft: true,
+  
   blocks: [
     { type: 'figure', name: 'flood-righteous' },
     {

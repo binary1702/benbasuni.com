@@ -4,7 +4,7 @@ const chapter: BookChapter = {
   slug: 'the-covenant',
   title: 'The Covenant',
   ref: 'Genesis 9:8–11',
-  draft: true,
+  
   blocks: [
     { type: 'figure', name: 'world-covenant' },
     { type: 'quote', text: 'Behold, I now establish My covenant with you and your descendants after you, and with every living creature that was with you.', by: 'Genesis 9:9–10' },

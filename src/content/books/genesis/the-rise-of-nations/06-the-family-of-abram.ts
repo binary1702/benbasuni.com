@@ -4,7 +4,7 @@ const chapter: BookChapter = {
   slug: 'the-family-of-abram',
   title: 'The Family of Abram',
   ref: 'Genesis 11:27–32',
-  draft: true,
+  
   blocks: [
     { type: 'figure', name: 'nations-abram' },
     { type: 'quote', text: 'But Sarai was barren; she had no children.', by: 'Genesis 11:30' },

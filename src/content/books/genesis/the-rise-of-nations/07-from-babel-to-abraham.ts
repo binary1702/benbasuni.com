@@ -6,7 +6,7 @@ const chapter: BookChapter = {
   slug: 'from-babel-to-abraham',
   title: 'From Babel to Abraham',
   ref: 'Genesis 10–11',
-  draft: true,
+  
   blocks: [
     { type: 'figure', name: 'nations-conclusion' },
     { type: 'p', text: 'This book began with a question: How did humanity become divided into nations, and why does the biblical narrative eventually turn toward one family?' },

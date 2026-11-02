@@ -4,7 +4,7 @@ const chapter: BookChapter = {
   slug: 'the-bow-in-the-clouds',
   title: 'The Bow in the Clouds',
   ref: 'Genesis 9:12–17',
-  draft: true,
+  
   blocks: [
     { type: 'figure', name: 'world-bow' },
     { type: 'quote', text: 'I have set My rainbow in the clouds, and it will be a sign of the covenant between Me and the earth.', by: 'Genesis 9:13' },

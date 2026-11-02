@@ -4,7 +4,7 @@ const chapter: BookChapter = {
   slug: 'the-door-was-shut',
   title: 'The Door Was Shut',
   ref: 'Genesis 7:1–16',
-  draft: true,
+  
   blocks: [
     { type: 'figure', name: 'flood-door' },
     { type: 'quote', text: 'Go into the ark, you and all your family, because I have found you righteous in this generation.', by: 'Genesis 7:1' },
