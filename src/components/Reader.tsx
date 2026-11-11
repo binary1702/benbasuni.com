@@ -65,16 +65,43 @@ const KEY_WORDS = new Set([
   'zera',
 ]);
 
+
+/* Minimal C highlighter for code blocks: comments, strings/chars, keywords, numbers, the two pointer
+   operators. Palette: keywords sage, strings rust, comments muted, & and * in the keyword accent so
+   the symbols the book is about stand out on the page. Everything else stays ink. */
+const C_KEYWORDS = new Set(['int', 'char', 'void', 'const', 'return', 'if', 'else', 'while', 'for', 'sizeof', 'double', 'float', 'long', 'unsigned', 'struct', 'static', 'NULL']);
+const C_TOKEN = /(\/\/[^\n]*|\/\*[\s\S]*?\*\/|"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|\b[A-Za-z_]\w*\b|\b0x[0-9a-fA-F]+\b|\b\d+\b|[&*])/g;
+function highlightC(src: string) {
+  const parts = src.split(C_TOKEN);
+  return parts.map((t, i) => {
+    if (!t) return null;
+    if (t.startsWith('//') || t.startsWith('/*')) return <span key={i} className="italic text-muted">{t}</span>;
+    if (t.startsWith('"') || t.startsWith("'")) return <span key={i} className="text-rust">{t}</span>;
+    if (C_KEYWORDS.has(t)) return <span key={i} className="text-sage-deep">{t}</span>;
+    if (t === '&' || t === '*') return <span key={i} className="font-semibold text-[var(--keyword)]">{t}</span>;
+    if (/^(0x[0-9a-fA-F]+|\d+)$/.test(t)) return <span key={i} className="text-sage-deep/80">{t}</span>;
+    return <span key={i}>{t}</span>;
+  });
+}
+
 function Inline({ text }: { text: string }) {
   // Split by **bold**, *italics*, [links](url), and newlines
-  const parts = text.split(/(\*\*[^*]+\*\*|\*[^*]+\*|\[[^\]]+\]\([^)]+\)|\n)/g);
+  const parts = text.split(/(`[^`]+`|\*\*[^*]+\*\*|\*[^*]+\*|\[[^\]]+\]\([^)]+\)|\n)/g);
 
   return (
     <>
       {parts.map((part, i) => {
         if (part === '\n') return <br key={i} />;
+        if (part.length > 2 && part.startsWith('`') && part.endsWith('`')) {
+          return (
+            <code key={i} className="rounded bg-ink/[0.06] px-1 py-px font-mono text-[0.86em] text-ink">
+              {part.slice(1, -1)}
+            </code>
+          );
+        }
         if (part.startsWith('**') && part.endsWith('**')) {
-          return <strong key={i}>{part.slice(2, -2)}</strong>;
+          // Bold may carry `code` inside it, e.g. **`x` is the name we use**
+          return <strong key={i}><Inline text={part.slice(2, -2)} /></strong>;
         }
         if (part.startsWith('*') && part.endsWith('*')) {
           const word = part.slice(1, -1);
@@ -194,6 +221,13 @@ function BlockView({ block, context }: { block: Block; context?: string }) {
         </blockquote>
       );
     }
+    case 'code':
+      // Verbatim code; sized off the reader scale like the prose so − / + still apply.
+      return (
+        <pre className="my-6 overflow-x-auto rounded-md border border-rule bg-ink/[0.04] px-4 py-3 font-mono text-[0.8em] leading-[1.6] text-ink">
+          <code>{highlightC(block.text)}</code>
+        </pre>
+      );
     case 'figure': {
       const Fig = FIGURES[block.name as FigureName];
       if (!Fig) return null;

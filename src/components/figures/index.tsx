@@ -1,4 +1,5 @@
 import { SystemDiagram } from './SystemDiagram';
+import { TheTwoSymbols, WhereVariablesLive, AnAddressWrittenDown, WhySwapFailed, ArraysInDisguise, MemoryYouAskFor } from './Pointers';
 import {
   BeforeTheBeginning,
   AndGodSaid,
@@ -29,10 +30,22 @@ import {
 import { SonsOfGod, GriefOfGod, RighteousMan, TheArk, DoorWasShut, UndoingOfCreation, GodRemembered, NewBeginning, MeaningOfFlood } from './GreatFlood';
 import { FruitfulAgain, TheCovenant, BowInTheClouds, NakednessOfNoah, CurseOfCanaan, PreservedNotRedeemed } from './NewWorld';
 import { TableOfNations, NimrodLine, FirstKingdoms, TowerOfBabel, LetUsGoDown, GenerationsOfShem, FamilyOfAbram, BabelToAbraham } from './RiseOfNations';
+import { TheCall, SoAbramDeparted, FamineInTheLand, ChoiceOfLot, LiftUpYourEyes, WarOfTheKings, KingOfSalem } from './Abraham';
+import { UnderTheStars, BetweenThePieces, PlanOfSarai, GodWhoSees, NewName, TwoSons } from './Covenant';
+import { ThreeVisitors, JudgeOfAllTheEarth, GateOfSodom, FleeForYourLives, FireFromHeaven, TheCave } from './CitiesOfThePlain';
+import { SheIsMySister, PrayerOfAProphet, Laughter, SonOfTheSlaveWoman, WellOfTheOath } from './PromisedSon';
+import { GodTestedAbraham, OnTheThirdDay, TheAltar, TheLordWillProvide, ByMyselfIHaveSworn } from './MountainOfTheLord';
+import { ForeignerAndOutsider, ServantAtTheWell, IWillGo, GatheredToHisPeople, PromiseContinues } from './GenerationsOfAbraham';
 
 /* Figures referenced by name from content: { type: 'figure', name: 'system' } */
 export const FIGURES = {
   system: SystemDiagram,
+  'ptr-symbols': TheTwoSymbols,
+  'ptr-memory': WhereVariablesLive,
+  'ptr-arrow': AnAddressWrittenDown,
+  'ptr-swap': WhySwapFailed,
+  'ptr-array': ArraysInDisguise,
+  'ptr-heap': MemoryYouAskFor,
   'gen-before': BeforeTheBeginning,
   'gen-said': AndGodSaid,
   'gen-good': AndItWasGood,
@@ -78,5 +91,39 @@ export const FIGURES = {
   'nations-shem': GenerationsOfShem,
   'nations-abram': FamilyOfAbram,
   'nations-conclusion': BabelToAbraham,
+  'abram-call': TheCall,
+  'abram-departed': SoAbramDeparted,
+  'abram-famine': FamineInTheLand,
+  'abram-lot': ChoiceOfLot,
+  'abram-eyes': LiftUpYourEyes,
+  'abram-war': WarOfTheKings,
+  'abram-salem': KingOfSalem,
+  'cov-stars': UnderTheStars,
+  'cov-pieces': BetweenThePieces,
+  'cov-hagar': PlanOfSarai,
+  'cov-sees': GodWhoSees,
+  'cov-name': NewName,
+  'cov-laugh': TwoSons,
+  'plain-visitors': ThreeVisitors,
+  'plain-judge': JudgeOfAllTheEarth,
+  'plain-gate': GateOfSodom,
+  'plain-flee': FleeForYourLives,
+  'plain-fire': FireFromHeaven,
+  'plain-cave': TheCave,
+  'son-sister': SheIsMySister,
+  'son-prayer': PrayerOfAProphet,
+  'son-laughter': Laughter,
+  'son-hagar': SonOfTheSlaveWoman,
+  'son-well': WellOfTheOath,
+  'mount-test': GodTestedAbraham,
+  'mount-journey': OnTheThirdDay,
+  'mount-altar': TheAltar,
+  'mount-ram': TheLordWillProvide,
+  'mount-oath': ByMyselfIHaveSworn,
+  'legacy-cave': ForeignerAndOutsider,
+  'legacy-well': ServantAtTheWell,
+  'legacy-rebekah': IWillGo,
+  'legacy-death': GatheredToHisPeople,
+  'legacy-twins': PromiseContinues,
 } as const;
 export type FigureName = keyof typeof FIGURES;

@@ -11,6 +11,8 @@
  *   { type: 'list', items, ordered? } short list (ordered → numbered)
  *   { type: 'table', head, rows } small table; every cell takes inline *italics* / **bold** / [links](url)
  *   { type: 'figure', name, caption? } an inline SVG figure from src/components/figures
+ *   { type: 'code', text }     a code block, shown verbatim in monospace
+ * Inline `backticks` become code.
  * Inline *asterisks* become italics; "\n" inside a paragraph is a single line break.
  */
 export type Block =
@@ -20,7 +22,8 @@ export type Block =
   | { type: 'quote'; text: string; by?: string; link?: string; italic?: boolean }
   | { type: 'list'; items: string[]; ordered?: boolean }
   | { type: 'table'; head: string[]; rows: string[][] }
-  | { type: 'figure'; name: string; caption?: string }; // see src/components/figures
+  | { type: 'figure'; name: string; caption?: string } // see src/components/figures
+  | { type: 'code'; text: string }; // monospace block; text is shown verbatim
 
 export type Kind = 'speech' | 'philosophy' | 'engineering' | 'christianity';
 
@@ -40,12 +43,13 @@ import { meta } from './meta';
 import { oracle } from './oracle';
 import { systems } from './systems';
 import { patternRecognition } from './patterns';
+import { pointers } from './pointers';
 
 /** Drafts (chapters marked `draft: true`) are visible while developing and hidden in production. */
 export const SHOW_DRAFTS = process.env.NODE_ENV !== 'production';
 
 /** Every essay, in reading order. (Books — the Genesis series — live in content/books.) */
-const allThoughts: Thought[] = [aLifeOfCuriosity, stMatthewTheBrave, meta, oracle, systems, patternRecognition];
+const allThoughts: Thought[] = [aLifeOfCuriosity, stMatthewTheBrave, meta, oracle, systems, patternRecognition, pointers];
 
 /** Published pieces: a piece with no published chapters (all drafts) is left out entirely,
  *  so it has no page, no sidebar entry and no sitemap entry until its first chapter is published. */
@@ -99,6 +103,7 @@ export function chapterText(t: Pick<Thought, 'title'>, chapter: Chapter): string
   lines.push('');
   for (const b of chapter.blocks) {
     if (b.type === 'p' || b.type === 'sub') lines.push(strip(b.text), '');
+    else if (b.type === 'code') lines.push(b.text, '');
     else if (b.type === 'quote') lines.push(`“${strip(b.text)}”${b.by ? ` — ${b.by}` : ''}`, '');
     else if (b.type === 'list') lines.push(...b.items.map((i, n) => `${b.ordered ? `${n + 1}.` : '•'} ${strip(i)}`), '');
     else if (b.type === 'table') lines.push(b.head.join(' | '), ...b.rows.map((r) => r.map(strip).join(' | ')), '');
