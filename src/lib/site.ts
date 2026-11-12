@@ -4,6 +4,6 @@ export const SITE_NAME = 'Ben Basuni';
 export const AUTHOR = {
   name: 'Ben Basuni',
   url: SITE_URL,
-  sameAs: ['https://binary1702.com'],
+  sameAs: ['https://binary1702.com', 'https://linkedin.com/in/benbasuni'],
 };
 export const DESCRIPTION = 'An introduction to Ben Basuni — the person behind Binary 1702.';
