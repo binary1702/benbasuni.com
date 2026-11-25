@@ -1,6 +1,7 @@
 import type { BookChapter } from '../../types';
 
 const g = (c: number, v: number, label = `${c}:${v}`) => `[${label}](https://www.shavat.app/ot/genesis/creation/${c}#v${v})`;
+const ga = (c: number, v: number, label = `${c}:${v}`) => `[${label}](https://www.shavat.app/ot/genesis/abraham/${c}#v${v})`;
 
 const chapter: BookChapter = {
   slug: 'the-judge-of-all-the-earth',
@@ -47,7 +48,7 @@ const chapter: BookChapter = {
 
     { type: 'sub', text: 'Why He Stopped at Ten' },
     { type: 'p', text: 'Abraham stops at ten. Genesis does not say why. Perhaps he counted Lot’s household, with its daughters and sons-in-law, and thought that ten was safe. Perhaps he felt he had gone as far as he dared. *When the LORD had finished speaking with Abraham, He departed, and Abraham returned home.*' },
-    { type: 'p', text: 'The next chapter will show that there were not ten. And yet God does more than Abraham asked. He had asked that the city be spared for the sake of the righteous. There were too few. So God brings the righteous out before judgment falls, and Genesis says explicitly that He did it because *He remembered Abraham* (19:29).' },
+    { type: 'p', text: `The next chapter will show that there were not ten. And yet God does more than Abraham asked. He had asked that the city be spared for the sake of the righteous. There were too few. So God brings the righteous out before judgment falls, and Genesis says explicitly that He did it because *He remembered Abraham* (${ga(19, 29)}).` },
     { type: 'p', text: 'The principle Abraham established is taken up by the prophets and pressed to its limit. Through Jeremiah, God says of Jerusalem: *If you can find a single person, anyone who acts justly, anyone who seeks the truth, then I will forgive the city* (Jeremiah 5:1). From fifty to ten to one. Through Ezekiel He says, *I searched for a man among them to … stand in the gap before Me on behalf of the land, so that I should not destroy it. But I found no one* (Ezekiel 22:30).' },
     { type: 'p', text: 'The New Testament says that the search ended. Paul writes that *there is one mediator between God and men, the man Christ Jesus* (1 Timothy 2:5), and Hebrews says of Him that *He always lives to intercede* (Hebrews 7:25). Abraham asked whether the many could be spared for the sake of a righteous few. The gospel answers that the many are spared for the sake of One. That is a Christian reading of where this conversation leads, and Genesis does not state it. But the question was first raised on a hillside above Sodom, by a man who called himself dust and ashes.' },
     { type: 'p', text: 'Abraham has been told that the nations will be blessed through him. Here, for the first time, he acts like it. He stands between God and a wicked city and asks for its life.' },

@@ -1,12 +1,12 @@
 import type { BookChapter } from '../../types';
 
-const g = (c: number, v: number, label = `${c}:${v}`) => `[${label}](https://www.shavat.app/ot/genesis/creation/${c}#v${v})`;
+const g = (c: number, v: number, label = `${c}:${v}`) => `[${label}](https://www.shavat.app/ot/genesis/abraham/${c}#v${v})`;
 
 const chapter: BookChapter = {
   slug: 'the-call',
   title: 'The Call',
   ref: 'Genesis 12:1–3',
-  draft: true,
+  draft: false,
   blocks: [
     { type: 'figure', name: 'abram-call' },
     { type: 'quote', text: 'Then the LORD said to Abram, “Leave your country, your kindred, and your father’s household, and go to the land I will show you.”', by: 'Genesis 12:1' },

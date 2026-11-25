@@ -1,5 +1,7 @@
 import type { BookChapter } from '../../types';
 
+const ga = (c: number, v: number, label = `${c}:${v}`) => `[${label}](https://www.shavat.app/ot/genesis/abraham/${c}#v${v})`;
+
 const chapter: BookChapter = {
   slug: 'flee-for-your-lives',
   title: 'Flee for Your Lives',
@@ -7,7 +9,7 @@ const chapter: BookChapter = {
   blocks: [
     { type: 'figure', name: 'plain-flee' },
     { type: 'quote', text: 'But when Lot hesitated, the men grabbed his hand and the hands of his wife and his two daughters. And they led them safely out of the city, because of the LORD’s compassion for them.', by: 'Genesis 19:16' },
-    { type: 'p', text: 'The door is shut. The mob is blind and groping outside. Inside the house, the two visitors tell Lot who they are and why they have come: *we are about to destroy this place. For the outcry to the LORD against its people is so great that He has sent us to destroy it* (19:13).' },
+    { type: 'p', text: `The door is shut. The mob is blind and groping outside. Inside the house, the two visitors tell Lot who they are and why they have come: *we are about to destroy this place. For the outcry to the LORD against its people is so great that He has sent us to destroy it* (${ga(19, 13)}).` },
     { type: 'p', text: 'The verdict has been reached. What remains is the rescue, and it proves far more difficult than the judgment. The question of this passage is why a man who has been told the truth finds it so hard to leave.' },
 
     { type: 'sub', text: 'Anyone Else Who Belongs to You' },
@@ -56,7 +58,7 @@ const chapter: BookChapter = {
     { type: 'p', text: 'Both men intercede. Both are heard. The difference between the two prayers is the difference between the two men.' },
     { type: 'p', text: 'And yet the answer Lot receives is astonishing. *Very well, I will grant this request as well, and will not demolish the town you indicate.* The town is spared, and it is named *Zoar*, which means *small*, after Lot’s own word. A town marked for destruction survives because one frightened man asked to hide in it. If God will spare a town for Lot’s sake, we begin to see how serious He was when He told Abraham that He would spare Sodom for ten.' },
     { type: 'p', text: 'Then the angel says something that shows where the real constraint lies. *Hurry! Run there quickly, for I cannot do anything until you reach it.* Judgment is ready. It is being held back. It will not fall while Lot is in its path. The hesitating, bargaining nephew of Abraham has more protection than he understands.' },
-    { type: 'p', text: 'Why? Lot believes it is because he has found favor. The narrator will give the deeper reason a few verses later: God *remembered Abraham* (19:29). Lot is being carried out of Sodom on the strength of a conversation he never heard, held on a hillside the day before.' },
+    { type: 'p', text: `Why? Lot believes it is because he has found favor. The narrator will give the deeper reason a few verses later: God *remembered Abraham* (${ga(19, 29)}). Lot is being carried out of Sodom on the strength of a conversation he never heard, held on a hillside the day before.` },
     { type: 'p', text: '**Lot was warned, urged, seized by the hand, and led out. He still asked to stay as near to the plain as he could.**' },
   ],
 };

@@ -1,6 +1,6 @@
 import type { BookChapter } from '../../types';
 
-const g = (c: number, v: number, label = `${c}:${v}`) => `[${label}](https://www.shavat.app/ot/genesis/creation/${c}#v${v})`;
+const g = (c: number, v: number, label = `${c}:${v}`) => `[${label}](https://www.shavat.app/ot/genesis/abraham/${c}#v${v})`;
 
 const chapter: BookChapter = {
   slug: 'the-king-of-salem',
