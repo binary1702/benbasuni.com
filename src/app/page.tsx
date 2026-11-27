@@ -138,6 +138,7 @@ export default function Home() {
               Longest line ("spent 10+ years…") is ~27.2em in Newsreader light, so
               size = (viewport − 40px page padding) / 28 keeps every line on one row. */}
           <div
+            data-contour-quiet
             className="mx-auto mt-8 w-fit space-y-3 whitespace-nowrap text-left font-serif font-light leading-[1.5] text-charcoal"
             style={{ fontSize: 'min(1.2rem, calc((100vw - 40px) / 28))' }}
           >
@@ -155,7 +156,7 @@ export default function Home() {
                 href="https://binary1702.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-violet-400 border-b border-violet-400/30 pb-0.5 transition-all duration-500 hover:border-violet-400 hover:drop-shadow-[0_0_8px_rgba(167,139,250,0.4)] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-violet-400"
+                className="border-b border-sage-deep/40 pb-0.5 text-sage-deep transition-all duration-500 hover:border-sage-deep hover:drop-shadow-[0_0_8px_rgba(134,150,122,0.5)] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-sage"
               >
                 Binary 1702
               </a>
@@ -164,7 +165,7 @@ export default function Home() {
           </div>
 
           {/* Link groups: 3 columns at every width - Featured Work | Collaborations | Essays */}
-          <div className="mt-8 grid grid-cols-3 gap-x-3 border-t border-sage/30 pt-6 text-center sm:gap-x-6 md:mt-10 md:gap-x-10">
+          <div data-contour-react className="mt-8 grid grid-cols-3 gap-x-3 border-t border-sage/30 pt-6 text-center sm:gap-x-6 md:mt-10 md:gap-x-10">
             {/* Column 1: Featured Work */}
             <div>
               <Eyebrow>{site.groups[0].label}</Eyebrow>

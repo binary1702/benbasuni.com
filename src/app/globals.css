@@ -6,7 +6,7 @@
   --ivory-deep: #e1dbcf;
   --charcoal: #2a2825;
   --ink: #141311;
-  --muted: #736d63;
+  --muted: #5e5950; /* darkened from #736d63: small caps labels were under 4.5:1 on the linen */
   --rule: #cfc7b9;
   /* Nature accent: muted moss/sage, used sparingly for highlights. */
   --sage: #86967a;
@@ -51,22 +51,24 @@ html {
    every component — grid, strips, spotlight, type — follows without edits.
    Scoped by :has() so no script runs and nothing flashes. */
 html[data-theme='blueprint'] {
-  --ivory: #23272d;
-  --ivory-deep: #1b1f24;
-  --charcoal: #c9c6bd;
-  --ink: #efece4;
-  --muted: #8d919a;
-  --rule: rgba(239, 236, 228, 0.16);
-  --sage: #8fb08a;
-  --sage-deep: #9fcf98;
+  /* Palette (Nov 2026): background #151819 · primary #EDEAE2 · secondary #A6ADA9 · accent #A3C9AC.
+     Body text sits a hair under primary so headings still lead; secondary is for labels and dates only. */
+  --ivory: #151819;
+  --ivory-deep: #0f1213;
+  --charcoal: #e2ded5;
+  --ink: #edeae2;
+  --muted: #a6ada9;
+  --rule: rgba(237, 234, 226, 0.16);
+  --sage: #a3c9ac;
+  --sage-deep: #a3c9ac;
   --rust: #d2705f;
-  --sage-soft: rgba(143, 176, 138, 0.14);
+  --sage-soft: rgba(163, 201, 172, 0.14);
   --figure-bg: #45303f; /* diagram panels: smoky plum — warm enough to feel alive, muted enough not to fight the sage/rust accents */
   --figure-edge: rgba(215, 165, 200, 0.28);
   --gold: #cdb56e;
   --keyword: #f0a05a;
   --xref: #8db4e6;
-  --line-rgb: 239, 236, 228;
+  --line-rgb: 237, 234, 226;
   --sheet-bg: rgba(255, 255, 255, 0.03);
   --sheet-bg-strong: rgba(255, 255, 255, 0.07);
   background: var(--ivory);
@@ -387,7 +389,7 @@ body {
   background: #e3ddd1; /* a shade below the desk (#ebe6db) */
 }
 html[data-theme='blueprint'] .sheet {
-  background: #1d2025; /* a shade below the desk (#23272d) so plum figures pop */
+  background: #0f1213; /* a shade below the desk (#151819) so plum figures pop */
 }
 @media (min-width: 768px) {
   .sheet {
@@ -541,4 +543,42 @@ html[data-theme='blueprint'] .scroll-pane::-webkit-scrollbar-thumb {
 }
 @media (prefers-reduced-motion: reduce) {
   .ref-fade { animation: none; }
+}
+
+/* ---------- Reading column (Reader.tsx) ---------- */
+/* Chapter opening: numeral and title, closed by a short rule. */
+.chapter-opening {
+  margin-bottom: 1.4em;
+  padding-bottom: 1.1em;
+  background: linear-gradient(var(--rule), var(--rule)) left bottom / 3.5em 1px no-repeat;
+}
+/* Drop cap on a chapter's first paragraph: three lines tall, same weight as the text. */
+.dropcap > p:first-child {
+  margin-top: 0;
+}
+.dropcap > p::first-letter {
+  float: left;
+  font-size: 3.05em;
+  line-height: 0.84;
+  padding: 0.07em 0.09em 0 0;
+  color: var(--ink);
+}
+
+/* Phones: nothing in the reading pane may be wider than the screen. Long words, links and
+   references break instead of overflowing; diagrams and code scroll inside their own box. */
+@media (max-width: 767px) {
+  .reading {
+    overflow-wrap: anywhere;
+  }
+  .reading > * {
+    max-width: 100%;
+  }
+}
+
+/* Computational background canvas (components/backgrounds/*): fills the fixed backdrop. */
+.backdrop-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
 }

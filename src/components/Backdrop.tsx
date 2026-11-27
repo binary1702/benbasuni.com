@@ -1,6 +1,13 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { Contours } from './backgrounds/Contours';
+
+/* Which background is drawn behind the page. One word to switch:
+     'contours'  mathematical terrain lines (components/backgrounds/Contours.tsx)
+     'grid'      the original 120px graph paper with the cursor spotlight
+   New backgrounds (vector field, ASCII field) go in components/backgrounds/ and get a case here. */
+const BACKGROUND: 'contours' | 'grid' = 'contours';
 
 /* Graph-paper backdrop with π ticking along the top and bottom edges and
    φ (the golden ratio) down the left and right.
@@ -76,6 +83,7 @@ export function Backdrop() {
     const el = ref.current;
     if (!el) return;
     if (!window.matchMedia('(pointer: fine)').matches) return;
+    if (BACKGROUND !== 'grid') return; // the cursor spotlight belongs to the grid
 
     // Write the cursor position to the spotlight disc only, so just one
     // element's style is recomputed per frame (not the whole backdrop tree).
@@ -110,8 +118,14 @@ export function Backdrop() {
   return (
     <>
       <div ref={ref} className="backdrop" aria-hidden="true">
-        <div className="backdrop-grid" />
-        <div className="backdrop-grid-hot" />
+        {BACKGROUND === 'contours' ? (
+          <Contours />
+        ) : (
+          <>
+            <div className="backdrop-grid" />
+            <div className="backdrop-grid-hot" />
+          </>
+        )}
       </div>
       {/* π sits ABOVE the page (own fixed layer) so it can receive hover;
           the strips live in the top/bottom padding where nothing else does.

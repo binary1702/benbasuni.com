@@ -245,7 +245,9 @@ function BlockView({ block, context }: { block: Block; context?: string }) {
       // (first cell as its title, the rest as label · value lines). Desktop keeps the table.
       const stack = block.head.length >= 4;
       return (
-        <div className="my-7">
+        // overflow-x-auto is the safety net: if a table still can't fit, it scrolls inside itself
+        // instead of pushing the whole page sideways.
+        <div className="my-7 max-w-full overflow-x-auto">
           {stack && (
             <div className="divide-y divide-rule border-y border-rule text-[0.84em] leading-[1.35] md:hidden">
               {block.rows.map((r, i) => {
@@ -293,7 +295,11 @@ function BlockView({ block, context }: { block: Block; context?: string }) {
                   {r.map((c, j) => (
                     <td
                       key={j}
-                      className={`py-2 pr-3 align-top last:pr-0 md:py-2.5 md:pr-5 ${j === 0 || c.split('*').join('').length <= 14 ? 'whitespace-nowrap' : ''} ${j === 0 ? 'text-ink' : ''}`}
+                      className={`py-2 pr-3 align-top last:pr-0 md:py-2.5 md:pr-5 ${
+                        // Desktop: first column and short cells stay on one line. Phones: everything may wrap
+                        // except very short cells (a number, a year range), so 2–3 column tables fit the screen.
+                        c.split('*').join('').length <= 8 ? 'whitespace-nowrap' : j === 0 || c.split('*').join('').length <= 14 ? 'md:whitespace-nowrap' : ''
+                      } ${j === 0 ? 'text-ink' : ''}`}
                     >
                       <Inline text={c} />
                     </td>
@@ -318,12 +324,14 @@ function BlockView({ block, context }: { block: Block; context?: string }) {
     }
     default:
       return (
-        <p className="mt-4 text-justify hyphens-auto" lang="en">
+        <p className="mt-4 text-left hyphens-auto md:text-justify" lang="en">
           <Inline text={block.text} />
         </p>
       );
   }
 }
+
+const ROMAN = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X', 'XI', 'XII', 'XIII', 'XIV', 'XV'];
 
 function formatDate(iso: string) {
   return new Date(`${iso}T00:00:00`).toLocaleDateString('en-US', {
@@ -447,13 +455,28 @@ export function Reader({
         key={page}
         as="section"
         delay={100}
-        className="scroll-pane pt-4 font-serif text-[calc(1.125rem*var(--reader-scale,1))] font-light leading-[1.6] text-charcoal md:min-h-0 md:flex-1 md:overflow-y-auto md:-mr-4 md:pr-4 md:text-[calc(1.65rem*var(--reader-scale,1))] [&>*:first-child]:mt-0"
+        className="reading scroll-pane pt-4 font-serif text-[calc(1.125rem*var(--reader-scale,1))] font-light leading-[1.6] text-charcoal md:min-h-0 md:flex-1 md:overflow-y-auto md:-mr-4 md:pr-4 md:text-[calc(1.65rem*var(--reader-scale,1))] [&>*:first-child]:mt-0"
       >
         {/* Draft chapters only render in dev (they are filtered out of production builds); no on-page label. */}
         {chapter.draft && chapter.blocks.length === 0 && <p className="italic text-muted">Not yet written.</p>}
-        {chapter.blocks.map((block, i) => (
-          <BlockView key={i} block={block} context={chapter.title ? `${title} · ${chapter.title}` : title} />
-        ))}
+        {/* Chapter opening (books only): numeral, title, a short rule. The running head above stays as it is. */}
+        {numbered && chapter.title && (
+          <header className="chapter-opening">
+            <p className="font-sans text-[11px] uppercase tracking-[0.3em] text-sage">Chapter {ROMAN[page - 1] ?? page}</p>
+            <h2 className="mt-2 font-serif text-[1.45em] font-light leading-[1.1] tracking-[-0.02em] text-ink">{chapter.title}</h2>
+          </header>
+        )}
+        {chapter.blocks.map((block, i) => {
+          const view = <BlockView key={i} block={block} context={chapter.title ? `${title} · ${chapter.title}` : title} />;
+          // Drop cap on the opening paragraph, only when it starts with a plain letter (not a quote mark, link or *italic*).
+          return i === 0 && block.type === 'p' && /^[A-Za-z]/.test(block.text) ? (
+            <div key={i} className="dropcap">
+              {view}
+            </div>
+          ) : (
+            view
+          );
+        })}
       </Reveal>
 
       {/* Chapter pagination */}
